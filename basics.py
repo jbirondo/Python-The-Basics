@@ -35,3 +35,4 @@ monday_temperatures = [9.1, 8.8, 7.5]
 # monday_temperatures.clear() clears the list
 # monday_temperatures.index(8.8) returns the first index of the value searched
 # monday_temperatures.__getitem__(1) or monday_temperatures[1] get item at index
+# monday_temperatures[1:2] slice of list where first argument is the beginning and the last agrument is the last index not inclusive
