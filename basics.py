@@ -27,5 +27,5 @@ import datetime
 # mean = mysum / length
 # print(mean)
 
-monday_temperatures = (1, 4 ,5)
+monday_temperatures = (1, 4, 5) #immutable
 print(monday_temperatures)
