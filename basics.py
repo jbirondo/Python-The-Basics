@@ -41,3 +41,9 @@ monday_temperatures = [9.1, 8.8, 7.5]
 # slicing works on strings as well
 
 # can't slice dictionary
+
+def mean(myList):
+    the_mean = sum(myList) / len(myList)
+    return the_mean
+
+print(mean([1, 4, 5]))
