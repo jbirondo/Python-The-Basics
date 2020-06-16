@@ -39,3 +39,5 @@ monday_temperatures = [9.1, 8.8, 7.5]
 # monday_temperatures[-1] access the last index
 # monday_temperatures[-2:] slice of the last two items of the list
 # slicing works on strings as well
+
+# can't slice dictionary
