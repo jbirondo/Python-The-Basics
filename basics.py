@@ -31,3 +31,7 @@ import datetime
 # print(monday_temperatures)
 
 monday_temperatures = [9.1, 8.8, 7.5]
+# monday_temperatures.append(8.1) append to the end
+# monday_temperatures.clear() clears the list
+# monday_temperatures.index(8.8) returns the first index of the value searched
+
