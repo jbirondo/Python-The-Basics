@@ -9,12 +9,14 @@ import datetime
 
 # print(mynumber, mytext)
 
-x = 10
-y = "10"
-z = 10.1
+# x = 10
+# y = "10"
+# z = 10.1
 
-sum1 = x + x
-sum2 = y + y
+# sum1 = x + x
+# sum2 = y + y
 
-print(sum1, sum2)
-print(type(x), type(y), type(z))
+# print(sum1, sum2)
+# print(type(x), type(y), type(z))
+
+student_grades = []
