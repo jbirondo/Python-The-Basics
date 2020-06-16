@@ -34,4 +34,4 @@ monday_temperatures = [9.1, 8.8, 7.5]
 # monday_temperatures.append(8.1) append to the end
 # monday_temperatures.clear() clears the list
 # monday_temperatures.index(8.8) returns the first index of the value searched
-
+# monday_temperatures.__getitem__(1) or monday_temperatures[1] get item at index
