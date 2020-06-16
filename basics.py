@@ -19,10 +19,13 @@ import datetime
 # print(sum1, sum2)
 # print(type(x), type(y), type(z))
 
-student_grades = [9.1, 8.8, 7.5]
-student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
+# student_grades = [9.1, 8.8, 7.5]
+# student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
 
-mysum = sum(student_grades.values())
-length = len(student_grades)
-mean = mysum / length
-print(mean)
+# mysum = sum(student_grades.values())
+# length = len(student_grades)
+# mean = mysum / length
+# print(mean)
+
+monday_temperatures = (1, 4 ,5)
+print(monday_temperatures)
