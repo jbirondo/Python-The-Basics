@@ -42,8 +42,15 @@ monday_temperatures = [9.1, 8.8, 7.5]
 
 # can't slice dictionary
 
-def mean(myList):
-    the_mean = sum(myList) / len(myList)
+student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
+
+
+def mean(value):
+    if type(value) == dict:
+        the_mean = sum(value.values()) / len(value)
+    else:
+        the_mean = sum(value) / len(value)
     return the_mean
 
 print(mean([1, 4, 5]))
+print(mean(student_grades))
