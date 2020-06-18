@@ -56,11 +56,15 @@ import datetime
 # print(mean([1, 4, 5]))
 # print(mean(student_grades))
 
-def weather_condition(temperature):
-    if temperature > 7:
-        return "Warm"
-    else:
-        return "Cold"
+# def weather_condition(temperature):
+#     if temperature > 7:
+#         return "Warm"
+#     else:
+#         return "Cold"
     
-user_input = float(input("Enter temperature: "))
-print(weather_condition(user_input))
+# user_input = float(input("Enter temperature: "))
+# print(weather_condition(user_input))
+
+user_input = input("Enter your name: ")
+message = "Hello %s" % user_input
+print(message)
