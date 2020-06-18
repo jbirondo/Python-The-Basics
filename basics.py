@@ -62,3 +62,4 @@ def weather_condition(temperature):
     else:
         return "Cold"
     
+input("Enter temperature: ")
