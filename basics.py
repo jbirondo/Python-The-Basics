@@ -55,3 +55,11 @@ import datetime
 
 # print(mean([1, 4, 5]))
 # print(mean(student_grades))
+
+def weather_condition(temperature):
+    if temperature > 7:
+        return "Warm"
+    else:
+        return "Cold"
+    
+print(weather_condition(5))
