@@ -30,7 +30,7 @@ import datetime
 # monday_temperatures = (1, 4, 5) #immutable
 # print(monday_temperatures)
 
-monday_temperatures = [9.1, 8.8, 7.5]
+# monday_temperatures = [9.1, 8.8, 7.5]
 # monday_temperatures.append(8.1) append to the end
 # monday_temperatures.clear() clears the list
 # monday_temperatures.index(8.8) returns the first index of the value searched
@@ -42,16 +42,16 @@ monday_temperatures = [9.1, 8.8, 7.5]
 
 # can't slice dictionary
 
-student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
+# student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
 
 
-def mean(value):
-    if isinstance(value, dict):
-        the_mean = sum(value.values()) / len(value)
-    else:
-        the_mean = sum(value) / len(value)
+# def mean(value):
+#     if isinstance(value, dict):
+#         the_mean = sum(value.values()) / len(value)
+#     else:
+#         the_mean = sum(value) / len(value)
 
-    return the_mean
+#     return the_mean
 
-print(mean([1, 4, 5]))
-print(mean(student_grades))
+# print(mean([1, 4, 5]))
+# print(mean(student_grades))
