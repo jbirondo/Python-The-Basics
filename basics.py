@@ -1,4 +1,4 @@
-import datetime
+# import datetime
 # print("The date and time is", datetime.datetime.now())
 
 # mynow = datetime.datetime.now()
@@ -66,5 +66,6 @@ import datetime
 # print(weather_condition(user_input))
 
 user_input = input("Enter your name: ")
-message = "Hello %s" % user_input
+# message = "Hello %s" % user_input
+message = f"Hello {user_input}!"
 print(message)
