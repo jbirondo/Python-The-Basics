@@ -62,4 +62,3 @@ def weather_condition(temperature):
     else:
         return "Cold"
     
-print(weather_condition(5))
