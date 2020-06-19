@@ -71,8 +71,8 @@ surname = input("Enter your surname: ")
 message = f"Hello {name} {surname}!"
 print(message)
 
-def greet(name):
-    return "Hi %s" % name
+# def greet(name):
+#     return "Hi %s" % name
 
-def greet_title(name):
-    return "Hi %s" % name.title()
+# def greet_title(name):
+#     return "Hi %s" % name.title()
