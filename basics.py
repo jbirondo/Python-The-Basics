@@ -73,4 +73,6 @@ print(message)
 
 def greet(name):
     return "Hi %s" % name
-    
+
+def greet_title(name):
+    return "Hi %s" % name.title()
