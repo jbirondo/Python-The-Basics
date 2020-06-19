@@ -65,7 +65,8 @@
 # user_input = float(input("Enter temperature: "))
 # print(weather_condition(user_input))
 
-user_input = input("Enter your name: ")
+name = input("Enter your name: ")
+surname = input("Enter your surname: ")
 # message = "Hello %s" % user_input
-message = f"Hello {user_input}!"
+message = f"Hello {name} {surname}!"
 print(message)
