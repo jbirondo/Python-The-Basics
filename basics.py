@@ -76,3 +76,7 @@
 
 # def greet_title(name):
 #     return "Hi %s" % name.title()
+
+monday_temperature = [9.1, 8.8, 7.6]
+
+print(round(monday_temperature[0])) 
