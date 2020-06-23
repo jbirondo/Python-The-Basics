@@ -99,3 +99,8 @@
 # for value in phone_numbers.values():
 #     print(value.replace("+", "00"))
 #     # print("00{}".format(value[1:]))
+
+username = ""
+
+while username != "pypy":
+    username = input("Enter username: ")
