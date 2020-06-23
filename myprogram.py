@@ -11,6 +11,7 @@ while True:
             #string = "{}?".format(user_input.capitalize())
             string = user_input.capitalize() + "?"
         else:
+            #string = "{}.".format(user_input.capitalize())
             string = user_input.capitalize() + "."
 
         inputs.append(string)
