@@ -90,3 +90,6 @@ student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
 
 # for grades in student_grades.items():
     # print(grades) #will print a tuple
+
+for key, value in student_grades.items():
+    print("{} earned a grade of {}".format(key, value))
