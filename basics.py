@@ -20,7 +20,6 @@
 # print(type(x), type(y), type(z))
 
 # student_grades = [9.1, 8.8, 7.5]
-# student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
 
 # mysum = sum(student_grades.values())
 # length = len(student_grades)
@@ -87,3 +86,7 @@
 # for letter in "hello":
 #     print(letter)
 
+student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
+
+# for grades in student_grades.items():
+    # print(grades) #will print a tuple
