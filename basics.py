@@ -77,12 +77,13 @@
 # def greet_title(name):
 #     return "Hi %s" % name.title()
 
-monday_temperature = [9.1, 8.8, 7.6]
+# monday_temperature = [9.1, 8.8, 7.6]
 
-# print(round(monday_temperature[0])) 
-for temperature in monday_temperature:
-    print(round(temperature))
-    print("Done")
+# # print(round(monday_temperature[0])) 
+# for temperature in monday_temperature:
+#     print(round(temperature))
+#     print("Done")
 
-for letter in "hello":
-    print(letter)
+# for letter in "hello":
+#     print(letter)
+
