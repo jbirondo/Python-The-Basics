@@ -86,16 +86,16 @@
 # for letter in "hello":
 #     print(letter)
 
-student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
+# student_grades = { "Marry": 9.1, "Sim": 8.8, "John": 7.5}
 
-# for grades in student_grades.items():
-    # print(grades) #will print a tuple
+# # for grades in student_grades.items():
+#     # print(grades) #will print a tuple
 
-for key, value in student_grades.items():
-    print("{} earned a grade of {}".format(key, value))
+# for key, value in student_grades.items():
+#     print("{} earned a grade of {}".format(key, value))
 
-phone_numbers = {"John Smith": "+37682929928", "Marry Simpons": "+423998200919"}
+# phone_numbers = {"John Smith": "+37682929928", "Marry Simpons": "+423998200919"}
 
-for value in phone_numbers.values():
-    print(value.replace("+", "00"))
-    # print("00{}".format(value[1:]))
+# for value in phone_numbers.values():
+#     print(value.replace("+", "00"))
+#     # print("00{}".format(value[1:]))
