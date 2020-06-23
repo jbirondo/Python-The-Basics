@@ -135,11 +135,11 @@
 #     new_list = [ele for ele in list if isinstance(ele, int)]
 #     print(new_list)
 
-temps = [221, 234, 340, -9999, 230]
+# temps = [221, 234, 340, -9999, 230]
 
-new_temps = [temp / 10 if temp != -9999 else 0 for temp in temps]
+# new_temps = [temp / 10 if temp != -9999 else 0 for temp in temps]
 
-print(new_temps)
+# print(new_temps)
 
 # Summary: List Comprehensions
 # In this section you learned that:
@@ -160,3 +160,8 @@ print(new_temps)
 
 # [i*2 if i>0 else 0 for i in [1, -2, 10]]
 # Output: [2, 0, 20]
+
+def area(a, b):
+    return a * b
+
+print(area(5,5))
