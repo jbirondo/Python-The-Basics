@@ -100,7 +100,14 @@
 #     print(value.replace("+", "00"))
 #     # print("00{}".format(value[1:]))
 
-username = ""
+# username = ""
 
-while username != "pypy":
-    username = input("Enter username: ")
+# while username != "pypy":
+#     username = input("Enter username: ")
+
+while True:
+    userrname = input("Enter username: ")
+    if userrname == "pypy":
+        break
+    else:
+        continue
