@@ -128,4 +128,10 @@
 
 temps = [221, 234, 340, -9999, 230]
 new_temps = [temp / 10 for temp in temps if temp != -9999]
+
 print(new_temps)
+
+def only_numbers(list):
+    new_list = [ele for ele in list if isinstance(ele, int)]
+    print(new_list)
+
