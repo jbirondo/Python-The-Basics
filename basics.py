@@ -164,4 +164,6 @@
 def area(a, b):
     return a * b
 
-print(area(5,5))
+print(area(5,5)) #positional arguments
+print(area(a=5,b=5)) # keyword arguments
+
