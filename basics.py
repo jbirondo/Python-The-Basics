@@ -162,8 +162,9 @@
 # Output: [2, 0, 20]
 
 def area(a, b):
+# def area(a, b = 6): # Default parameter, cannot be positioned ahead of non-default parameters
     return a * b
 
-print(area(5,5)) #positional arguments
-print(area(a=5,b=5)) # keyword arguments
+print(area(5 ,5)) #positional arguments
+print(area(a = 5,b = 5)) # keyword arguments
 
