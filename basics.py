@@ -174,5 +174,5 @@
 
 # print(mean(5, 4, 6)) 
 
-def average(*args):
-    return sum(args) / len(args)
+# def average(*args):
+#     return sum(args) / len(args)
