@@ -161,10 +161,15 @@
 # [i*2 if i>0 else 0 for i in [1, -2, 10]]
 # Output: [2, 0, 20]
 
-def area(a, b):
-# def area(a, b = 6): # Default parameter, cannot be positioned ahead of non-default parameters
-    return a * b
+# def area(a, b):
+# # def area(a, b = 6): # Default parameter, cannot be positioned ahead of non-default parameters
+#     return a * b
 
-print(area(5 ,5)) #positional arguments
-print(area(a = 5,b = 5)) # keyword arguments
+# print(area(5 ,5)) #positional arguments
+# print(area(a = 5,b = 5)) # keyword arguments
 
+# def mean(*args):
+#     # return args #returns tuple
+#     return sum(args) / len(args)
+
+# print(mean(5, 4, 6)) 
