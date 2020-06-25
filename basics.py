@@ -180,3 +180,8 @@
 # def uppercase_and_sort(*args):
 #     upper_list = [ele.upper() for ele in list(args)]
 #     return sorted(upper_list)
+
+def mean(**kwargs):
+    return kwargs
+
+print(mean(a = 1, b = 2, c = 3))
