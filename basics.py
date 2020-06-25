@@ -176,3 +176,7 @@
 
 # def average(*args):
 #     return sum(args) / len(args)
+
+def uppercase_and_sort(*args):
+    upper_list = [ele.upper() for ele in list(args)]
+    return sorted(upper_list)
