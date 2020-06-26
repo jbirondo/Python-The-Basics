@@ -245,3 +245,11 @@ with open("files/vegetables.txt", "w") as myfile:
 #     content = myfile.read()[:90]
     
 # print(content)
+
+# def find_chars(str, file):
+#     with open(file) as myfile:
+#         content = myfile.read()
+#         count = content.count(str)
+        
+#     return count
+    
