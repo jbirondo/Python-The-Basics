@@ -230,10 +230,11 @@
 # print(content.split())
 # myfile.close()
 
-with open("files/file.txt") as myfile:
-    content = myfile.read()
+with open("files/vegetables.txt", "w") as myfile:
+    # content = myfile.read()
+    myfile.write("tomato")
 
-print(content)
+# print(content)
 
 
 # file = open("bear.txt")
