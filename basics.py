@@ -254,14 +254,20 @@ with open("files/vegetables.txt", "w") as myfile:
 #     return count
     
 # with open("file.txt", "w") as myfile:
-#     myfile.write("snail")
+# #     myfile.write("snail")
 
-with open("files/vegetables.txt", "w") as myfile:
-    # content = myfile.read()
-    myfile.write("tomato\ncucumber\nonion\n")
-    myfile.write('garlic')
+# with open("files/vegetables.txt", "w") as myfile:
+#     # content = myfile.read()
+#     myfile.write("tomato\ncucumber\nonion\n")
+#     myfile.write('garlic')
 
-with open("files/vegetables.txt", "a") as myfile:
-    myfile.write("\nOkra")
-    myfile.seek(0)
+# with open("files/vegetables.txt", "a") as myfile:
+#     myfile.write("\nOkra")
+#     myfile.seek(0)
 
+
+# with open("bear1.txt") as first:
+#     content = first.read()
+    
+# with open("bear2.txt", "a+") as second:
+#     second.write(content)
