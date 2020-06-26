@@ -227,8 +227,9 @@
 
 myfile = open("files/file.txt")
 content = myfile.read()
-print(content)
-print(content)
+print(content.split())
+myfile.close()
+
 
 # file = open("bear.txt")
 
