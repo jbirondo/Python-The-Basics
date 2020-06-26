@@ -300,3 +300,13 @@ with open("files/vegetables.txt", "w") as myfile:
 #     content = file.write("Even more sample text")
 #     file.seek(0)
 #     content = file.read()
+
+# import sys
+# print (sys.builtin_module_names)
+
+import time
+
+while True:
+    with open("files/vegetables.txt") as file:
+        print(file.read())
+        time.sleep(10)
