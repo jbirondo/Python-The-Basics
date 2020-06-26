@@ -305,6 +305,7 @@ with open("files/vegetables.txt", "w") as myfile:
 # print (sys.builtin_module_names)
 
 import time
+import os
 
 while True:
     with open("files/vegetables.txt") as file:
