@@ -226,5 +226,10 @@
 # Here's a summary of function elements:
 
 myfile = open("files/file.txt")
+content = myfile.read()
+print(content)
+print(content)
 
-print(myfile.read())
+# file = open("bear.txt")
+
+# print(file.read())
