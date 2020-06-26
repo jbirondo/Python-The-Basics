@@ -253,3 +253,5 @@ with open("files/vegetables.txt", "w") as myfile:
         
 #     return count
     
+# with open("file.txt", "w") as myfile:
+#     myfile.write("snail")
