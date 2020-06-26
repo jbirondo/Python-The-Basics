@@ -232,11 +232,16 @@
 
 with open("files/vegetables.txt", "w") as myfile:
     # content = myfile.read()
-    myfile.write("tomato")
-
+    myfile.write("tomato\ncucumber\nonion\n")
+    myfile.write('garlic')
 # print(content)
 
 
 # file = open("bear.txt")
 
 # print(file.read())
+
+# with open("bear.txt") as myfile:
+#     content = myfile.read()[:90]
+    
+# print(content)
