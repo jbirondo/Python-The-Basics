@@ -225,10 +225,15 @@
 
 # Here's a summary of function elements:
 
-myfile = open("files/file.txt")
-content = myfile.read()
-print(content.split())
-myfile.close()
+# myfile = open("files/file.txt")
+# content = myfile.read()
+# print(content.split())
+# myfile.close()
+
+with open("files/file.txt") as myfile:
+    content = myfile.read()
+
+print(content)
 
 
 # file = open("bear.txt")
