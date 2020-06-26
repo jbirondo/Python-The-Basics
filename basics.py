@@ -225,3 +225,6 @@
 
 # Here's a summary of function elements:
 
+myfile = open("files/file.txt")
+
+print(myfile.read())
