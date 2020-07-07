@@ -24,3 +24,9 @@
 
 def dig_pow(n, p):
     return -1
+
+def int_to_list(int):
+    s = str(int)
+    return s
+
+print(isinstance(int_to_list(123123), str))
