@@ -25,8 +25,9 @@
 def dig_pow(n, p):
     return -1
 
-def int_to_list(int):
-    s = str(int)
-    return s
+def int_to_list(num):
+    s = str(num)
+    return [int(c) for c in s]
 
-print(isinstance(int_to_list(123123), str))
+print(int_to_list(123123))
+# print(isinstance(int_to_list(123123), str)) == True
