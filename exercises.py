@@ -30,7 +30,7 @@ def dig_pow(n, p):
         p = p + 1
     
     if sum(total) % n == 0:
-        return sum(total) / n
+        return int(sum(total) / n)
     else:
         return -1
 
@@ -39,5 +39,5 @@ def int_to_list(num):
     return [int(c) for c in s]
 
 # print(int_to_list(123123))
-print(dig_pow(123123, 1))
+print(dig_pow(46288, 3))
 # print(isinstance(int_to_list(123123), str)) == True
