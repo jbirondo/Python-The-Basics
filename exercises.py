@@ -28,7 +28,11 @@ def dig_pow(n, p):
     for num in nums:
         total.append(num ** p)
         p = p + 1
-    return sum(total)
+    
+    if sum(total) % n == 0:
+        return sum(total) / n
+    else:
+        return -1
 
 def int_to_list(num):
     s = str(num)
