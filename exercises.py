@@ -39,5 +39,5 @@ def int_to_list(num):
     return [int(c) for c in s]
 
 # print(int_to_list(123123))
-print(dig_pow(46288, 3))
+# print(dig_pow(46288, 3))
 # print(isinstance(int_to_list(123123), str)) == True
