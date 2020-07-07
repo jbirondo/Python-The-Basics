@@ -23,11 +23,17 @@
 # dig_pow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
 
 def dig_pow(n, p):
-    return -1
+    nums = int_to_list(n)
+    total = []
+    for num in nums:
+        total.append(num ** p)
+        p = p + 1
+    return sum(total)
 
 def int_to_list(num):
     s = str(num)
     return [int(c) for c in s]
 
-print(int_to_list(123123))
+# print(int_to_list(123123))
+print(dig_pow(123123, 1))
 # print(isinstance(int_to_list(123123), str)) == True
