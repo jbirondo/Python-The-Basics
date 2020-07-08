@@ -63,7 +63,14 @@ def row_sum_odd_numbers(num):
     j = [[1]]
     k = 3
     while i < num:
+        l = []
+        while k % 2 == 1 & len(l) < len(i[-1]):
+            l.append(k)
+            k = k + 1
+        j.append(k)
         i = i + 1
+    
+    return j
 
 
 
