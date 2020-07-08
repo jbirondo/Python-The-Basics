@@ -22,21 +22,21 @@
 # dig_pow(695, 2) should return 2 since 6² + 9³ + 5⁴= 1390 = 695 * 2
 # dig_pow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
 
-def dig_pow(n, p):
-    nums = int_to_list(n)
-    total = []
-    for num in nums:
-        total.append(num ** p)
-        p = p + 1
+# def dig_pow(n, p):
+#     nums = int_to_list(n)
+#     total = []
+#     for num in nums:
+#         total.append(num ** p)
+#         p = p + 1
     
-    if sum(total) % n == 0:
-        return int(sum(total) / n)
-    else:
-        return -1
+#     if sum(total) % n == 0:
+#         return int(sum(total) / n)
+#     else:
+#         return -1
 
-def int_to_list(num):
-    s = str(num)
-    return [int(c) for c in s]
+# def int_to_list(num):
+#     s = str(num)
+#     return [int(c) for c in s]
 
 # print(int_to_list(123123))
 # print(dig_pow(46288, 3))
