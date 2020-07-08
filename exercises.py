@@ -72,9 +72,12 @@ def row_sum_odd_numbers(num):
         i = i + 1
     
     return sum(j[-1])
+    
+def row_sum_odd_numbers(n):
+    #your code here
+    return n ** 3
 
 
 
 
-print(row_sum_odd_numbers(13))
-print(row_sum_odd_numbers(19))
+print(row_sum_odd_numbers(41))
