@@ -59,9 +59,12 @@ def row_sum_odd_numbers(num):
     if num == 1:
         return 1
     
-    i = 1
-    j = [[1]]
-    while i < num:
-        i + 1
+    # i = 1
+    # j = [[1]]
+    # while i < num:
+    #     i + 1
 
-    return j.append([1])
+    # return j.append([1])
+
+print(row_sum_odd_numbers(1))
+print([[1]].append([1]))
