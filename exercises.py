@@ -56,4 +56,7 @@
 # row_sum_odd_numbers(2); # 3 + 5 = 8
 
 def row_sum_odd_numbers(num):
+    if num == 1:
+        return 1
+    
     
