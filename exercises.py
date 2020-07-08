@@ -55,29 +55,29 @@
 # row_sum_odd_numbers(1); # 1
 # row_sum_odd_numbers(2); # 3 + 5 = 8
 
-def row_sum_odd_numbers(num):
-    if num == 1:
-        return 1
+# def row_sum_odd_numbers(num):
+#     if num == 1:
+#         return 1
     
-    i = 1
-    j = [[1]]
-    k = 3
-    while i < num:
-        l = []
-        while len(l) < len(j[-1]) + 1:
-            if k % 2 != 0:
-                l.append(k)
-            k = k + 1
-        j.append(l)
-        i = i + 1
+#     i = 1
+#     j = [[1]]
+#     k = 3
+#     while i < num:
+#         l = []
+#         while len(l) < len(j[-1]) + 1:
+#             if k % 2 != 0:
+#                 l.append(k)
+#             k = k + 1
+#         j.append(l)
+#         i = i + 1
     
-    return sum(j[-1])
-    
-def row_sum_odd_numbers(n):
-    #your code here
-    return n ** 3
+#     return sum(j[-1])
+
+# def row_sum_odd_numbers(n):
+#     #your code here
+#     return n ** 3
 
 
 
 
-print(row_sum_odd_numbers(41))
+# print(row_sum_odd_numbers(41))
