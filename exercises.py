@@ -90,7 +90,6 @@
 # 14: -14
 # -34: 34
 
-def opposite(number):
-    return number * -1
+# def opposite(number):
+#     return number * -1
 
-print(opposite(5))
