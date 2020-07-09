@@ -101,5 +101,6 @@
 
 # For the beginner, try to use the map method - it comes in very handy quite a lot so is a good one to know.
 
-
+def maps(a):
+    return [ele * 2 for ele in a]
 
