@@ -104,3 +104,5 @@
 def maps(a):
     return [ele * 2 for ele in a]
 
+print(maps([1,2,3,4,5,6,7,8,9]))
+
