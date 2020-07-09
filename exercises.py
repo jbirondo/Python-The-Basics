@@ -101,8 +101,8 @@
 
 # For the beginner, try to use the map method - it comes in very handy quite a lot so is a good one to know.
 
-def maps(a):
-    return [ele * 2 for ele in a]
+# def maps(a):
+#     return [ele * 2 for ele in a]
 
-print(maps([1,2,3,4,5,6,7,8,9]))
+# print(maps([1,2,3,4,5,6,7,8,9]))
 
