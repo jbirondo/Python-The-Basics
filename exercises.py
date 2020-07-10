@@ -161,3 +161,6 @@
 
 # Note:
 # If you are given an array with multiple answers, return the lowest correct index.
+
+def find_even_index(arr):
+    return -1
