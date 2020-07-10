@@ -230,3 +230,6 @@
 # Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 
 def to_jaden_case(string):
+    array = string.split()
+    return "".join([ele.title() for ele in array])
+    
