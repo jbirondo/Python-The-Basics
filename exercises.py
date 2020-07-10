@@ -262,13 +262,21 @@
 # "4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
 # ""  -->  ""
 
-def order(sentence):
-    array = sentence.split()
-    new_array = []
-    i = 1
-    while i < (len(array) + 1):
-        for ele in array:
-            if ele.find("{}".format(i)) != -1:
-                new_array.append(ele)
-                i = i + 1
-    return " ".join(new_array)
+# def order(sentence):
+#     array = sentence.split()
+#     new_array = []
+#     i = 1
+#     while i < (len(array) + 1):
+#         for ele in array:
+#             if ele.find("{}".format(i)) != -1:
+#                 new_array.append(ele)
+#                 i = i + 1
+#     return " ".join(new_array)
+
+# def order(s):
+#     z = []
+#     for i in range(1,10):
+#         for j in list(s.split()):
+#             if str(i) in j:
+#                z.append(j)
+#     return " ".join(z)
