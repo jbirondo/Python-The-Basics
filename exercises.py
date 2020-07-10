@@ -176,6 +176,6 @@
 
 # Note: if there is nothing to sum, the sum is default to 0.
 
-def positive_sum(arr):
-    new_arr = [i if i > 0 else 0 for i in arr]
-    return sum(new_arr)
+# def positive_sum(arr):
+#     new_arr = [i if i > 0 else 0 for i in arr]
+#     return sum(new_arr)
