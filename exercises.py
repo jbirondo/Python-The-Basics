@@ -126,7 +126,7 @@
 def open_or_senior(data):
     result = []
     for datum in data:
-        if datum[0] > 55 & datum[1] > 7:
+        if datum[0] > 55 and datum[1] > 7:
             result.append("Senior")
         else:
             result.append("Open")
