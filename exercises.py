@@ -122,3 +122,7 @@
 
 # Example Output
 # ["Open", "Open", "Senior", "Open", "Open", "Senior"]
+
+def open_or_senior(data):
+    result = []
+    return result
