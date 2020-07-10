@@ -210,11 +210,12 @@
 
 # array_diff([1,2,2,2,3],[2]) == [1,3]
 
-def array_diff(a, b):
-    result = []
-    for i in a:
-        if i not in b:
-            result.append(i)
-    return result
+# def array_diff(a, b):
+#     result = []
+#     for i in a:
+#         if i not in b:
+#             result.append(i)
+#     return result
 
-print(array_diff([1,1,1,2,2,3], [1]))
+# def array_diff(a, b):
+#     return [x for x in a if x not in b]
