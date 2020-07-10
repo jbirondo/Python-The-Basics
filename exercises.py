@@ -261,3 +261,14 @@
 # "is2 Thi1s T4est 3a"  -->  "Thi1s is2 3a T4est"
 # "4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
 # ""  -->  ""
+
+def order(sentence):
+    array = sentence.split()
+    new_array = []
+    i = 1
+    while i < (len(array) + 1):
+        for ele in array:
+            if ele.find("{}".format(i)) != -1:
+                new_array.append(ele)
+                i = i + 1
+    return " ".join(new_array)
