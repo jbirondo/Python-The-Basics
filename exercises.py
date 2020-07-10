@@ -163,4 +163,9 @@
 # If you are given an array with multiple answers, return the lowest correct index.
 
 def find_even_index(arr):
+    num = 0
+    while num < len(arr):
+        if sum(arr[:num]) == sum(arr[num + 1:]):
+            return num
+        num = num + 1
     return -1
