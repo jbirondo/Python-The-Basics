@@ -231,5 +231,5 @@
 
 def to_jaden_case(string):
     array = string.split()
-    return "".join([ele.title() for ele in array])
-    
+    return " ".join([ele.capitalize() for ele in array])
+
