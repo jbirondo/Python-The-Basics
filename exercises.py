@@ -245,3 +245,8 @@
 # min_max([1])           == [1, 1]
 # Remarks
 # All arrays or lists will always have at least one element, so you don't need to check the length. Also, your function will always get an array or a list, you don't have to check for null, undefined or similar.
+
+# def min_max(lst):
+#     return [min(lst), max(lst)]
+
+# print(min_max([5,6,7,3,1,324,5]))
