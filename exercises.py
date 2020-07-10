@@ -179,3 +179,6 @@
 # def positive_sum(arr):
 #     new_arr = [i if i > 0 else 0 for i in arr]
 #     return sum(new_arr)
+
+# def positive_sum(arr):
+#     return sum([i if i > 0 else 0 for i in arr])
