@@ -191,12 +191,12 @@
 # expanded_form(70304) # Should return '70000 + 300 + 4'
 # NOTE: All numbers will be whole numbers greater than 0.
 
-def expanded_form(num):
-    result = []
-    while num > 0:
-        string = str(num)
-        new_num = int(string[0]) * (10 ** (len(string) - 1))
-        result.append(str(new_num))
-        num = num - new_num
-    return " + ".join(result)
-print(expanded_form(7000120003))
+# def expanded_form(num):
+#     result = []
+#     while num > 0:
+#         string = str(num)
+#         new_num = int(string[0]) * (10 ** (len(string) - 1))
+#         result.append(str(new_num))
+#         num = num - new_num
+#     return " + ".join(result)
+# print(expanded_form(7000120003))
