@@ -196,7 +196,7 @@ def expanded_form(num):
     while num > 0:
         string = str(num)
         new_num = int(string[0]) * (10 ** (len(string) - 1))
-        result.append("+ %s " % new_num)
+        result.append(str(new_num))
         num = num - new_num
-    return "".join(result)[2:-1]
+    return " + ".join(result)
 print(expanded_form(7000120003))
