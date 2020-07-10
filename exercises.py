@@ -211,7 +211,10 @@
 # array_diff([1,2,2,2,3],[2]) == [1,3]
 
 def array_diff(a, b):
-    for ele in b:
-        if ele in a:
-            new_set.remove(ele)
-    return list(new_set)
+    result = []
+    for i in a:
+        if i not in b:
+            result.append(i)
+    return result
+
+print(array_diff([1,1,1,2,2,3], [1]))
