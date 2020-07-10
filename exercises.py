@@ -192,5 +192,11 @@
 # NOTE: All numbers will be whole numbers greater than 0.
 
 def expanded_form(num):
+    result = []
     while num > 0:
-        int(str(num)[0]) 
+        string = str(num)
+        new_num = int(string[0]) * (10 ** (len(string) - 1))
+        result.append("+ %s " % new_num)
+        num = num - new_num
+    return "".join(result)[2:-1]
+print(expanded_form(7000120003))
