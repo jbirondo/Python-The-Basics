@@ -291,7 +291,9 @@
 def longest_consec(strarr, k):
     index = 0
     longest = ""
-    while (index + k) < len(strarr):
+    if k < 0:
+        return ""
+    while (index + k) <= len(strarr):
         if len("".join(strarr[index: index + k])) > len(longest):
             longest = "".join(strarr[index: index + k])
         index = index + 1
