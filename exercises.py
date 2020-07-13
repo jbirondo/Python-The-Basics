@@ -292,7 +292,9 @@ def longest_consec(strarr, k):
     index = 0
     longest = ""
     while (index + k) < len(strarr):
-        if len("".join(strarr[index: index + k + 1])) > len(longest):
-            longest = "".join(strarr[index: index + k + 1])
+        if len("".join(strarr[index: index + k])) > len(longest):
+            longest = "".join(strarr[index: index + k])
         index = index + 1
     return longest
+
+print(longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], 2))
