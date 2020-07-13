@@ -287,3 +287,12 @@
 # longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
 
 # n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
+
+def longest_consec(strarr, k):
+    index = 0
+    longest = ""
+    while (index + k) < len(strarr):
+        if len("".join(strarr[index: index + k + 1])) > len(longest):
+            longest = "".join(strarr[index: index + k + 1])
+        index = index + 1
+    return longest
