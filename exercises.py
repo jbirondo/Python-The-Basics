@@ -288,15 +288,26 @@
 
 # n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
 
-def longest_consec(strarr, k):
-    index = 0
-    longest = ""
-    if k < 0:
-        return ""
-    while (index + k) <= len(strarr):
-        if len("".join(strarr[index: index + k])) > len(longest):
-            longest = "".join(strarr[index: index + k])
-        index = index + 1
-    return longest
+# def longest_consec(strarr, k):
+#     index = 0
+#     longest = ""
+#     if k < 0:
+#         return ""
+#     while (index + k) <= len(strarr):
+#         if len("".join(strarr[index: index + k])) > len(longest):
+#             longest = "".join(strarr[index: index + k])
+#         index = index + 1
+#     return longest
 
-print(longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], 2))
+# print(longest_consec(["zone", "abigail", "theta", "form", "libe", "zas"], 2))
+
+# def longest_consec(strarr, k):
+#     result = ""
+    
+#     if k > 0 and len(strarr) >= k:
+#         for index in range(len(strarr) - k + 1):
+#             s = ''.join(strarr[index:index+k])
+#             if len(s) > len(result):
+#                 result = s
+            
+#     return result
