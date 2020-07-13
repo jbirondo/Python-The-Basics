@@ -322,10 +322,8 @@
 
 # twoSum [1, 2, 3] 4 === (0, 2)
 
-def two_sum(numbers, target):
-    for x in range(0, len(numbers) - 1):
-        for y in range(0, len(numbers) - 1):
-            if numbers[x] + numbers[y] == target and x != y:
-                return (x, y)
-
-print(two_sum([2,2,3], 4))
+# def two_sum(numbers, target):
+#     for x in range(0, len(numbers) - 1) or []:
+#         for y in range(0, len(numbers) - 1) or []:
+#             if numbers[x] + numbers[y] == target and x != y:
+#                 return (x, y)
