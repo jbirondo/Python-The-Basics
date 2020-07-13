@@ -321,3 +321,10 @@
 # Based on: http://oj.leetcode.com/problems/two-sum/
 
 # twoSum [1, 2, 3] 4 === (0, 2)
+
+def two_sum(numbers, target):
+    for n in numbers: 
+        for m in numbers:
+            if n + m == target:
+                return (numbers.index(n), numbers.index(m))
+    
