@@ -357,7 +357,9 @@ def increment_string(strng):
         else:
             w2 = "0"
             w1 = strng
-    mod_w2 = str(int(w2) + 1)
+    pad = len(w2)
+    
+
     return w1 + mod_w2
 
 
