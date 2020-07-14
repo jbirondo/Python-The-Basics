@@ -358,8 +358,7 @@ def increment_string(strng):
             w2 = "0"
             w1 = strng
     pad = len(w2)
-    
-
+    mod_w2 = str((int(w2) + 1)).zfill(pad)
     return w1 + mod_w2
 
 
