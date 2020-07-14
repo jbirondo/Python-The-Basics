@@ -327,3 +327,8 @@
 #         for y in range(0, len(numbers) - 1) or []:
 #             if numbers[x] + numbers[y] == target and x != y:
 #                 return (x, y)
+
+s = "hello world 0"
+for x in s:
+    if x.isnumeric():
+        print("there is a number: {}".format(x))
