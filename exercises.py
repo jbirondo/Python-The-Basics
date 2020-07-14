@@ -328,7 +328,38 @@
 #             if numbers[x] + numbers[y] == target and x != y:
 #                 return (x, y)
 
-s = "hello world 0"
-for x in s:
-    if x.isnumeric():
-        print("there is a number: {}".format(x))
+# Your job is to write a function which increments a string, to create a new string.
+
+# If the string already ends with a number, the number should be incremented by 1.
+# If the string does not end with a number. the number 1 should be appended to the new string.
+# Examples:
+
+# foo -> foo1
+
+# foobar23 -> foobar24
+
+# foo0042 -> foo0043
+
+# foo9 -> foo10
+
+# foo099 -> foo100
+
+# Attention: If the number has leading zeros the amount of digits should be considered.
+
+def increment_string(strng):
+    w1 = ""
+    w2 = ""
+    for x in range(0, len(strng)):
+        if strng[x].isnumeric():
+            w2 = strng[x:]
+            w1 = strng[:x]
+            break
+        else:
+            w2 = "0"
+            w1 = strng
+    mod_w2 = str(int(w2) + 1)
+    return w1 + mod_w2
+
+
+
+print(increment_string("hello world 005"))
