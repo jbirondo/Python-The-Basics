@@ -349,6 +349,8 @@
 def increment_string(strng):
     w1 = ""
     w2 = ""
+    if len(strng) == 0:
+        return "1"
     for x in range(0, len(strng)):
         if strng[x].isnumeric():
             w2 = strng[x:]
