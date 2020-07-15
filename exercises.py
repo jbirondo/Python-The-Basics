@@ -423,3 +423,16 @@
 #         if j > 0: p.append([i,j])
 #         i, j = i + 1, 0
 #     return ''.join('(%d' %q[0] + ('**%d' %q[1]) * (q[1] > 1) + ')' for q in p)
+
+# def primeFactors(n):
+#       result = ''
+#   fac = 2
+#   while fac <= n:
+#     count = 0
+#     while n % fac == 0:
+#       n /= fac
+#       count += 1
+#     if count:
+#       result += '(%d%s)' % (fac, '**%d' % count if count > 1 else '')
+#     fac += 1
+#   return result
