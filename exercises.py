@@ -376,10 +376,18 @@
 
 def primeFactors(n):
     start = 2
-    
-    while n > 0:
-        if n % start == 0:
+    result = []
 
+    while n > 1:
+        if n % start == 0 and is_prime(start):
+            result.append(start)
+            n = n / start
+        else:
+            start = start + 1
+    s = set(result)
+    for x in s:
+        print(x)
+        
 
 def is_prime(num):
     if num < 2:
@@ -389,4 +397,4 @@ def is_prime(num):
             return False    
     return True
 
-print(is_prime(5))
+print(primeFactors(26))
