@@ -518,3 +518,35 @@
 # def minus(y): return lambda x: x-y
 # def times(y): return lambda  x: x*y
 # def divided_by(y): return lambda  x: x/y
+
+# def zero(arg=""):  return eval("0" + arg)
+# def one(arg=""):   return eval("1" + arg)
+# def two(arg=""):   return eval("2" + arg)
+# def three(arg=""): return eval("3" + arg)
+# def four(arg=""):  return eval("4" + arg)
+# def five(arg=""):  return eval("5" + arg)
+# def six(arg=""):   return eval("6" + arg)
+# def seven(arg=""): return eval("7" + arg)
+# def eight(arg=""): return eval("8" + arg)
+# def nine(arg=""):  return eval("9" + arg)
+
+# def plus(n):       return "+%s" % n
+# def minus(n):      return "-%s" % n
+# def times(n):      return "*%s" % n
+# def divided_by(n): return "/%s" % n
+
+def zero(cb=None): return cb(0) if cb else 0
+def one(cb=None): return cb(1) if cb else 1
+def two(cb=None): return cb(2) if cb else 2
+def three(cb=None): return cb(3) if cb else 3
+def four(cb=None): return cb(4) if cb else 4
+def five(cb=None): return cb(5) if cb else 5
+def six(cb=None): return cb(6) if cb else 6
+def seven(cb=None): return cb(7) if cb else 7
+def eight(cb=None): return cb(8) if cb else 8
+def nine(cb=None): return cb(9) if cb else 9
+
+def plus(n): return lambda x: x+n
+def minus(n): return lambda x: x-n
+def times(n): return lambda x: x*n
+def divided_by(n): return lambda x: x//n
