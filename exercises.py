@@ -346,23 +346,23 @@
 
 # Attention: If the number has leading zeros the amount of digits should be considered.
 
-def increment_string(strng):
-    w1 = ""
-    w2 = ""
-    if len(strng) == 0:
-        return "1"
-    for x in range(0, len(strng)):
-        if strng[x].isnumeric():
-            w2 = strng[x:]
-            w1 = strng[:x]
-            break
-        else:
-            w2 = "0"
-            w1 = strng
-    pad = len(w2)
-    mod_w2 = str((int(w2) + 1)).zfill(pad)
-    return w1 + mod_w2
+# def increment_string(strng):
+#     w1 = ""
+#     w2 = ""
+#     if len(strng) == 0:
+#         return "1"
+#     for x in range(0, len(strng)):
+#         if strng[x].isnumeric():
+#             w2 = strng[x:]
+#             w1 = strng[:x]
+#             break
+#         else:
+#             w2 = "0"
+#             w1 = strng
+#     pad = len(w2)
+#     mod_w2 = str((int(w2) + 1)).zfill(pad)
+#     return w1 + mod_w2
 
 
 
-print(increment_string("hello world 005"))
+# print(increment_string("hello world 005"))
