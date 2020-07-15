@@ -374,32 +374,32 @@
 
 # Example: n = 86240 should return "(2**5)(5)(7**2)(11)"
 
-def primeFactors(n):
-    start = 2
-    result = []
-    final_string = ""
-    while n > 1:
-        if n % start == 0 and is_prime(start):
-            result.append(start)
-            n = n / start
-        else:
-            start = start + 1
-    s = sorted(list(set(result)))
-    for x in s:
-        if result.count(x) > 1:
-            final_string = final_string + "({}**{})".format(x, result.count(x))
-        else:
-            final_string = final_string + "({})".format(x)
+# def primeFactors(n):
+#     start = 2
+#     result = []
+#     final_string = ""
+#     while n > 1:
+#         if n % start == 0 and is_prime(start):
+#             result.append(start)
+#             n = n / start
+#         else:
+#             start = start + 1
+#     s = sorted(set(result))
+#     for x in s:
+#         if result.count(x) > 1:
+#             final_string = final_string + "({}**{})".format(x, result.count(x))
+#         else:
+#             final_string = final_string + "({})".format(x)
     
-    return final_string
+#     return final_string
         
 
-def is_prime(num):
-    if num < 2:
-        return False
-    for x in range(2, int(num/2) + 1):
-        if num % x == 0:
-            return False    
-    return True
+# def is_prime(num):
+#     if num < 2:
+#         return False
+#     for x in range(2, int(num/2) + 1):
+#         if num % x == 0:
+#             return False    
+#     return True
 
-print(primeFactors(1129019283))
+# print(primeFactors(1129019283))
