@@ -377,16 +377,21 @@
 def primeFactors(n):
     start = 2
     result = []
-
+    final_string = ""
     while n > 1:
         if n % start == 0 and is_prime(start):
             result.append(start)
             n = n / start
         else:
             start = start + 1
-    s = set(result)
+    s = sorted(list(set(result)))
     for x in s:
-        print(x)
+        if result.count(x) > 1:
+            final_string = final_string + "({}**{})".format(x, result.count(x))
+        else:
+            final_string = final_string + "({})".format(x)
+    
+    return final_string
         
 
 def is_prime(num):
@@ -397,4 +402,4 @@ def is_prime(num):
             return False    
     return True
 
-print(primeFactors(26))
+print(primeFactors(1129019283))
