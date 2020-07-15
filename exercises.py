@@ -562,3 +562,5 @@
 
 # Assertion messages may be unclear about what they display in some languages. If you read "...It Should encode XXX", the "XXX" is the expected result, not the input!
 
+def duplicate_encode(word):
+    return "".join(["(" if word.count(x) == 1 else ")" for x in list(word)])
