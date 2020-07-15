@@ -373,3 +373,20 @@
 # with the p(i) in increasing order and n(i) empty if n(i) is 1.
 
 # Example: n = 86240 should return "(2**5)(5)(7**2)(11)"
+
+def primeFactors(n):
+    start = 2
+    
+    while n > 0:
+        if n % start == 0:
+
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for x in range(2, int(num/2) + 1):
+        if num % x == 0:
+            return False    
+    return True
+
+print(is_prime(5))
