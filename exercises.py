@@ -471,8 +471,8 @@
 # Testing: [1, 0, 1, 1] ==> 11
 # However, the arrays can have varying lengths, not just limited to 4.
 
-def binary_array_to_number(arr):
-    print("".join([str(x) for x in arr]))
-    # return int("".join(arr), 2)
+# def binary_array_to_number(arr):
+#     # print("".join([str(x) for x in arr]))
+#     return int("".join([str(x) for x in arr]), 2)
 
-print(binary_array_to_number([0,0,0,1]))
+# # print(binary_array_to_number([0,0,0,1]))
