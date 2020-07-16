@@ -608,20 +608,18 @@
 
 # ys = [91, 74, 73, 85, 73, 81, 87] choose_best_sum(230, 3, ys) -> 228
 
+import itertools as it
+
 def choose_best_sum(t, k, ls):
     p = [x for x in ls if x < t]
     pos_trips = []
-    a = 0
-    b = a + 1
-    c = b + 1
-    for x in range(a, len(p)):
-        for y in range(b, len(p)):
-            for z in range(c, len(p)):
-                if p[a] + p[b] + p[c] <= k:
-                    pos_trips.append(p[a] + p[b] + p[c])
-                c = c + 1
-            b = b + 1
-        a = a + 1
-    
-    return pos_trips
+    subsets = it.combinations(p, k)
+    l = list(subsets)
+    if l:
+        return max(sum(x) for x in l if sum(x) <= t)
+    else:
+        return None
+
+xs = [100, 76, 56, 44, 89, 73, 68, 56, 64, 123, 2333, 144, 50, 132, 123, 34, 89]
+print(choose_best_sum(230, 4, xs))
         
