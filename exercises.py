@@ -576,12 +576,12 @@
 # xbonacci {1,0,0,0,0,0,1} 10 = {1,0,0,0,0,0,1,2,3,6}
 # xbonacci {1,1} produces the Fibonacci sequence
 
-def Xbonacci(signature,n):
-    length = len(signature)
-    if n < len(signature):
-        return signature[:n]
-    while len(signature) < n:
-        signature.append(sum(signature[-length:]))
-    return signature
+# def Xbonacci(signature,n):
+#     length = len(signature)
+#     if n < len(signature):
+#         return signature[:n]
+#     while len(signature) < n:
+#         signature.append(sum(signature[-length:]))
+#     return signature
 
-print(Xbonacci([1,1,1,1], 10))
+# print(Xbonacci([1,1,1,1], 10))
