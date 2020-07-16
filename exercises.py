@@ -664,15 +664,17 @@
 # #Ref https://en.wikipedia.org/wiki/Prime_gap
 
 def gap(g, m, n):
-    l = [x for x in range(m, n)]
+    l = [x for x in range(m, n) if is_prime(x)]
+    for x in l:
+        if x + g in l:
+            return [x, x + g]
+    return None
 
 def is_prime(num):
     if num < 2:
         return False
-    
     for x in range(2, int(num / 2)):
         if num % x == 0:
             return False
-    
     return True
 
