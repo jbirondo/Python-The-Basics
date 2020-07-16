@@ -578,8 +578,10 @@
 
 def Xbonacci(signature,n):
     length = len(signature)
+    if n < len(signature):
+        return signature[:n]
     while len(signature) < n:
         signature.append(sum(signature[-length:]))
-    return signature[-1]
+    return signature
 
 print(Xbonacci([1,1,1,1], 10))
