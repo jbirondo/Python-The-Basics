@@ -665,9 +665,11 @@
 
 def gap(g, m, n):
     l = [x for x in range(m, n) if is_prime(x)]
-    for x in l:
-        if x + g in l:
-            return [x, x + g]
+    i = 0
+    while i < len(l) - 1:
+        if l[i] + g == l[i + 1]:
+            return [l[i], l[i + 1]]
+        i = i + 1
     return None
 
 def is_prime(num):
