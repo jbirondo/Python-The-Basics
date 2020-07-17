@@ -767,7 +767,8 @@ def decipher_this(string):
     s = string.split()
     r = []
     for x in s:
-        if isinstance(int(x), int):
+        # if isinstance(int(x), int):
+        if x.isdigit():
             r.append(chr(int(x)))
         else:
             temp = re.compile("([0-9]+)([a-zA-Z]+)")
