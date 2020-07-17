@@ -839,3 +839,9 @@
 #     @staticmethod
 #     def extract_file_name(fname):
 #         return fname.split('_', 1)[1].rsplit('.', 1)[0]
+
+# import re
+
+# class FileNameExtractor:
+#     def extract_file_name(dirty_file_name):
+#         return re.match(r'\d+_(.+?\..+?)\.', dirty_file_name).group(1)
