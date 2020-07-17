@@ -761,25 +761,25 @@
 
 # decipherThis('72olle 103doo 100ya'); // 'Hello good day'
 # decipherThis('82yade 115te 103o'); // 'Ready set go'
-import re
+# import re
 
-def decipher_this(string):
-    s = string.split()
-    r = []
-    for x in s:
-        if x.isdigit():
-            r.append(chr(int(x)))
-        else:
-            temp = re.compile("([0-9]+)([a-zA-Z]+)")
-            res = temp.match(x).groups() 
-            x = res[1][0]
-            y = res[1][-1]
-            if len(res[1]) == 1:
-                r.append(chr(int(res[0])) + res[1])
-            else:
-                r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
+# def decipher_this(string):
+#     s = string.split()
+#     r = []
+#     for x in s:
+#         if x.isdigit():
+#             r.append(chr(int(x)))
+#         else:
+#             temp = re.compile("([0-9]+)([a-zA-Z]+)")
+#             res = temp.match(x).groups() 
+#             x = res[1][0]
+#             y = res[1][-1]
+#             if len(res[1]) == 1:
+#                 r.append(chr(int(res[0])) + res[1])
+#             else:
+#                 r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
     
-    return " ".join(r)
+#     return " ".join(r)
 
 
-print(decipher_this('72olle 103doo 100ya'))
+# print(decipher_this('72olle 103doo 100ya'))
