@@ -711,16 +711,23 @@
 
 def travel(r, zipcode):
     l = r.split(",")
-    zips = [x.split()[-1] for x in l]
+    zips = [" ".join(x.split()[-2:]) for x in l]
     d = {}
     for x in zips:
         d.update({x: []})
 
     for y in l:
-        a = y.split()[-1] 
+        a = " ".join(y.split()[-2:])
         d[a].append(y)
+
+    ads = [" ".join(x.split()[1:-2]) for x in d[zipcode]]
+    nums = [x.split()[0] for x in d[zipcode]]
+    print(ads, nums)
+
     
     
+    
+
 
 ad = ("123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville OH 43071,786 High Street Pollocksville NY 56432,"
 "54 Holy Grail Street Niagara Town ZP 32908,3200 Main Rd. Bern AE 56210,1 Gordon St. Atlanta RE 13000,"
@@ -735,4 +742,4 @@ ad = ("123 Main Street St. Louisville OH 43071,432 Main Long Road St. Louisville
 "2222 Tokyo Av. Tedmondville SW 43198,670 Paris St. Abbeville AA 45522,114 Surta Avenue Goodville GG 30655,"
 "2 Holy Grail Street Niagara Town ZP 32908,3 Main Rd. Bern AE 56210,77 Gordon St. Atlanta RE 13000")
 
-print(travel(ad, 123))
+print(travel(ad, 'OH 43071'))
