@@ -765,12 +765,13 @@ import re
 
 def decipher_this(string):
     s = string.split()
+    r = []
     for x in s:
         temp = re.compile("([0-9]+)([a-zA-Z]+)")
         res = temp.match(x).groups() 
         x = res[1][0]
         y = res[1][-1]
-        print(chr(int(res[0])) + y + res[1][1:-1] + x)
+        r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
 
 
-print(decipher_this("72hello 77world"))
+print(decipher_this('72olle 103doo 100ya'))
