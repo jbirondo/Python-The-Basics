@@ -748,3 +748,26 @@
 # "2 Holy Grail Street Niagara Town ZP 32908,3 Main Rd. Bern AE 56210,77 Gordon St. Atlanta RE 13000")
 
 # print(travel(ad, 'ZP 32908'))
+
+# You are given a secret message you need to decipher. Here are the things you need to know to decipher it:
+
+# For each word:
+
+# the second and the last letter is switched (e.g. Hello becomes Holle)
+# the first letter is replaced by its character code (e.g. H becomes 72)
+# Note: there are no special characters used, only letters and spaces
+
+# Examples
+
+# decipherThis('72olle 103doo 100ya'); // 'Hello good day'
+# decipherThis('82yade 115te 103o'); // 'Ready set go'
+import re
+
+def decipher_this(string):
+    s = string.split()
+    for x in s:
+        temp = re.compile("([a-zA-Z]+)([0-9]+)")
+        res = temp.match(x).groups() 
+        print(res[0])
+
+print(decipher_this("hello123123 world123123"))
