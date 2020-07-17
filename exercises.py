@@ -828,9 +828,14 @@
 
 # The recommended way to solve it is using RegEx and specifically groups.
 
-def extract_file_name(dirty_file_name):
-    a = [x for x in dirty_file_name.split("_") if not x.isdigit()]
-    b = "_".join(a).split(".")[0:2]
-    return ".".join(b)
+# def extract_file_name(dirty_file_name):
+#     a = [x for x in dirty_file_name.split("_") if not x.isdigit()]
+#     b = "_".join(a).split(".")[0:2]
+#     return ".".join(b)
 
-print(extract_file_name("1231231223123131_FILE_NAME.EXTENSION.OTHEREXTENSION"))
+# print(extract_file_name("1231231223123131_FILE_NAME.EXTENSION.OTHEREXTENSION"))
+
+# class FileNameExtractor:
+#     @staticmethod
+#     def extract_file_name(fname):
+#         return fname.split('_', 1)[1].rsplit('.', 1)[0]
