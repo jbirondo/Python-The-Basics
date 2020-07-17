@@ -767,11 +767,16 @@ def decipher_this(string):
     s = string.split()
     r = []
     for x in s:
-        temp = re.compile("([0-9]+)([a-zA-Z]+)")
-        res = temp.match(x).groups() 
-        x = res[1][0]
-        y = res[1][-1]
-        r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
+        if isinstance(int(x), int):
+            r.append(chr(int(x)))
+        else:
+            temp = re.compile("([0-9]+)([a-zA-Z]+)")
+            res = temp.match(x).groups() 
+            x = res[1][0]
+            y = res[1][-1]
+            r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
+    
+    return " ".join(r)
 
 
 print(decipher_this('72olle 103doo 100ya'))
