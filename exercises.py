@@ -768,6 +768,9 @@ def decipher_this(string):
     for x in s:
         temp = re.compile("([a-zA-Z]+)([0-9]+)")
         res = temp.match(x).groups() 
-        print(res[0])
+        x = res[0][0]
+        y = res[0][-1]
+        print(chr(int(res[1])) + y + res[0][1:-2] + x)
 
-print(decipher_this("hello123123 world123123"))
+
+print(decipher_this("hello72 world77"))
