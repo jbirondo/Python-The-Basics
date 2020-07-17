@@ -767,7 +767,6 @@ def decipher_this(string):
     s = string.split()
     r = []
     for x in s:
-        # if isinstance(int(x), int):
         if x.isdigit():
             r.append(chr(int(x)))
         else:
@@ -775,7 +774,10 @@ def decipher_this(string):
             res = temp.match(x).groups() 
             x = res[1][0]
             y = res[1][-1]
-            r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
+            if len(res[1]) == 1:
+                r.append(chr(int(res[0])) + res[1])
+            else:
+                r.append(chr(int(res[0])) + y + res[1][1:-1] + x)
     
     return " ".join(r)
 
