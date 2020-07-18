@@ -901,8 +901,8 @@ def multiplication_table(row,col):
     a = list(range(1, row * col + 1))
     f = []
     while len(a) > 0:
-        f.append([a[0:row + 1]])
-        a = a[row + 1: -1]
+        f.append(a[:row])
+        a = a[row:]
     return f
 
-prin
+print(multiplication_table(2,3))
