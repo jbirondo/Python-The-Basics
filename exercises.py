@@ -897,15 +897,30 @@
 
 # Each value on the table should be equal to the value of multiplying the number in its first row times the number in its first column.
 
-def multiplication_table(row,col):
-    a = list(range(1, col + 1))
-    i = 1
-    f = []
-    while i <= row:
-        f.append(list(map(mult, a, [i] * col)))
-        i = i + 1
-    return f
-def mult(n, m):
-    return n * m
+# def multiplication_table(row,col):
+#     a = list(range(1, col + 1))
+#     i = 1
+#     f = []
+#     while i <= row:
+#         f.append(list(map(mult, a, [i] * col)))
+#         i = i + 1
+#     return f
+# def mult(n, m):
+#     return n * m
 
-print(multiplication_table(2,3))
+# print(multiplication_table(2,3))
+
+# def multiplication_table(row,col):
+#     return [[(i+1)*(j+1) for j in range(col)] for i in range(row)]
+
+# def multiplication_table(row,col):
+#     return [[x*y for y in range(1,col+1)] for x in range(1,row+1)]
+
+# def multiplication_table(row,col):
+#     res = []
+#     for i in range(1, row+1):
+#         item = []
+#         for j in range(1, col+1):
+#             item.append(i*j)
+#         res.append(item)
+#     return res
