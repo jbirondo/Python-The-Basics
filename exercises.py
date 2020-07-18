@@ -859,3 +859,27 @@
 # [12, 10, 8, 12, 7, 6, 4, 10, 12, 10]          -->  12
 # [12, 10, 8, 8, 3, 3, 3, 3, 2, 4, 10, 12, 10]  -->   3
 
+# def highest_rank(arr):
+#     s = set(arr)
+#     f = 0
+#     c = 0
+#     for x in sorted(s):
+#         if arr.count(x) >= c:
+#             c = arr.count(x)
+#             f = x
+#     return f
+
+# print(highest_rank([1,1,1,1,1,2,2,2,2,3,4,5,6,5,5,5,5,5,5,5,5]))
+# # print(highest_rank([20,20,20,46,46,46]))
+
+# from collections import Counter
+
+# def highest_rank(arr):
+#     if arr:
+#         c = Counter(arr)
+#         m = max(c.values())
+#         return max(k for k,v in c.items() if v==m)
+
+# def highest_rank(arr):
+#     return max(sorted(arr,reverse=True), key=arr.count)
+
