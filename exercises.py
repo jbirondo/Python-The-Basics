@@ -898,11 +898,14 @@
 # Each value on the table should be equal to the value of multiplying the number in its first row times the number in its first column.
 
 def multiplication_table(row,col):
-    a = list(range(1, row * col + 1))
+    a = list(range(1, col + 1))
+    i = 1
     f = []
-    while len(a) > 0:
-        f.append(a[:row])
-        a = a[row:]
+    while i <= row:
+        f.append(list(map(mult, a, [i] * col)))
+        i = i + 1
     return f
+def mult(n, m):
+    return n * m
 
 print(multiplication_table(2,3))
