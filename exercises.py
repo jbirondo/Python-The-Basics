@@ -948,6 +948,6 @@ def max_sequence(arr):
             m = sum(x)
     return m
 
-print(max_sequence)
+print(max_sequence([1,2,3,4,5,6]))
     
 
