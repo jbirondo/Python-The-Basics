@@ -935,4 +935,19 @@
 
 def max_sequence(arr):
     res = []
+    a = 0
+    while a < len(arr):
+        b = a + 1
+        while b < len(arr):
+            b = b + 1
+            res.append(arr[a:b])
+        a = a + 1
+    m = 0
+    for x in res:
+        if sum(x) > m:
+            m = sum(x)
+    return m
+
+print(max_sequence)
     
+
