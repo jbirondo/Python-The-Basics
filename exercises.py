@@ -950,18 +950,18 @@
 
 # print(max_sequence([1,2,3,4,5,6]))
 
-def maxSequence(arr):
-    current = 0
-    max_found = 0
+# def maxSequence(arr):
+#     current = 0
+#     max_found = 0
     
-    for value in arr:
-        current += value
-        if current < 0:
-            current = 0
+#     for value in arr:
+#         current += value
+#         if current < 0:
+#             current = 0
         
-        if current > max_found:
-            max_found = current
+#         if current > max_found:
+#             max_found = current
     
-    return max_found
+#     return max_found
     
 
