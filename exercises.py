@@ -933,21 +933,35 @@
 
 # Empty list is considered to have zero greatest sum. Note that the empty list or array is also a valid sublist/subarray.
 
-def max_sequence(arr):
-    res = []
-    a = 0
-    while a < len(arr):
-        b = a + 1
-        while b < len(arr):
-            b = b + 1
-            res.append(arr[a:b])
-        a = a + 1
-    m = 0
-    for x in res:
-        if sum(x) > m:
-            m = sum(x)
-    return m
+# def max_sequence(arr):
+#     res = []
+#     a = 0
+#     while a < len(arr):
+#         b = a + 1
+#         while b < len(arr):
+#             b = b + 1
+#             res.append(arr[a:b])
+#         a = a + 1
+#     m = 0
+#     for x in res:
+#         if sum(x) > m:
+#             m = sum(x)
+#     return m
 
-print(max_sequence([1,2,3,4,5,6]))
+# print(max_sequence([1,2,3,4,5,6]))
+
+def maxSequence(arr):
+    current = 0
+    max_found = 0
+    
+    for value in arr:
+        current += value
+        if current < 0:
+            current = 0
+        
+        if current > max_found:
+            max_found = current
+    
+    return max_found
     
 
