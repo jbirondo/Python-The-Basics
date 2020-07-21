@@ -1038,3 +1038,30 @@
 # Some music to get in the mood for this kata :
 
 # Street Fighter 2 - selection theme
+
+def street_fighter_selection(fighters, initial_position, moves):
+    chars = []
+    for move in moves:
+        if move == "up" and initial_position[0] != 0:
+            initial_position[0] = 0
+            chars.append(fighters[initial_position[0]][initial_position[1]])
+        elif move == "up" and initial_position[0] == 0:
+            chars.append(fighters[initial_position[0]][initial_position[1]])
+        elif move == "down" and initial_position[0] != 1:
+            initial_position[0] = 1
+            chars.append(fighters[initial_position[0]][initial_position[1]])
+        elif move == "down" and initial_position[0] == 1:
+            chars.append(fighters[initial_position[0]][initial_position[1]])
+        elif move == "left":
+            print(n)
+            n = initial_position[1] - 1
+            initial_position[1] = initial_position[n]
+            chars.append(fighters[initial_position[0]][initial_position[1]])
+        elif move == "right":
+            n = (initial_position[1] + 1) % len(fighters[0])
+            initial_position[1] = initial_position[n]
+            chars.append(fighters[initial_position[0]][initial_position[1]])
+    
+    print(chars)
+    return chars
+
