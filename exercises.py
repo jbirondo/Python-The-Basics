@@ -1041,6 +1041,7 @@
 
 def street_fighter_selection(fighters, initial_position, moves):
     chars = []
+    initial_position = list(initial_position)
     for move in moves:
         if move == "up" and initial_position[0] != 0:
             initial_position[0] = 0
@@ -1053,15 +1054,14 @@ def street_fighter_selection(fighters, initial_position, moves):
         elif move == "down" and initial_position[0] == 1:
             chars.append(fighters[initial_position[0]][initial_position[1]])
         elif move == "left":
-            print(n)
             n = initial_position[1] - 1
+            print(n)
             initial_position[1] = initial_position[n]
             chars.append(fighters[initial_position[0]][initial_position[1]])
         elif move == "right":
             n = (initial_position[1] + 1) % len(fighters[0])
             initial_position[1] = initial_position[n]
             chars.append(fighters[initial_position[0]][initial_position[1]])
-    
     print(chars)
     return chars
 
