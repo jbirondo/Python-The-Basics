@@ -1084,3 +1084,20 @@
 #         hovered_fighters.append(fighters[y][x])
 #     return hovered_fighters
 
+def street_fighter_selection(fighters, initial_position, moves):
+    x, y = initial_position
+    size_x = len(fighters[0])
+    size_y = len(fighters)
+    result = []
+    for move in moves:
+        if move == 'right':
+            x = (x + 1) % size_x
+        elif move == 'left':
+            x = (x - 1) % size_x
+        elif move == 'down' and y < (size_y - 1):
+            y += 1
+        elif move == 'up' and y > 0:
+            y -= 1
+        result.append(fighters[y][x])
+    return result
+
