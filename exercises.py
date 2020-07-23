@@ -1124,6 +1124,7 @@ def decomp(n):
     counter = 1
     i = 0
     res = []
+    f = []
     for x in arr:
         counter = counter * x
     arr_primes = [x for x in arr if is_prime(x)]
@@ -1136,8 +1137,15 @@ def decomp(n):
             break
         else:
             i = i + 1
-    
-    return res
+    for x in arr_primes:
+        if res.count(x) > 1:
+            f.append("{}^{}".format(x, res.count(x)))
+        elif res.count(x) == 1:
+            f.append("{}".format(x))
+        else:
+            pass
+
+    return " * ".join(f)
 
 
 def is_prime(num):
