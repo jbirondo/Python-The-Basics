@@ -1125,7 +1125,7 @@ def decomp(n):
     for x in arr:
         counter = counter * x
     arr_primes = [x for x in arr if is_prime(x)]
-    print(arr_primes)
+
 
 def is_prime(num):
     if num < 2:
