@@ -1130,10 +1130,10 @@ def decomp(n):
 def is_prime(num):
     if num < 2:
         return False
-    arr = range(2, int(num / 2))
+    arr = range(2, int(num / 2) + 1)
     for x in arr:
         if num % x == 0:
             return False
     return True
 
-print(decomp(7))
+print(decomp(11))
