@@ -1127,16 +1127,15 @@ def decomp(n):
     for x in arr:
         counter = counter * x
     arr_primes = [x for x in arr if is_prime(x)]
-    print(len(arr_primes))
     while counter > 1:
-        print(counter)
-        while i < len(arr_primes):
-            if counter % arr_primes[i]:
-                res.append(arr_primes[i])
-                counter = counter / arr_primes[i]
-                print(arr_primes[i])
-            else:
-                i = i + 1
+        if counter % arr_primes[i] == 0:
+            res.append(arr_primes[i])
+            counter = counter / arr_primes[i]
+            print(counter)
+        elif counter == 1:
+            break
+        else:
+            i = i + 1
     
     return res
 
