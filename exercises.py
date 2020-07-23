@@ -1119,3 +1119,19 @@
 # factorial can be a very big number (4000! has 12674 digits, n will go from 300 to 4000).
 # In Fortran - as in any other language - the returned string is not permitted to contain any redundant trailing whitespace: you can use dynamically allocated character strings.
 
+def decomp(n):
+    arr = range(1, n + 1)
+    counter = 1
+    for x in arr:
+        counter = counter * x
+    
+    arr_primes = []
+
+def is_prime(num):
+    if num < 2:
+        return False
+    
+    arr = range(2, int(num / 2))
+    for x in arr:
+        if num % x == 0:
+            return False
