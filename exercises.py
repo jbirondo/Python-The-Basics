@@ -1125,6 +1125,10 @@ def decomp(n):
     for x in arr:
         counter = counter * x
     arr_primes = [x for x in arr if is_prime(x)]
+    while counter > 1:
+        i = 0
+        while i < len(arr_primes):
+            if counter % i:
 
 
 def is_prime(num):
@@ -1136,4 +1140,4 @@ def is_prime(num):
             return False
     return True
 
-print(decomp(11))
+print(decomp(6))
