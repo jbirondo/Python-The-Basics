@@ -1174,19 +1174,25 @@
 
 # [4, 3, 2, 5] would return [4, 3, 2, 6]
 
-def up_array(arr):
-    counter = 0
-    l = len(arr) - 1
-    res = []
-    for x in arr:
-        if x < 0:
-            return None
-        counter = counter + (x * (10**l))
-        l = l - 1
-    counter = counter + 1
-    s = str(counter)
-    for x in s:
-        res.append(int(x))
-    return res
+# def up_array(arr):
+#     counter = 0
+#     l = len(arr) - 1
+#     res = []
+#     for x in arr:
+#         if x < 0:
+#             return None
+#         counter = counter + (x * (10**l))
+#         l = l - 1
+#     counter = counter + 1
+#     s = str(counter)
+#     for x in s:
+#         res.append(int(x))
+#     return res
 
-print(up_array([1,2,3,4,9]))
+# print(up_array([1,2,3,4,9]))
+
+# def up_array(arr):
+#     if not arr or min(arr) < 0 or max(arr) > 9:
+#         return None
+#     else:
+#         return [int(y) for y in str(int("".join([str(x) for x in arr])) + 1)]
