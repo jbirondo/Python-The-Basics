@@ -1183,3 +1183,5 @@ def up_array(arr):
         counter = counter + (x * (10**l))
         l = l - 1
     return counter
+
+print(up_array([1,2,3]))
