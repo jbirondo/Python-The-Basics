@@ -1196,3 +1196,7 @@
 #         return None
 #     else:
 #         return [int(y) for y in str(int("".join([str(x) for x in arr])) + 1)]
+
+# def up_array(arr):
+#     if arr and all(0<=v<=9 for v in arr):
+#         return map(int, str(int(''.join(map(str,arr)))+1))
