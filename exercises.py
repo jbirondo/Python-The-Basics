@@ -1184,4 +1184,3 @@ def up_array(arr):
         l = l - 1
     return counter
 
-print(up_array([1,2,3]))
