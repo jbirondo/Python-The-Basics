@@ -1238,7 +1238,10 @@ def mixed_fraction(s):
             new_num = new_num / x
             den = den / x
             break
-    return "{} {}/{}".format(whole, int(new_num), int(den))
+    if whole != 0:
+        return "{} {}/{}".format(whole, int(new_num), int(den))
+    else:
+        return "{}/{}".format(int(new_num), int(den))
     
 
-# print(mixed_fraction("-22/7"))
+print(mixed_fraction("-10/7"))
