@@ -1119,42 +1119,46 @@
 # factorial can be a very big number (4000! has 12674 digits, n will go from 300 to 4000).
 # In Fortran - as in any other language - the returned string is not permitted to contain any redundant trailing whitespace: you can use dynamically allocated character strings.
 
-def decomp(n):
-    arr = range(1, n + 1)
-    counter = 1
-    i = 0
-    res = []
-    f = []
-    for x in arr:
-        counter = counter * x
-    arr_primes = [x for x in arr if is_prime(x)]
-    while counter > 1:
-        if counter % arr_primes[i] == 0:
-            res.append(arr_primes[i])
-            counter = counter / arr_primes[i]
-            print(counter)
-        elif counter == 1:
-            break
-        else:
-            i = i + 1
-    for x in arr_primes:
-        if res.count(x) > 1:
-            f.append("{}^{}".format(x, res.count(x)))
-        elif res.count(x) == 1:
-            f.append("{}".format(x))
-        else:
-            pass
+# def decomp(n):
+#     arr = range(1, n + 1)
+#     counter = 1
+#     i = 0
+#     res = []
+#     f = []
+#     for x in arr:
+#         counter = counter * x
+#     arr_primes = [x for x in arr if is_prime(x)]
+#     while counter > 1:
+#         print(i)
+#         if counter % arr_primes[i] == 0:
+#             res.append(arr_primes[i])
+#             counter = counter / arr_primes[i]
+#             print(res)
+#             print(arr_primes)
+#             print(arr_primes[i])
+#             print(counter)
+#         elif counter == 1:
+#             break
+#         else:
+#             i = i + 1
+#     for x in arr_primes:
+#         if res.count(x) > 1:
+#             f.append("{}^{}".format(x, res.count(x)))
+#         elif res.count(x) == 1:
+#             f.append("{}".format(x))
+#         else:
+#             pass
 
-    return " * ".join(f)
+#     return " * ".join(f)
 
 
-def is_prime(num):
-    if num < 2:
-        return False
-    arr = range(2, int(num / 2) + 1)
-    for x in arr:
-        if num % x == 0:
-            return False
-    return True
+# def is_prime(num):
+#     if num < 2:
+#         return False
+#     arr = range(2, int(num / 2) + 1)
+#     for x in arr:
+#         if num % x == 0:
+#             return False
+#     return True
 
-print(decomp(6))
+# print(decomp(25))
