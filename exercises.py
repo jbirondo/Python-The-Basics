@@ -1177,10 +1177,15 @@
 def up_array(arr):
     counter = 0
     l = len(arr) - 1
+    res = []
     for x in arr:
         if x < 0:
             return None
         counter = counter + (x * (10**l))
         l = l - 1
-    return counter
+    counter = counter + 1
+    s = str(counter)
+    for x in s:
+        res.append(int(x))
+    return res
 
