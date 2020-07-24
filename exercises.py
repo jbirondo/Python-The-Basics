@@ -1189,3 +1189,4 @@ def up_array(arr):
         res.append(int(x))
     return res
 
+print(up_array([1,2,3,4,9]))
