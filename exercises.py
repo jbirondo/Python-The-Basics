@@ -1224,3 +1224,21 @@
 # Inputs 0/0 or 3/0 must raise a zero division error.
 # Note
 # Make sure not to modify the input of your function in-place, it is a bad practice.
+
+def mixed_fraction(s):
+    vals = [int(x) for x in s.split("/")]
+    num = vals[0]
+    den = vals[1]
+    whole = int(num/den)
+    if num % den == 0:
+        return "{}".format(whole)
+    new_num = num % den
+    for x in reversed(range(1, den + 1)):
+        if new_num % x == 0 and den % x == 0:
+            new_num = new_num / x
+            den = den / x
+            break
+    return "{} {}/{}".format(whole, int(new_num), int(den))
+    
+
+# print(mixed_fraction("-22/7"))
