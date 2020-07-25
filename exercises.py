@@ -1265,8 +1265,9 @@
 def list_squared(m, n):
     mdivs = divs(m)
     ndivs = divs(n)
+    print(mdivs, ndivs)
     
 def divs(a):
     return [x for x in range(1, int(a + 1)) if a % x == 0]
         
-print(divs(1))
+print(list_squared(1, 15))
