@@ -1262,3 +1262,11 @@
 
 # In Fortran - as in any other language - the returned string is not permitted to contain any redundant trailing whitespace: you can use dynamically allocated character strings.
 
+def list_squared(m, n):
+    mdivs = divs(m)
+    ndivs = divs(n)
+    
+def divs(a):
+    return [x for x in range(1, int(a + 1)) if a % x == 0]
+        
+print(divs(1))
