@@ -1,5 +1,5 @@
 from tkinter import *
 
-window=tk()
+window=Tk()
 
 window.mainloop()
