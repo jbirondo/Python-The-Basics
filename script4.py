@@ -13,3 +13,5 @@ def insert(item, quantity, price):
     cur.execute("INSERT INTO store VALUES (?, ?, ?)", (item, quantity, price))
     conn.commit()
     conn.close()
+
+insert("Water Glass", 10, 5)
