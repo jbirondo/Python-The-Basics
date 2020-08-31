@@ -36,6 +36,4 @@ def update(item, price, quantity):
     conn.commit()
     conn.close()
 
-update("Water Glass", 6, 11)
-
 print(view())
