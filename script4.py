@@ -7,9 +7,9 @@ def create_table():
     conn.commit()
     conn.close()
 
-def insert():
+def insert(item, quantity, price):
     conn = sqlite3.connect("lite.db")
     cur= conn.cursor()
-    cur.execute("INSERT INTO store VALUES ('Wine Glass', 8, 10.5)")
+    cur.execute("INSERT INTO store VALUES (?, ?, ?)", (item, quantity, price))
     conn.commit()
     conn.close()
