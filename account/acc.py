@@ -4,3 +4,11 @@ class Account:
         with open(filepath, "r") as file:
             self.balance=int(file.read())
 
+    def withdraw(self, amount):
+        self.balance = self.balance - amount
+
+    def deposit(self, amount):
+        self.balance = self.balance + amount
+
+account=Account("balance.txt")
+print(account.balance)
