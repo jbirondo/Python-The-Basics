@@ -15,8 +15,13 @@ class Account:
         with open(self.filepath, 'w') as file:
             file.write(str(self.balance))
 
-account=Account("balance.txt")
-print(account.balance)
-account.withdraw(100)
-print(account.balance)
-account.commit()
+class Checking(Account):
+
+    def __init__(self, filepath):
+        # super(Account)
+        Account.__init__(self, filepath)
+
+    def transfer(self, amount):
+        self.balance = self.balance - amount
+
+checking = Checking("balance.txt")
