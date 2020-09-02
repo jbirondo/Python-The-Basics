@@ -1,4 +1,6 @@
 class Account:
 
     def __init__(self, filepath):
-        super().__init__()
+        with open(filepath, "r") as file:
+            self.balance.file.read()
+
