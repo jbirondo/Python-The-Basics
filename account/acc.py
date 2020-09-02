@@ -17,11 +17,12 @@ class Account:
 
 class Checking(Account):
 
-    def __init__(self, filepath):
+    def __init__(self, filepath, fee):
         # super(Account)
+        self.fee = fee
         Account.__init__(self, filepath)
 
     def transfer(self, amount):
-        self.balance = self.balance - amount
+        self.balance = self.balance - amount - self.fee
 
-checking = Checking("balance.txt")
+checking = Checking("balance.txt", 5)
