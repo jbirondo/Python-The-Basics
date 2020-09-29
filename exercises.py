@@ -1304,59 +1304,59 @@
 # def isPalindrome(self, x: int):
 #     return str(x) == str(x)[::-1]
 
-def intToRoman(self, num: int):
-    s = ""
-    while num > 0:
-        if num >= 1000:
-            s += "M"
-            num -= 1000
-            continue
-        elif num >= 900:
-            s += "CM"
-            num -= 900
-            continue
-        elif num >= 500:
-            s += "D"
-            num -= 500
-            continue
-        elif num >= 400:
-            s += "CD"
-            num -= 400
-            continue
-        elif num >= 100:
-            s += "C"
-            num -= 100
-            continue
-        elif num >= 90:
-            s += "XC"
-            num -= 90
-            continue
-        elif num >= 50:
-            s += "L"
-            num -= 50
-            continue
-        elif num >= 40:
-            s += "XL"
-            num -= 40
-            continue
-        elif num >= 10:
-            s += "X"
-            num -= 10
-            continue
-        elif num >= 9:
-            s += "IX"
-            num -= 9
-            continue
-        elif num >= 5:
-            s += "V"
-            num -= 5
-            continue
-        elif num >= 4:
-            s += "IV"
-            num -= 4
-            continue
-        else:
-            s += "I"
-            num -= 1
-            continue
-    return s
+# def intToRoman(self, num: int):
+#     s = ""
+#     while num > 0:
+#         if num >= 1000:
+#             s += "M"
+#             num -= 1000
+#             continue
+#         elif num >= 900:
+#             s += "CM"
+#             num -= 900
+#             continue
+#         elif num >= 500:
+#             s += "D"
+#             num -= 500
+#             continue
+#         elif num >= 400:
+#             s += "CD"
+#             num -= 400
+#             continue
+#         elif num >= 100:
+#             s += "C"
+#             num -= 100
+#             continue
+#         elif num >= 90:
+#             s += "XC"
+#             num -= 90
+#             continue
+#         elif num >= 50:
+#             s += "L"
+#             num -= 50
+#             continue
+#         elif num >= 40:
+#             s += "XL"
+#             num -= 40
+#             continue
+#         elif num >= 10:
+#             s += "X"
+#             num -= 10
+#             continue
+#         elif num >= 9:
+#             s += "IX"
+#             num -= 9
+#             continue
+#         elif num >= 5:
+#             s += "V"
+#             num -= 5
+#             continue
+#         elif num >= 4:
+#             s += "IV"
+#             num -= 4
+#             continue
+#         else:
+#             s += "I"
+#             num -= 1
+#             continue
+#     return s
