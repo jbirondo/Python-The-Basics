@@ -1399,3 +1399,12 @@
 #     for l in digits:
 #         arr.append(d[l])
 #     return ["".join(x) for x in product(*arr)]
+
+def threeSum(self, nums: List[int]) -> List[List[int]]:
+    res = []
+    for i in range(0, len(nums)):
+        for j in range(i + 1, len(nums)):
+            remainder = 0-(nums[i] + nums[j])
+            if remainder in nums[j+1:] and sorted([nums[i], nums[j], remainder]) not in res:
+                res.append(sorted([nums[i], nums[j], remainder]))
+    return res
