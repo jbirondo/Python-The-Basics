@@ -1460,4 +1460,26 @@
 #             head = head.next
 #         return node.next
 
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        tort = head
+        t = tort
+        hare = head
+        h = hare
+        while head is not None:
+            if head.next == None:
+                return False
+            if h == None:
+                return False
+            if h.next == None:
+                return False
+            if h.next.next == None:
+                return False
+            t = t.next
+            h = h.next.next
+            if t == h:
+                return True
+            head = head.next
+        return False
+
 
