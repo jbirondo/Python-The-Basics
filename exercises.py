@@ -1408,3 +1408,23 @@
 #             if remainder in nums[j+1:] and sorted([nums[i], nums[j], remainder]) not in res:
 #                 res.append(sorted([nums[i], nums[j], remainder]))
 #     return res
+
+def isValid(self, s: str):
+    d = {
+        ")": "(",
+        "]": "[",
+        "}": "{",
+        "(": True,
+        "[": True,
+        "{": True
+        }
+    stack = []
+    for x in s:
+        stack.append(x)
+        if len(stack) < 2:
+            continue
+        if d[x] == stack[-2]:
+            stack.pop()
+            stack.pop()
+
+    return len(stack) == 0
