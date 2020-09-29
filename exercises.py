@@ -1272,31 +1272,31 @@
         
 # print(list_squared(1, 15))
 
-def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-    i = 0
-    length = []
-    node = head 
-    node2 = head
-    while node:
-        length.append(node.val)
-        node = node.next
-    right = len(length) - n - 1
-    while right >= 0:
-        if right != 0:
-            node2 = node2.next
-        right -= 1
-    a = node2
-    if a.next == None:
-        return
-    b = node2.next
+# def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+#     i = 0
+#     length = []
+#     node = head 
+#     node2 = head
+#     while node:
+#         length.append(node.val)
+#         node = node.next
+#     right = len(length) - n - 1
+#     while right >= 0:
+#         if right != 0:
+#             node2 = node2.next
+#         right -= 1
+#     a = node2
+#     if a.next == None:
+#         return
+#     b = node2.next
 
-    if node2.next.next:
-        c = node2.next.next
-        b.next = None
-        a.next = c
-    else:
-        a.next = None
+#     if node2.next.next:
+#         c = node2.next.next
+#         b.next = None
+#         a.next = c
+#     else:
+#         a.next = None
     
     
     
-    return head
+#     return head
