@@ -1449,15 +1449,15 @@
 #             n = n.next
 #         return node.next
 
-class Solution:
-    def deleteDuplicates(self, head: ListNode) -> ListNode:
-        node = ListNode("value")
-        n = node
-        while head is not None:
-            if n.val != head.val:
-                n.next = ListNode(head.val)
-                n = n.next
-            head = head.next
-        return node.next
+# class Solution:
+#     def deleteDuplicates(self, head: ListNode) -> ListNode:
+#         node = ListNode("value")
+#         n = node
+#         while head is not None:
+#             if n.val != head.val:
+#                 n.next = ListNode(head.val)
+#                 n = n.next
+#             head = head.next
+#         return node.next
 
 
