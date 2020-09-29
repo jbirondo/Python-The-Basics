@@ -1429,22 +1429,24 @@
 
 #     return len(stack) == 0
 
-class Solution:
-    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        node = ListNode(0)
-        n = node
-        while True:
-            if l1 is None:
-                n.next = l2
-                break
-            if l2 is None:
-                n.next = l1
-                break
-            if l1.val >= l2.val:
-                n.next = ListNode(l2.val)
-                l2 = l2.next
-            else:
-                n.next = ListNode(l1.val)
-                l1 = l1.next
-            n = n.next
-        return node.next
+# class Solution:
+#     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+#         node = ListNode(0)
+#         n = node
+#         while True:
+#             if l1 is None:
+#                 n.next = l2
+#                 break
+#             if l2 is None:
+#                 n.next = l1
+#                 break
+#             if l1.val >= l2.val:
+#                 n.next = ListNode(l2.val)
+#                 l2 = l2.next
+#             else:
+#                 n.next = ListNode(l1.val)
+#                 l1 = l1.next
+#             n = n.next
+#         return node.next
+
+
