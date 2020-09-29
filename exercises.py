@@ -1361,22 +1361,22 @@
 #             continue
 #     return s
 
-def longestCommonPrefix(self, strs: List[str]):
-    longest = 0
-    longest_str = ""
-    for s in strs:
-        if len(s) > longest:
-            longest = len(s)
-            longest_str = s
+# def longestCommonPrefix(self, strs: List[str]):
+#     longest = 0
+#     longest_str = ""
+#     for s in strs:
+#         if len(s) > longest:
+#             longest = len(s)
+#             longest_str = s
 
-    res = []
-    for l in range(0, longest + 1):
-        res.append(longest_str[0:l])
+#     res = []
+#     for l in range(0, longest + 1):
+#         res.append(longest_str[0:l])
 
-    sim = ""
-    print(res)
-    for el in res:
-        if all([s.find(el) + 1 for s in strs]):
-            sim = el
+#     sim = ""
+#     print(res)
+#     for el in res:
+#         if all([s.find(el) + 1 for s in strs]):
+#             sim = el
 
-    return sim
+#     return sim
