@@ -1569,3 +1569,27 @@
 #             d[a[0]] = int(b)
 
 #     return " - ".join(["({} : {})".format(x, d[x]) if x in d.keys() else "({} : 0)".format(x) for x in listOfCat])
+
+def stat(s):
+    if s == "":
+        return ""
+    l1 = s.split(", ")
+    l2 = [x.split("|") for x in l1]
+    l2 = [int(x[0]) * (60 * 60) + int(x[1]) * 60 + int(x[2]) for x in l2]
+    sor = sorted(l2)
+    range = form(sor[-1] - sor[0])
+    average = form(sum(sor) / len(sor))
+    if len(sor) % 2 == 1:
+        median = form(sor[len(sor) // 2])
+    else:
+        median = form((sor[len(sor) // 2] + sor[len(sor) // 2 - 1]) / 2)
+    return "Range: {} Average: {} Median: {}".format(range, average, median)
+
+
+def form(num):
+    h = int(num // 3600)
+    num = int(num % 3600)
+    min = int(num // 60)
+    num = int(num % 60)
+    secs = int(num)
+    return("{:02d}|{:02d}|{:02d}".format(h, min, secs))
