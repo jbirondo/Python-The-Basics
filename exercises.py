@@ -1659,3 +1659,24 @@
 
 # def sum_dig_pow(a, b):
 #     return filter(filter_func, range(a, b+1))
+
+VALS = {
+    "!": 2,
+    "?": 3
+}
+
+
+def balance(left, right):
+    if maths(left) > maths(right):
+        return "Left"
+    elif maths(left) < maths(right):
+        return "Right"
+    else:
+        return "Balance"
+
+
+def maths(str):
+    counter = 0
+    for char in str:
+        counter += VALS[char]
+    return counter
