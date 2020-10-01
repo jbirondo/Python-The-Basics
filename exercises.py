@@ -1556,3 +1556,16 @@
 
 # def decode(s, t=str.maketrans("12345", "aeiou")):
 #     return s.translate(t)
+
+def stock_list(listOfArt, listOfCat):
+    if len(listOfArt) == 0 or len(listOfCat) == 0:
+        return ""
+    d = {}
+    for el in listOfArt:
+        a, b = el.split()[0], el.split()[1]
+        try:
+            d[a[0]] += int(b)
+        except KeyError:
+            d[a[0]] = int(b)
+
+    return " - ".join(["({} : {})".format(x, d[x]) if x in d.keys() else "({} : 0)".format(x) for x in listOfCat])
