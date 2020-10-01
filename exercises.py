@@ -1680,3 +1680,14 @@
 #     for char in str:
 #         counter += VALS[char]
 #     return counter
+
+def balance(left, right):
+    left_count = left.count("!")*2 + left.count("?")*3
+    right_count = right.count("!")*2 + right.count("?")*3
+
+    if(left_count > right_count):
+        return "Left"
+    elif(right_count>left_count):
+        return "Right"
+    else:
+        return "Balance"
