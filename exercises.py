@@ -1613,16 +1613,16 @@
 #     data = list(map(convert_ToInt, strg.split(', ')))
 #     return "Range: {} Average: {} Median: {}".format(*map(convert_ToStr, [max(data)-min(data), mean(data), median(data)]))
 
-def math_stuff(n):
-    res = []
-    ult = []
-    while n > 0:
-        res.append(n % 10)
-        n = n // 10
-    res = res[::-1]
-    for x in range(0, len(res)):
-        ult.append(res[x] ** (x + 1))
-    return sum(ult)
+# def math_stuff(n):
+#     res = []
+#     ult = []
+#     while n > 0:
+#         res.append(n % 10)
+#         n = n // 10
+#     res = res[::-1]
+#     for x in range(0, len(res)):
+#         ult.append(res[x] ** (x + 1))
+#     return sum(ult)
 
-print(math_stuff(89))
-print(math_stuff(1234))
+# print(math_stuff(89))
+# print(math_stuff(1234))
