@@ -1627,17 +1627,17 @@
 # print(math_stuff(89))
 # print(math_stuff(1234))
 
-def sum_dig_pow(a, b):  # range(a, b + 1) will be studied by the function
-    return [x for x in range(a, b+1) if math_stuff(x) == x]
+# def sum_dig_pow(a, b):  # range(a, b + 1) will be studied by the function
+#     return [x for x in range(a, b+1) if math_stuff(x) == x]
 
 
-def math_stuff(n):
-    res = []
-    ult = []
-    while n > 0:
-        res.append(n % 10)
-        n = n // 10
-    res = res[::-1]
-    for x in range(0, len(res)):
-        ult.append(res[x] ** (x + 1))
-    return sum(ult)
+# def math_stuff(n):
+#     res = []
+#     ult = []
+#     while n > 0:
+#         res.append(n % 10)
+#         n = n // 10
+#     res = res[::-1]
+#     for x in range(0, len(res)):
+#         ult.append(res[x] ** (x + 1))
+#     return sum(ult)
