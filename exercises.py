@@ -1482,4 +1482,28 @@
 #             head = head.next
 #         return False
 
+# def dashatize(num):
+#     if isNumber(num) == False:
+#         return 'None'
+#     s = str(abs(num))
+#     res = ""
+#     for char in s:
+#         if int(char) % 2 == 0:
+#             res += char
+#         else:
+#             res += ("-" + char + "-")
+#         print(res)
+#     result = res.replace("--", "-")
+#     if result[0] == "-" and result[-1] == "-":
+#         return result[1:-1]
+#     elif result[0] == "-":
+#         return result[1:]
+#     elif result[-1] == "-":
+#         return result[:-1]
+#     else:
+#         return result
+# def isNumber(x):
+#     try:
+#         return bool(0 == x*0)
+
 
