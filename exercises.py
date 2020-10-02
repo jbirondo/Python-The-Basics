@@ -1700,5 +1700,5 @@
 #         res.append(people[0:x] + people[x].capitalize() + people[x + 1:])
 #     return res
 
-def wave(str):
-    return [str[:i] + str[i].upper() + str[i+1:] for i in range(len(str)) if str[i].isalpha()]
+# def wave(str):
+#     return [str[:i] + str[i].upper() + str[i+1:] for i in range(len(str)) if str[i].isalpha()]
