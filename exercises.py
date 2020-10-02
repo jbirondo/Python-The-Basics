@@ -1692,10 +1692,10 @@
 #     else:
 #         return "Balance"
 
-def wave(people):
-    res = []
-    for x in range(0, len(people)):
-        if people[x] == " ":
-            continue
-        res.append(people[0:x] + people[x].capitalize() + people[x + 1:])
-    return res
+# def wave(people):
+#     res = []
+#     for x in range(0, len(people)):
+#         if people[x] == " ":
+#             continue
+#         res.append(people[0:x] + people[x].capitalize() + people[x + 1:])
+#     return res
