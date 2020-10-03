@@ -1787,20 +1787,20 @@
 #     else:
 #         return '''Let's fight again!'''
 
-def fight(robot_1, robot_2, tactics):
-    faster = robot_1 if robot_1["speed"] >= robot_2["speed"] else robot_2
-    slower = robot_1 if robot_1["speed"] < robot_2["speed"] else robot_2
-    attacks = list(zip(faster["tactics"], slower["tactics"]))
-    for round in attacks:
-        slower["health"] -= tactics[round[0]]
-        if slower["health"] <= 0:
-            return "{} has won the fight.".format(faster["name"])
-        faster["health"] -= tactics[round[1]]
-        if faster["health"] <= 0:
-            return "{} has won the fight.".format(slower["name"])
-    if faster["health"] > slower["health"]:
-        return "{} has won the fight.".format(faster["name"])
-    elif faster["health"] < slower["health"]:
-        return "{} has won the fight.".format(slower["name"])
-    else:
-        return "The fight was a draw."
+# def fight(robot_1, robot_2, tactics):
+#     faster = robot_1 if robot_1["speed"] >= robot_2["speed"] else robot_2
+#     slower = robot_1 if robot_1["speed"] < robot_2["speed"] else robot_2
+#     attacks = list(zip(faster["tactics"], slower["tactics"]))
+#     for round in attacks:
+#         slower["health"] -= tactics[round[0]]
+#         if slower["health"] <= 0:
+#             return "{} has won the fight.".format(faster["name"])
+#         faster["health"] -= tactics[round[1]]
+#         if faster["health"] <= 0:
+#             return "{} has won the fight.".format(slower["name"])
+#     if faster["health"] > slower["health"]:
+#         return "{} has won the fight.".format(faster["name"])
+#     elif faster["health"] < slower["health"]:
+#         return "{} has won the fight.".format(slower["name"])
+#     else:
+#         return "The fight was a draw."
