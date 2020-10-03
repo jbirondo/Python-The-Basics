@@ -1703,40 +1703,40 @@
 # def wave(str):
 #     return [str[:i] + str[i].upper() + str[i+1:] for i in range(len(str)) if str[i].isalpha()]
 
-LEFT = {
-    "w": 4,
-    "p": 3,
-    "b": 2,
-    "s": 1,
-}
-RIGHT = {
-    "m": 4,
-    "q": 3,
-    "d": 2,
-    "z": 1,
-}
-def alphabet_war(fight):
-    print(fight)
-    for x in range(0, len(fight)):
-        if fight[x] == "*":
-            if x != 0 and fight[x - 1].isalpha():
-                fight = fight.replace(fight[x - 1], " ", 1)
-            if x != len(fight) - 1 and fight[x + 1].isalpha():
-                fight = fight.replace(fight[x + 1], " ", 1)
-        print(fight)
-    l = 0
-    r = 0
-    for char in fight:
-        if char in LEFT:
-            l += LEFT[char]
-        elif char in RIGHT:
-            r += RIGHT[char]
-        else:
-            pass
+# LEFT = {
+#     "w": 4,
+#     "p": 3,
+#     "b": 2,
+#     "s": 1,
+# }
+# RIGHT = {
+#     "m": 4,
+#     "q": 3,
+#     "d": 2,
+#     "z": 1,
+# }
+# def alphabet_war(fight):
+#     print(fight)
+#     for x in range(0, len(fight)):
+#         if fight[x] == "*":
+#             if x != 0 and fight[x - 1].isalpha():
+#                 fight = fight.replace(fight[x - 1], " ", 1)
+#             if x != len(fight) - 1 and fight[x + 1].isalpha():
+#                 fight = fight.replace(fight[x + 1], " ", 1)
+#         print(fight)
+#     l = 0
+#     r = 0
+#     for char in fight:
+#         if char in LEFT:
+#             l += LEFT[char]
+#         elif char in RIGHT:
+#             r += RIGHT[char]
+#         else:
+#             pass
     
-    if l > r:
-        return "Left side wins!"
-    elif r > l:
-        return "Right side wins!"
-    else:
-        return "Let's fight again!"
+#     if l > r:
+#         return "Left side wins!"
+#     elif r > l:
+#         return "Right side wins!"
+#     else:
+#         return "Let's fight again!"
