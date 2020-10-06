@@ -1804,3 +1804,13 @@
 #         return "{} has won the fight.".format(slower["name"])
 #     else:
 #         return "The fight was a draw."
+
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        window = len(needle)
+        if haystack == needle:
+            return 0
+        for x in range(0, len(haystack) - window):
+            if needle == haystack[x:x+window]:
+                return x
+        return -1
