@@ -1815,22 +1815,22 @@
 #                 return x
 #         return -1
 
-import re
+# import re
 
 
-def decipher_this(string):
-    arr = []
-    for w in string.split():
-        d = mod_word(w)
-        if d[1] != '':
-            s = [x for x in d[1]]
-            s[0], s[-1] = s[-1], s[0]
-            arr.append(chr(int(d[0])) + "".join(s))
-        else:
-            arr.append(chr(int(d[0])))
-    return " ".join(arr)
+# def decipher_this(string):
+#     arr = []
+#     for w in string.split():
+#         d = mod_word(w)
+#         if d[1] != '':
+#             s = [x for x in d[1]]
+#             s[0], s[-1] = s[-1], s[0]
+#             arr.append(chr(int(d[0])) + "".join(s))
+#         else:
+#             arr.append(chr(int(d[0])))
+#     return " ".join(arr)
 
 
-def mod_word(s):
-    a = re.split('(\d+)', s)
-    return a[1:]
+# def mod_word(s):
+#     a = re.split('(\d+)', s)
+#     return a[1:]
