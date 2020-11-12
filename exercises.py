@@ -1846,3 +1846,18 @@
 
 # def decipher_this(string):
 #     return ' '.join(map(decipher_word, string.split()))
+
+def count_words(str):
+    d = {}
+    for x in [x.strip(".,:;!_").lower() for x in str.split(" ")]:
+        if x in d:
+            d[x] = d[x] + 1
+        else:
+            d[x] = 1
+    s = sorted(d, key=lambda x: (-d[x], x))
+    for x in s:
+        print(x, d[x])
+
+
+print(count_words("From the moment the first immigrants arrived on these shores, generations of parents have worked hard and sacrificed whatever is necessary so that their children could have the same chances they had or the chances they never had. Because while we could never ensure that our children would be rich or successful while we could never be positive that they would do better than their parents, America is about making it possible to give them the chance. To give every child the opportunity to try. Education is still the foundation of this opportunity. And the most basic building block that holds that foundation together is still reading. At the dawn of the 21st century, in a world where knowledge truly is power and literacy is the skill that unlocks the gates of opportunity and success, we all have a responsibility as parents and librarians, educators and citizens, to instill in our children a love of reading so that we can give them the chance to fulfill their dreams."))
+# print(print_word("a", 3))
