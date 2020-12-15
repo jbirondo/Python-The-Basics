@@ -154,3 +154,17 @@ function divisibleSumPairs(n, k, ar) {
     }
     return counter
 }
+
+function migratoryBirds(arr) {
+    let h = {}
+    arr.forEach(bird => {
+        if(h.hasOwnProperty(bird)){
+            h[bird]++
+        } else {
+            h[bird] = 1
+        }
+    })
+    let list = Object.entries(h)
+        .sort(([,a],[,b]) => b-a)
+    return list[0][0]
+}
