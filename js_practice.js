@@ -48,3 +48,10 @@ function staircase(n) {
         n --
     }
 }
+
+function miniMaxSum(arr) {
+    let sort = arr.sort((a, b) => a - b)
+    let min = sort.slice(0, 4).reduce((a, c) => a + c)
+    let max = sort.slice(1).reduce((a, c) => a + c)
+    console.log(`${min} ${max}`)
+}
