@@ -136,3 +136,11 @@ function breakingRecords(scores) {
     })
     return [maxC, minC]
 }
+
+function birthday(s, d, m) {
+    let counter = 0
+    for(let i = 0; i + m < s.length + 1; i++){
+        s.slice(i, i + m).reduce((a,c) => a + c) === d ? counter++ : counter = counter
+    }
+    return counter
+}
