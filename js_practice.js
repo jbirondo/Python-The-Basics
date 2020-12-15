@@ -67,3 +67,16 @@ function birthdayCakeCandles(candles) {
     })
     return h[candles.sort((a, b) => a - b)[candles.length - 1]]
 }
+
+function timeConversion(s) {
+    let arr = s.split(":")
+    let h, m, sec
+    [h, m, sec] = [arr[0], arr[1], arr[2]]
+    if(sec.includes("P") && parseInt(h) !== 12){
+        h = parseInt(arr[0]) + 12
+    }
+    if(sec.includes("A") && parseInt(h) === 12){
+        h = "00"
+    }
+    return `${h}:${m}:${sec.slice(0,2)}`
+}
