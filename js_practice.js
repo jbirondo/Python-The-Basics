@@ -80,3 +80,19 @@ function timeConversion(s) {
     }
     return `${h}:${m}:${sec.slice(0,2)}`
 }
+
+function countApplesAndOranges(s, t, a, b, apples, oranges) {
+    let [aIn, oIn] = [0,0]
+    apples.forEach(ele => {
+        if(a + ele >= s && a + ele <= t){
+            aIn = aIn + 1
+        }
+    })
+    oranges.forEach(ele => {
+        if(b + ele >= s && b + ele <= t){
+            oIn = oIn + 1
+        }
+    })
+    console.log(aIn)
+    console.log(oIn)
+}
