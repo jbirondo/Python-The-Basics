@@ -1,0 +1,61 @@
+1607062610552	geckodriver	INFO	Listening on 127.0.0.1:58462
+1607062611232	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileROlcDv"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607062620101	Marionette	INFO	Listening on port 58470
+1607062653629	geckodriver	INFO	Listening on 127.0.0.1:58540
+1607062653647	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileu5E3o4"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607062656355	Marionette	INFO	Listening on port 58545
+1607062656465	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607062659124	Marionette	INFO	Stopped listening on port 58545
+1607062688862	geckodriver	INFO	Listening on 127.0.0.1:58628
+1607062688880	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileHnHwwL"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607062691493	Marionette	INFO	Listening on port 58633
+1607062691501	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607062693842	Marionette	INFO	Stopped listening on port 58633
+1607063186529	geckodriver	INFO	Listening on 127.0.0.1:60889
+1607063187527	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileR4PsAD"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607063190251	Marionette	INFO	Listening on port 60900
+1607063190374	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607063197087	Marionette	INFO	Stopped listening on port 60900
+1607063251714	geckodriver	INFO	Listening on 127.0.0.1:61307
+1607063252725	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofile3cDY2m"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607063255706	Marionette	INFO	Listening on port 61318
+1607063255765	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607063259447	Marionette	INFO	Stopped listening on port 61318
+JavaScript error: https://maps.googleapis.com/maps/api/js?key=AIzaSyAicYOTf85uWdL3OtuSYh-opEw9x85Js1k, line 81: Error: Could not load "geocoder".
+1607063425150	geckodriver	INFO	Listening on 127.0.0.1:62191
+1607063425207	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileFw7K2O"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607063428368	Marionette	INFO	Listening on port 62196
+1607063428430	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607063434681	Marionette	INFO	Stopped listening on port 62196
+JavaScript error: https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js, line 1: NS_ERROR_NOT_INITIALIZED: 
+1607063479504	geckodriver	INFO	Listening on 127.0.0.1:62584
+1607063479521	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileviLcqF"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607063481989	Marionette	INFO	Listening on port 62589
+1607063482054	Marionette	WARN	TLS certificate errors will be ignored for this session
+1607063484789	Marionette	INFO	Stopped listening on port 62589
+1607063604597	geckodriver	INFO	Listening on 127.0.0.1:63264
+1607063605518	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileP9H340"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607063608311	Marionette	INFO	Listening on port 63275
+1607063608341	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://maps.googleapis.com/maps/api/js?key=AIzaSyAicYOTf85uWdL3OtuSYh-opEw9x85Js1k, line 81: Error: Could not load "util".
+JavaScript error: https://maps.googleapis.com/maps/api/js?key=AIzaSyAicYOTf85uWdL3OtuSYh-opEw9x85Js1k, line 81: Error: Could not load "map".
+JavaScript error: https://ampleharvest.org/wp-content/cache/autoptimize/js/autoptimize_554bc469736e7a1d120f5e2914eb9959.js, line 1: ReferenceError: jQuery is not defined
+1607063637299	Marionette	INFO	Stopped listening on port 63275
+1607063652364	geckodriver	INFO	Listening on 127.0.0.1:63574
+1607063653375	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "-foreground" "-no-remote" "-profile" "/var/folders/_v/m73hqf9918dgvfpdjmbt_ntw0000gn/T/rust_mozprofileeCEtJF"
+console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
+1607063655829	Marionette	INFO	Listening on port 63589
+1607063655878	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://maps.googleapis.com/maps/api/js?key=AIzaSyAicYOTf85uWdL3OtuSYh-opEw9x85Js1k, line 81: Error: Could not load "onion".
+1607063684694	Marionette	INFO	Stopped listening on port 63589
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x1D0011,name=PBackgroundStorage::Msg_Observe) Channel error: cannot send/recv
+
