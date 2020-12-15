@@ -96,3 +96,19 @@ function countApplesAndOranges(s, t, a, b, apples, oranges) {
     console.log(aIn)
     console.log(oIn)
 }
+
+function kangaroo(x1, v1, x2, v2) {
+    let far = x1 < x2 ? x1 : x2
+    let near = x1 < x2 ? x2 : x1
+    if(v1 <= v2 && far !== near){
+        return "NO"
+    }
+    while (far <= near){
+        if(far === near){
+            return "YES"
+        }
+        far = far + v1
+        near = near + v2
+    }
+    return "NO"
+}
