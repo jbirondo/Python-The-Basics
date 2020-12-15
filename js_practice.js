@@ -112,3 +112,18 @@ function kangaroo(x1, v1, x2, v2) {
     }
     return "NO"
 }
+
+function gradingStudents(grades) {
+    
+    for(let i = 0; i < grades.length; i++){
+        if(grades[i] < 38){
+            continue
+        }
+        if((grades[i] % 5 === 4 || grades[i] % 5 === 3) && grades[i] >= 38){
+            grades[i] = Math.round(grades[i]/5) * 5
+        }else{
+            continue
+        }
+    }
+    return grades
+}
