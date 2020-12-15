@@ -39,3 +39,12 @@ function plusMinus(arr) {
         console.log(+(res[i] / arr.length).toFixed(6))
     }
 }
+
+function staircase(n) {
+    let temp = 1
+    while(n > 0){
+        console.log(" ".repeat(n - 1) + "#".repeat(temp))
+        temp ++ 
+        n --
+    }
+}
