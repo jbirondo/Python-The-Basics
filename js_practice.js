@@ -167,4 +167,21 @@ function migratoryBirds(arr) {
     let list = Object.entries(h)
         .sort(([,a],[,b]) => b-a)
     return list[0][0]
+    // var birdsObj = {};
+
+    // for (let i = 0; i < types.length; i++){
+    //     let birdType = types[i];
+    //     birdsObj[birdType] ? birdsObj[birdType]++ : birdsObj[birdType] = 1;
+    // }
+
+    // var mostBirds = 0;
+    // var mostBirdType;
+    // for (let birdType in birdsObj){
+    //     if (birdsObj[birdType] > mostBirds){
+    //         mostBirds = birdsObj[birdType];
+    //         mostBirdType = birdType;
+    //     }
+    // }
+
+    // console.log(mostBirdType);
 }
