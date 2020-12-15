@@ -23,3 +23,19 @@ function compareTriplets(a, b) {
 function aVeryBigSum(ar) {
     return ar.reduce((a, c) => a + c)
 }
+
+function plusMinus(arr) {
+    let res = [0,0,0]
+    arr.forEach((ele) => {
+        if(ele === 0){
+            res[2]++
+        } else if (ele > 0){
+            res[0]++
+        } else{
+            res[1]++
+        }
+    })
+    for(let i = 0; i < res.length; i++){
+        console.log(+(res[i] / arr.length).toFixed(6))
+    }
+}
