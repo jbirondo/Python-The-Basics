@@ -55,3 +55,15 @@ function miniMaxSum(arr) {
     let max = sort.slice(1).reduce((a, c) => a + c)
     console.log(`${min} ${max}`)
 }
+
+function birthdayCakeCandles(candles) {
+    let h = {}
+    candles.forEach(ele => {
+        if(h.hasOwnProperty(ele)){
+            h[ele] = h[ele] + 1
+        } else {
+            h[ele] = 1
+        }
+    })
+    return h[candles.sort((a, b) => a - b)[candles.length - 1]]
+}
