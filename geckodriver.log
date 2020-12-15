@@ -59,3 +59,4 @@ JavaScript error: https://maps.googleapis.com/maps/api/js?key=AIzaSyAicYOTf85uWd
 
 ###!!! [Parent][MessageChannel] Error: (msgtype=0x1D0011,name=PBackgroundStorage::Msg_Observe) Channel error: cannot send/recv
 
+1608031072471	Marionette	INFO	Stopped listening on port 58470

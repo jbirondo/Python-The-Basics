@@ -121,3 +121,18 @@ function gradingStudents(grades) {
     }
     return grades
 }
+
+function breakingRecords(scores) {
+    let [min, max] = [scores[0], scores[0]]
+    let [minC, maxC] = [0, 0]
+    scores.forEach(score => {
+        if(score > max){
+            maxC++
+            max = score
+        } else if (score < min){
+            minC++
+            min = score
+        }
+    })
+    return [maxC, minC]
+}
