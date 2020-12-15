@@ -19,3 +19,7 @@ function compareTriplets(a, b) {
     }
     return score
 }
+
+function aVeryBigSum(ar) {
+    return ar.reduce((a, c) => a + c)
+}
