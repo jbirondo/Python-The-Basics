@@ -211,3 +211,12 @@ function climbingLeaderboard(scores, alice) {
     //     console.log(initRank+1);
     // }
 }
+
+function extraLongFactorials(n) {
+    let res = 1
+    while(n > 1) {
+        res = BigInt(res) * BigInt(n)
+        n--
+    }
+    console.log(res.toString())
+}
