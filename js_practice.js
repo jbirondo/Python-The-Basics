@@ -305,3 +305,19 @@ function pickingNumbers(a) {
     }
     return highest
 }
+
+function utopianTree(n) {
+    let tree = 1
+    let first = true
+    while(n){
+        if(first) {
+            tree *= 2
+            first = false
+        } else {
+            tree += 1
+            first = true
+        }
+        n--
+    }
+    return tree
+}
