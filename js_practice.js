@@ -321,3 +321,13 @@ function utopianTree(n) {
     }
     return tree
 }
+
+function angryProfessor(k, a) {
+    a = a.sort()
+    let att = 0
+    for(let i = 0; i < a.length; i++){
+        if(a[i] <= 0) att++
+        if(att === k) return "NO"
+        if(att < k && a[i] > 0) return "YES" 
+    }
+}
