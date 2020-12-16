@@ -288,3 +288,20 @@ function getMoneySpent(keyboards, drives, b) {
     }
     return highest
 }
+
+function pickingNumbers(a) {
+    let start = 0
+    let end
+    let highest = 0
+    a = a.sort()
+    for(let i = 0; i < a.length; i++){
+        if(a[start] === a[i] + 1 || a[start] === a[i] || a[start] === a[i] - 1){
+            end = i
+            if(a.slice(start, end + 1).length > highest) highest = a.slice(start, end + 1).length
+        }else{
+            start = i
+            end = i
+        }
+    }
+    return highest
+}
