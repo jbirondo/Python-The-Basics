@@ -340,3 +340,15 @@ function beautifulDays(i, j, k) {
     }
     return days
 }
+
+function viralAdvertising(n) {
+    let shared = 5
+    let liked = 0
+    while(n){
+        let roundLiked = Math.floor(shared / 2)
+        liked += roundLiked
+        shared = roundLiked * 3
+        n--
+    }
+    return liked
+}
