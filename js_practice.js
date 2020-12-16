@@ -157,13 +157,7 @@ function divisibleSumPairs(n, k, ar) {
 
 function migratoryBirds(arr) {
     let h = {}
-    arr.forEach(bird => {
-        if(h.hasOwnProperty(bird)){
-            h[bird]++
-        } else {
-            h[bird] = 1
-        }
-    })
+    arr.forEach(bird => h.hasOwnProperty(bird) ? h[bird]++ :h[bird] = 1)
     let list = Object.entries(h)
         .sort(([,a],[,b]) => b-a)
     return list[0][0]
@@ -184,4 +178,11 @@ function migratoryBirds(arr) {
     // }
 
     // console.log(mostBirdType);
+}
+
+function bonAppetit(bill, k, b) {
+    bill.splice(k, 1)
+    let total = bill.reduce((a, c) => a + c)/2 
+    let res = total === b ? "Bon Appetit" : b - total
+    console.log(res)
 }
