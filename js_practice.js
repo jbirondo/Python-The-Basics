@@ -331,3 +331,12 @@ function angryProfessor(k, a) {
         if(att < k && a[i] > 0) return "YES" 
     }
 }
+
+function beautifulDays(i, j, k) {
+    let days = 0
+    while(i <= j){
+        if((i - parseInt(i.toString().split("").reverse().join(""))) % k === 0) days++
+        i++
+    }
+    return days
+}
