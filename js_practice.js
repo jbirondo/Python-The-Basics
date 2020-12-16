@@ -231,25 +231,36 @@ function appendAndDelete(s, t, k) {
 }
 
 function encryption(s) {
-    let rows = Math.floor(Math.sqrt(s.length))
+    // let rows = Math.floor(Math.sqrt(s.length))
+    // let cols = Math.ceil(Math.sqrt(s.length))
+    // if (rows * cols < s.length) rows++
+    // let mat = []
+    // let count = 0
+    // for(let i = 0; i < rows; i++){
+    //     mat.push([])
+    //     for(let j = 0; j < cols; j++){
+    //         s[count] ? mat[i][j] = s[count] : mat[i][j] = undefined
+    //         count++
+    //     }
+    // }
+    // let res = []
+    // for(let k = 0; k < cols; k++){
+    //     let temp = []
+    //     for(let l = 0; l < rows; l++){
+    //         temp.push(mat[l][k])
+    //     }
+    //     res.push(temp.join(""))
+    // }
+    // return res.join(" ")
+
     let cols = Math.ceil(Math.sqrt(s.length))
-    if (rows * cols < s.length) rows++
-    let mat = []
-    let count = 0
-    for(let i = 0; i < rows; i++){
-        mat.push([])
-        for(let j = 0; j < cols; j++){
-            s[count] ? mat[i][j] = s[count] : mat[i][j] = undefined
-            count++
-        }
-    }
     let res = []
-    for(let k = 0; k < cols; k++){
-        let temp = []
-        for(let l = 0; l < rows; l++){
-            temp.push(mat[l][k])
+    for(let i = 0; i < cols; i++){
+        let temp = ""
+        for(let j = i; j < s.length; j += cols){
+            temp = temp + s[j]
         }
-        res.push(temp.join(""))
+        res.push(temp)
     }
     return res.join(" ")
 }
