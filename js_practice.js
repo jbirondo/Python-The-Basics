@@ -195,4 +195,19 @@ function climbingLeaderboard(scores, alice) {
         res.push(rank.indexOf(score) + 1)
     })
     return res
+    // var rscores = scores.reduce((score, currentScore, i) => {
+    //     if(score[score.length-1] !== currentScore){
+    //         score.push(currentScore);
+    //         return score;
+    //     } else {
+    //         return score;
+    //     }
+    // }, []);
+    // var initRank = rscores.length;
+    // for(var i of alice){
+    //     while(rscores[initRank-1] <= i){
+    //         initRank--;
+    //     }
+    //     console.log(initRank+1);
+    // }
 }
