@@ -220,3 +220,12 @@ function extraLongFactorials(n) {
     }
     console.log(res.toString())
 }
+
+function appendAndDelete(s, t, k) {
+    while(s[0] === t[0] && s.length > 0 && t.length > 0){
+        s = s.slice(1)
+        t = t.slice(1)
+    }
+    let res = (s.length + t.length) <= k  ? "Yes": "No"
+    return res
+}
