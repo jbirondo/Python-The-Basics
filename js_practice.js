@@ -264,3 +264,17 @@ function encryption(s) {
     }
     return res.join(" ")
 }
+
+function catAndMouse(x, y, z) {
+    let catA = getDistance(x, z)
+    let catB = getDistance(y, z)
+    if (catA === catB) return "Mouse C"
+    let res = catA < catB ? "Cat A" : "Cat B"
+    return res
+}
+
+function getDistance(a, b){
+    let res = a > b ? a - b : b - a
+    return res
+}
+
