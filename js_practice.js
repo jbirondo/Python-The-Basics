@@ -186,3 +186,13 @@ function bonAppetit(bill, k, b) {
     let res = total === b ? "Bon Appetit" : b - total
     console.log(res)
 }
+
+function climbingLeaderboard(scores, alice) {
+    let res = []
+    alice.forEach(score => {
+        scores.push(score)
+        let rank = [...new Set(scores.sort((a, b) => b - a))]
+        res.push(rank.indexOf(score) + 1)
+    })
+    return res
+}
