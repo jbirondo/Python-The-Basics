@@ -278,3 +278,13 @@ function getDistance(a, b){
     return res
 }
 
+function getMoneySpent(keyboards, drives, b) {
+    let highest = -1
+    for(let i = 0; i < keyboards.length; i++){
+        for(let j = 0; j < drives.length; j++){
+            if(keyboards[i] + drives[j] <= b 
+            && keyboards[i] + drives[j] >= highest) highest = keyboards[i] + drives[j]
+        }
+    }
+    return highest
+}
