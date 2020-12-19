@@ -366,3 +366,19 @@ function circularArrayRotation(a, k, queries) {
     }
     return res
 }
+
+function jumpingOnClouds(c, k) {
+    let e = 100
+    let jumps = 0
+    let i = 0
+    while(e){
+        if(c[(i + k) % c.length] === 1){
+            e -= 2
+        } else {
+            e--
+        }
+        jumps++
+        i = (i + k) % c.length
+    }
+    return jumps
+}
