@@ -352,3 +352,17 @@ function viralAdvertising(n) {
     }
     return liked
 }
+
+function circularArrayRotation(a, k, queries) {
+    let turns = a.length % k
+    while(turns){
+        let temp = a.shift()
+        a.push(temp)
+        turns--
+    }
+    let res = []
+    for(let i = 0; i < queries.length; i++){
+        res.push(a[queries[i]])
+    }
+    return res
+}
