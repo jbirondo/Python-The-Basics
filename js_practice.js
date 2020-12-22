@@ -397,3 +397,23 @@ function solution(nums){
 function solution(nums){
     return nums !== null ? nums.sort(function(a,b){return a-b}) : [];
 }
+
+function duplicateEncode(word){
+  let h = {}
+  word.split("").forEach((ele) => {
+    if(h.hasOwnProperty(ele.toLowerCase())){
+      h[ele.toLowerCase()]++
+    } else {
+      h[ele.toLowerCase()] = 1
+    }
+  })
+  let res = ""
+  word.split("").forEach((ele) => {
+    if(h[ele.toLowerCase()] > 1){
+      res += ")"
+    }else{
+      res += "("
+    }
+  })
+  return res
+}
