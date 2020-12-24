@@ -417,3 +417,24 @@ function duplicateEncode(word){
   })
   return res
 }
+
+var SequenceSum = (function() {
+  function SequenceSum() {}
+
+  SequenceSum.showSequence = function(count) {
+    let s = ""
+    let sum = 0
+    if(count < 0) return `${count}<0`
+    if(count === 0) return `0=0`
+    for(let i = 0; i <= count; i++){
+      sum += i
+      if(i !== count){
+        s += `${i}+`
+      } else {
+        s += `${i} = `
+      }
+    }
+    return s + `${sum}`
+  };
+
+  return SequenceSum;
