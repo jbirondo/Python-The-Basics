@@ -437,4 +437,5 @@ var SequenceSum = (function() {
     return s + `${sum}`
   };
 
+  
   return SequenceSum;
