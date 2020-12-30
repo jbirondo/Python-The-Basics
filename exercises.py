@@ -1883,3 +1883,8 @@ def multi_table(n):
 from math import ceil
 def cooking_time(eggs):
     return ceil(eggs / 8) * 5
+
+def even_chars(st): 
+    if len(st) < 2 or len(st) > 100:
+        return "invalid string"
+    return [x for ind, x in enumerate([char for char in st]) if ind % 2 == 1]
