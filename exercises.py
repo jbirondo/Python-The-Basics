@@ -1879,3 +1879,7 @@ def multi_table(number):
 
 def multi_table(n):
     return '\n'.join(f'{i} * {n} = {i*n}' for i in range(1, 11))
+
+from math import ceil
+def cooking_time(eggs):
+    return ceil(eggs / 8) * 5
