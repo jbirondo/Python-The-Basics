@@ -1888,3 +1888,12 @@ def even_chars(st):
     if len(st) < 2 or len(st) > 100:
         return "invalid string"
     return [x for ind, x in enumerate([char for char in st]) if ind % 2 == 1]
+
+def even_chars(st): 
+    return list(st[1::2]) if 2<=len(st)<=100 else "invalid string" 
+
+def even_chars(st):
+    if len(st) < 2 or len(st)> 100:
+        return 'invalid string'
+    else:
+        return [st[i] for i in range(1, len(st), 2)]
