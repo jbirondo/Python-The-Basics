@@ -1864,3 +1864,12 @@
 import math
 def quarter_of(month):
     return math.ceil(month / 3)
+
+def multi_table(number):
+    s = ""
+for x in range(1, 11):
+    if x == 10:
+        s += "{} * {} = {}".format(x, number, x * number)
+    else:
+        s += "{} * {} = {}\n".format(x, number, x * number)
+return s
