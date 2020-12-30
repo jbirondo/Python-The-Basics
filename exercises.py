@@ -1867,9 +1867,15 @@ def quarter_of(month):
 
 def multi_table(number):
     s = ""
-for x in range(1, 11):
-    if x == 10:
-        s += "{} * {} = {}".format(x, number, x * number)
-    else:
-        s += "{} * {} = {}\n".format(x, number, x * number)
-return s
+    for x in range(1, 11):
+        if x == 10:
+            s += "{} * {} = {}".format(x, number, x * number)
+        else:
+            s += "{} * {} = {}\n".format(x, number, x * number)
+    return s
+
+def multi_table(number):
+    return '\n'.join(f'{i} * {number} = {i * number}' for i in range(1, 11))
+
+def multi_table(n):
+    return '\n'.join(f'{i} * {n} = {i*n}' for i in range(1, 11))
