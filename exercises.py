@@ -1966,3 +1966,9 @@ def get_strings(city):
         s.append("{}:{}".format(city[0], "*" * city.count(city[0])))
         city = city.replace(city[0], "")
     return ",".join(s)
+
+from collections import Counter
+
+
+def get_strings(city):
+    return ",".join(f"{char}:{'*'*count}" for char, count in Counter(city.replace(" ", "").lower()).items())
