@@ -1931,3 +1931,9 @@ def days_represented(trips):
         for y in range(x[0], x[1] + 1):
             days[y] = True
     return len(days)
+
+def days_represented(trips):
+    accumulator = set()
+    for a,b in trips:
+        accumulator |= set(range(a, b+1))
+    return len(accumulator)
