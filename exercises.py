@@ -1937,3 +1937,11 @@ def days_represented(trips):
     for a,b in trips:
         accumulator |= set(range(a, b+1))
     return len(accumulator)
+
+def first_non_consecutive(arr):
+    arr2 = range(arr[0], arr[-1] + 1)
+    if arr == arr2:
+        return None
+    for x in range(0, len(arr2)):
+        if arr[x] != arr2[x]:
+            return arr[x]
