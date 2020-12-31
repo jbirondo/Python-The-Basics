@@ -1958,3 +1958,11 @@ import itertools
 
 def max_tri_sum(numbers):
     return max(sum(i) for i in itertools.combinations(set(numbers), 3))
+
+def get_strings(city):
+    s = []
+    city = city.lower().replace(" ", "")
+    while city:
+        s.append("{}:{}".format(city[0], "*" * city.count(city[0])))
+        city = city.replace(city[0], "")
+    return ",".join(s)
