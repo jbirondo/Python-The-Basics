@@ -1897,3 +1897,30 @@ def even_chars(st):
         return 'invalid string'
     else:
         return [st[i] for i in range(1, len(st), 2)]
+
+def get_positions(n):
+    pos = [0, 0, 0]
+    n = n % 18
+    while n:
+        if n >= 10:
+            pos[2] += 1
+            n -= 10
+            continue
+        if n >= 3:
+            pos[1] += 1
+            n -= 3
+            continue
+        if n >= 1:
+            pos[0] += 1
+            n -= 1
+            continue
+    return pos
+
+import itertools
+def get_positions(n): 
+    com = itertools.product(range(0, 3), repeat=3)
+    rev = [list(x)[::-1] for x in list(com)]
+    return tuple(rev[n % len(rev)])
+
+def get_positions(n):
+    return n%3, n//3%3, n//9%3
