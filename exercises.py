@@ -1953,3 +1953,8 @@ def first_non_consecutive(arr):
 
 def max_tri_sum(numbers):
     return sum(sorted(set(numbers))[-3:])
+
+import itertools
+
+def max_tri_sum(numbers):
+    return max(sum(i) for i in itertools.combinations(set(numbers), 3))
