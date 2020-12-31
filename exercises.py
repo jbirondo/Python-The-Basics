@@ -1924,3 +1924,10 @@ def get_positions(n):
 
 def get_positions(n):
     return n%3, n//3%3, n//9%3
+
+def days_represented(trips):
+    days = {}
+    for x in trips:
+        for y in range(x[0], x[1] + 1):
+            days[y] = True
+    return len(days)
