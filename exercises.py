@@ -1976,3 +1976,10 @@ def get_strings(city):
 def simpleArraySum(ar):
     return sum(ar)
 
+def countTriplets(arr, r):
+    combos = combinations(range(0, len(arr)), 3)
+    counter = 0
+    for x in list(combos):
+        if arr[x[0]] * r == arr[x[1]] and arr[x[1]] * r == arr[x[2]]:
+            counter = counter + 1
+    return counter 
