@@ -2001,3 +2001,28 @@ def freqQuery(queries):
             else:
                 res.append(0)
     return res
+
+# Def min_set(arr):
+# 	D = {} // { 3: 1, 5: 3, 2: 2, 7: 4} // len(arr) | best o(n)
+# 	Counter = 0 // 1
+# 	L = len(arr) / 2 // 1
+# 	For i in arr:
+# 		If i in d:
+# 			D[i] += 1
+# 		Else:
+# 			D[i] = 1 // o(n)
+# 	// d = d.sort_by_value() {7:4, 5:3, 2:2, 3:1}(reverse = True)
+# 	// d = [x for x in d.values()].sort(reverse = True)
+			
+# 	//While l > 0: o(n / 2) worst case | best case o(1)
+
+# 	For value in d.values(): o(n) | best case o(1)
+# 		L -= value // 5- 4 = 1, 1 - 3 = -2 
+# 		Counter += 1 // 
+# 		If l <= 0:
+# 			break
+		
+# 	// o(n) + o(n) + o(nlog(n))
+# 	// o(n) + o(n^2)
+# 	// o(n^2)
+# 	Return counter 
