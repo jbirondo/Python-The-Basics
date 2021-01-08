@@ -2026,3 +2026,24 @@ def freqQuery(queries):
 # 	// o(n) + o(n^2)
 # 	// o(n^2)
 # 	Return counter 
+
+from bs4 import BeautifulSoup
+import requests
+
+URL = 'https://www.codewars.com/users/leaderboard'
+
+def solution():
+    r = requests.get(URL, headers={'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'})
+    c = r.content
+    soup = BeautifulSoup(c, "html.parser")
+    table = soup.find_all("tr")
+    leaderboard = {}
+    leaderboard["position"] = {}
+    for user in table[1:]:
+        u = {}
+        u["name"] = user.find("a").text
+        u["clan"] = user.find_all("td")[-2].text
+        u["honor"] = user.find_all("td")[-1].text
+        leaderboard["position"][user.find("td").text] = u
+    
+    return leaderboard
