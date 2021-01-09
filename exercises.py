@@ -2111,3 +2111,33 @@ class leaderboard:
             self.name = name
             self.clan = clan
             self.honor = honor
+
+from bs4 import BeautifulSoup
+import requests
+
+URL = 'https://www.codewars.com/users/leaderboard'
+        
+class solution:
+    class user:
+        def __init__(self, name, clan, honor):
+            self.name = name
+            self.clan = clan
+            self.honor = honor
+            
+    class FuckYourIndex(list):
+        def __init__(self, L):
+            super().__init__(L)
+        
+        def __getitem__(self, i):
+            return list.__getitem__(self, i-1)
+
+    def __init__(self):
+        SOURCE = requests.get(URL).text
+        soup = BeautifulSoup(SOURCE, 'html.parser')
+        self.position = self.FuckYourIndex([solution.get_user(user) for user in soup.find("tr").next_siblings])
+
+    @classmethod
+    def get_user(cls, user):
+        name = user['data-username']
+        clan, honor = (tag.text for tag in user.find("td", {"class", "is-big"}).next_siblings)
+        return cls.user(name, clan, int(honor.replace(',', '')))
