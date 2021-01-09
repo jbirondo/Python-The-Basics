@@ -2032,18 +2032,37 @@ import requests
 
 URL = 'https://www.codewars.com/users/leaderboard'
 
+class Leaderboard:
+    def __init__(self, position):
+        self.position = ModList(position)
+
+class User:
+    def __init__(self, name, clan, honor):
+        self.name = name
+        self.clan = clan
+        self.honor = honor
+        
+class ModList:
+    def __init__(self, l):
+        self.l = l
+        
+    def __getitem__(self, index):
+        return self.l[index - 1]
+    
+    def __len__(self):
+        return len(self.l)
+    
+
 def solution():
     r = requests.get(URL, headers={'User-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0'})
     c = r.content
     soup = BeautifulSoup(c, "html.parser")
     table = soup.find_all("tr")
-    leaderboard = {}
-    leaderboard["position"] = {}
+    position = []
     for user in table[1:]:
-        u = {}
-        u["name"] = user.find("a").text
-        u["clan"] = user.find_all("td")[-2].text
-        u["honor"] = user.find_all("td")[-1].text
-        leaderboard["position"][user.find("td").text] = u
-    
-    return leaderboard
+        name = user.find("a").text
+        clan = user.find_all("td")[-2].text
+        honor = int(user.find_all("td")[-1].text.replace(",", ""))
+        u = User(name, clan, honor)
+        position.append(u)
+    return Leaderboard(position)
