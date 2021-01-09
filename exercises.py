@@ -2066,3 +2066,21 @@ def solution():
         u = User(name, clan, honor)
         position.append(u)
     return Leaderboard(position)
+
+import requests
+from bs4 import BeautifulSoup
+from collections import namedtuple
+
+URL = 'https://www.codewars.com/users/leaderboard'
+    
+def solution():
+    Table = namedtuple('Table', ['position'])
+    Table_Element = namedtuple('Table_Element', ['name', 'clan', 'honor'])
+    
+    leaderboard = Table({})
+    soup = BeautifulSoup(requests.get(URL).text, 'html.parser')
+    table = soup.find('table')
+    for c, row in enumerate(table.find_all('tr', attrs={'data-username': True}), 1):
+        cells = row.find_all('td')
+        leaderboard.position[c] = Table_Element(row.attrs['data-username'], cells[2].text, int(cells[3].text.replace(',', '')))
+    return leaderboard
