@@ -2084,3 +2084,30 @@ def solution():
         cells = row.find_all('td')
         leaderboard.position[c] = Table_Element(row.attrs['data-username'], cells[2].text, int(cells[3].text.replace(',', '')))
     return leaderboard
+
+from bs4 import BeautifulSoup
+import requests
+
+URL = 'https://www.codewars.com/users/leaderboard'
+
+def solution():    
+    soup = BeautifulSoup(requests.get(URL).text)    
+    leader_board = leaderboard()
+    
+    for n, link in enumerate(soup.find_all('tr')[1:]):
+        c = link.findChildren('td')
+        leader_board.add_user(n + 1, link['data-username'], c[2].string or '', int(c[3].string.replace(',', '')))
+    return leader_board
+  
+class leaderboard:
+    def __init__(self):
+        self.position = {}
+        
+    def add_user(self, pos, name, clan, honor):
+        self.position[pos] = self.user(name, clan, honor)
+        
+    class user:
+        def __init__(self, name, clan, honor):
+            self.name = name
+            self.clan = clan
+            self.honor = honor
