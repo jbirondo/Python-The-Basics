@@ -2356,3 +2356,13 @@ def do_math(op, op1, op2):
 
 
 print(postfix_eval("7 8 + 3 2 + /"))
+
+def maximumToys(prices, k):
+    counter = 0
+    for x in sorted(prices):
+        if k >= x:
+            counter += 1
+            k -= x
+        else:
+            break
+    return counter
