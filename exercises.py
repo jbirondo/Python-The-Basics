@@ -2366,3 +2366,11 @@ def maximumToys(prices, k):
         else:
             break
     return counter
+
+def activityNotifications(expenditure, d):
+    alert = 0
+    for x in range(0, len(expenditure) - d):
+        f = (sum(expenditure[x:x+d]) / d) * 2
+        if f <= expenditure[x+d]:
+            alert += 1
+    return alert
