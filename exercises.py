@@ -2374,3 +2374,17 @@ def activityNotifications(expenditure, d):
         if f <= expenditure[x+d]:
             alert += 1
     return alert
+
+def findMedian(l):
+    if len(l) % 2 == 0:
+        return (l[int(math.floor(len(l)) / 2)] + l[int(math.floor(len(l)) / 2) - 1]) / 2
+    else:
+        return l[int(math.floor(len(l)) / 2)]
+
+def activityNotifications(expenditure, d):
+    alert = 0
+    for x in range(0, len(expenditure) - d):
+        f = findMedian(sorted(expenditure[x:x+d])) * 2
+        if f <= expenditure[x+d]:
+            alert += 1
+    return alert
