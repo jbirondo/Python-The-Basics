@@ -2388,3 +2388,13 @@ def activityNotifications(expenditure, d):
         if f <= expenditure[x+d]:
             alert += 1
     return alert
+
+def alternatingCharacters(s):
+    stack = []
+    deleted = 0
+    for char in s:
+        if len(stack) == 0 or stack[-1] != char:
+            stack.append(char)
+        else:
+            deleted += 1
+    return deleted
