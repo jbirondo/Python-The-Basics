@@ -2398,3 +2398,24 @@ def alternatingCharacters(s):
         else:
             deleted += 1
     return deleted
+
+def isValid(s):
+    # {k: v for k, v in sorted(freq(s).items(), key=lambda item: item[1])}
+    vals = list(freq(s).values())
+    uniq = sorted(list(set(vals)))
+    if len(uniq) == 1:
+        return "YES"
+    if len(uniq) > 2 or vals.count(uniq[1]) > 1:
+        return "NO"
+    else:
+        return "YES"
+    
+    
+def freq(s):
+    res = {}
+    for char in s:
+        if char in res:
+            res[char] += 1
+        else:
+            res[char] = 1
+    return res
