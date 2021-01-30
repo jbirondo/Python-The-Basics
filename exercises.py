@@ -2419,3 +2419,4 @@ def freq(s):
         else:
             res[char] = 1
     return res
+
