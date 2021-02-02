@@ -2420,3 +2420,11 @@ def freq(s):
             res[char] = 1
     return res
 
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        ind = 0
+        while ind < len(nums):
+            if target <= nums[ind]:
+                return ind
+            ind += 1
+        return ind
