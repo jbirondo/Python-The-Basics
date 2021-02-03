@@ -2428,3 +2428,14 @@ class Solution:
                 return ind
             ind += 1
         return ind
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return sum(nums)
+        max = None
+        for x in range(0, len(nums)):
+            for y in range(x + 1, len(nums)):
+                if max == None or sum(nums[x:y]) > max:
+                    max = sum(nums[x:y])
+        return max
