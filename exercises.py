@@ -2440,13 +2440,4 @@ class Solution:
                     max = sum(nums[x:y])
         return max
 
-
-
-
-
-
-
-
-
-
-
+There is a strange counter. At the first second, it displays the number . Each second, the number displayed by decrements by  until it reaches . In next second, the timer resets to  and continues counting down. The diagram below shows the counter values for each time  in the first three cycles:
