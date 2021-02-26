@@ -2453,5 +2453,5 @@ if __name__ == '__main__':
 
     print(second(arr))
 
-def makeAnagram(a, b):
+    def makeAnagram(a, b):
     return len(set(a) ^ set(b))
