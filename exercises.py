@@ -2455,3 +2455,6 @@ if __name__ == '__main__':
 
 def makeAnagram(a, b):
     return len(set(a) ^ set(b))
+
+def array_diff(a, b):
+    return set(a) - set(b)
