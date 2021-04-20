@@ -121,3 +121,7 @@ class Solution:
         right = self.helper(n-2,dp)
         dp[n] = left+right
         return left+right
+
+        # It is classic dp problem based on fibonacci number. It can be easily done using tabulations method as well. Thanks!!
+
+        
