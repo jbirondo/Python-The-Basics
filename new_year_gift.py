@@ -123,5 +123,14 @@ class Solution:
         return left+right
 
         # It is classic dp problem based on fibonacci number. It can be easily done using tabulations method as well. Thanks!!
-
         
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n<=3: return n
+        first = 2
+        second = 3
+        
+        for i in range(3,n):
+            ans = first+second
+            first, second = second, ans
+        return ans
