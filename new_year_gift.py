@@ -103,3 +103,21 @@ class Solution:
         if not self.arr.get(n-1): self.arr[n-1] = self.climbStairs(n-1)
         if not self.arr.get(n-2): self.arr[n-2] = self.climbStairs(n-2)
         return self.arr[n-1] + self.arr[n-2]
+
+    def climbStairs(self, n: int) -> int:
+        dp = [0]*(n+1)
+        self.helper(n,dp)
+        return dp[n]
+    
+    
+    def helper(self,n,dp):
+        if n<0:
+            return 0
+        if n==0:
+            return 1
+        if dp[n]!=0:
+            return dp[n]
+        left = self.helper(n-1,dp)
+        right = self.helper(n-2,dp)
+        dp[n] = left+right
+        return left+right
