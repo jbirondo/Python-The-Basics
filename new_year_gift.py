@@ -123,7 +123,7 @@ class Solution:
         return left+right
 
         # It is classic dp problem based on fibonacci number. It can be easily done using tabulations method as well. Thanks!!
-        
+
 class Solution:
     def climbStairs(self, n: int) -> int:
         if n<=3: return n
@@ -134,3 +134,24 @@ class Solution:
             ans = first+second
             first, second = second, ans
         return ans
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+    
+        if n<2:
+            return n
+        
+        # ways={}
+        # ways[n-1]=1
+        # ways[n-2]=2
+        # for i in range(n-3,-1,-1):
+        #     ways[i] = ways[i+1]+ways[i+2]
+        # return ways[0]
+    
+        # Without the dictionary
+        ways=2
+        a,b=1,2
+        for i in range(n-3,-1,-1):
+            ways = a+b
+            a,b = b,ways
+        return ways 
