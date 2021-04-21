@@ -197,3 +197,24 @@ class Solution:
                         min_depth = depth
             memo[amount] = min_depth
             return min_depth
+
+from  collections import deque
+
+class Solution:
+	def coinChange(self, coins: List[int], amount: int) -> int:
+		qset = set()
+		q = deque()
+		qset.add(amount)
+		q.append((0, amount)) # (num coins,  amount)
+		while q:
+			(num_coins, rest)  = q.popleft()
+			if rest == 0:
+				return num_coins
+			if rest < 0:
+				continue
+			for coin in coins:
+				x = rest - coin
+				if  x not in qset:
+					q.append((num_coins + 1, x))
+					qset.add(x)
+		return -1
