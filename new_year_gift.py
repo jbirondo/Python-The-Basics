@@ -155,3 +155,45 @@ class Solution:
             ways = a+b
             a,b = b,ways
         return ways 
+
+from typing import Optional
+
+
+class Solution:
+    """
+    n = len(coins)
+    m = amount
+    
+    Solution #1 (brute-force - without memo):
+    Time -> O(n^m * m)
+    Space -> O(m)
+    
+    Solution #2 (memo):
+    Time -> O(n*m^2)
+    Space -> O(m)
+    
+    """
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        depth = self.seekDepth(coins, amount, {})
+        if depth is None:
+            return -1
+        return depth
+        
+    def seekDepth(self, coins: List[int], amount: int, memo: dict) -> Optional[int]:
+        if amount in memo:
+            return memo[amount]
+        elif amount == 0:
+            return 0
+        elif amount < 0:
+            return None
+        else:
+            min_depth = None
+            for coin in coins:
+                remaining_amount = amount - coin
+                depth = self.seekDepth(coins, remaining_amount, memo)
+                if depth is not None:
+                    depth += 1
+                    if min_depth is None or depth < min_depth:
+                        min_depth = depth
+            memo[amount] = min_depth
+            return min_depth
