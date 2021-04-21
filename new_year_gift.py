@@ -220,3 +220,28 @@ class Solution:
 					q.append((num_coins + 1, x))
 					qset.add(x)
 		return -1
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # Example: coins = [1 2 5], amount = 5
+        
+        # amount   =  0  1   2   3   4   5
+        # mincoins = [0  inf inf inf inf inf]
+        mincoins = [float('inf') for _ in range(amount + 1)]
+        # Only 1 way to make `0` change: return 0 coin
+        mincoins[0] = 0
+        
+        # 1st pass: coin = 1 -> mincoins = [0 1 2 3 4 5]
+        # 2nd pass: coin = 2 -> mincoins = [0 1 1 2 2 3]
+        # 3rd pass: coin = 5 -> mincoins = [0 1 1 2 2 1]
+        for coin in coins:
+            for target in range(1, len(mincoins)):
+                # If coin can be used to make up part of the amount
+                if coin <= target:
+                    # Try use it and check what the min number of coins to make up 
+                    # the rest `mincoins[target-coin]` and add 1 (rest + current coin)
+                    mincoins[target] = min(mincoins[target], mincoins[target-coin] + 1)
+					
+        # if mincoins[amount] couldn't be used then no 
+		# combination of coins could make up target amount
+        return mincoins[amount] if mincoins[amount] != float('inf') else -1
