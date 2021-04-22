@@ -255,3 +255,16 @@ class Solution:
             return min(dp(i - coin) + 1 for coin in coins)
         
         return dp(amount) if dp(amount) != float("inf") else -1
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+
+    # bisect_left(list, target, beg, end) 
+    d=[nums[0]]
+    for i in range(1,len(nums)):
+        a=bisect.bisect_left(d,nums[i])
+        if a==len(d):
+            d.append(nums[i])
+        else:
+            d[a]=nums[i]
+    return len(d)
