@@ -283,3 +283,18 @@ class Solution:
             dp[num] = max(dp[:num])+1
         
         return max(dp)
+
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # develop a dp table with 1 for all elements
+        dp = [1] * len(nums)
+        
+        # for each element, look back and find the longest subsequence for all elements behind it
+        # then choose the one with largest subsequence and add 1 to it
+        for i in range(1, len(nums)): # O(n)
+            dp[i] = 1 + max([dp[index] for index in range(i) if nums[index] < nums[i]] or [0]) #O(n) in the loop --> O(n^2)
+        return max(dp)
