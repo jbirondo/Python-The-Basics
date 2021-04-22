@@ -298,3 +298,24 @@ class Solution(object):
         for i in range(1, len(nums)): # O(n)
             dp[i] = 1 + max([dp[index] for index in range(i) if nums[index] < nums[i]] or [0]) #O(n) in the loop --> O(n^2)
         return max(dp)
+
+from collections import defaultdict
+class Solution:
+    def lengthOfLIS(self, nums):
+
+        dp = defaultdict(list)
+        dp[nums[0]] = 1
+        
+        i = 1
+        
+        while i < len(nums):
+            if nums[i] < min(dp.keys()):
+                dp[nums[i]] = 1
+            else:
+                max_length = max([l for v, l in dp.items() if nums[i] > v]+[0])
+                dp[nums[i]] = max_length+1
+
+            i += 1
+        
+        
+        return max([l for n, l in dp.items()])
