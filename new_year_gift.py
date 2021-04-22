@@ -319,3 +319,17 @@ class Solution:
         
         
         return max([l for n, l in dp.items()])
+
+# Idea
+# In array tails the value tails[idx] is the smallest number that would be the end of a sequence of length i+1. We iterate over the array nums while making sure to uphold this constraint. Each new number will be either inserted to array tails if it is larger than the largest tail we have encountered so far, or it will update the existing tail with a value that is less than or equal to it.
+
+# Complexity
+# Time: O(NlogN), because for each number we do a binary search in an array tails.
+# Memory: O(N), since we may store up to N numbers in our array tails.
+
+def lengthOfLIS(self, nums: List[int]) -> int:
+	tails = []
+	for n in nums:
+		idx = bisect.bisect_left(tails, n)
+		tails[idx:idx+1] = [n]
+	return len(tails)
