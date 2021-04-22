@@ -268,3 +268,18 @@ class Solution:
         else:
             d[a]=nums[i]
     return len(d)
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+		# do this shift because dp[:num]
+        m = min(nums)
+        if(m <= 0):
+            for i in range(len(nums)):
+                nums[i] += -m + 1
+
+        dp = [0]*(max(nums)+1)
+        
+        for num in nums:
+            dp[num] = max(dp[:num])+1
+        
+        return max(dp)
