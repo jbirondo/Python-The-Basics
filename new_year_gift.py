@@ -434,3 +434,14 @@ class Solution:
         self.s = s
         self.words = wordDict
         return self.check(start=0)
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        dp = [False for i in range(len(s) + 1)]
+        dp[0] = True
+        for i in range(1, len(s) + 1):
+            for word in wordDict:
+                length = len(word)
+                if length <= i and word == s[i - length: i]:
+                    dp[i] = dp[i] or dp[i - length]
+        return dp[-1]
