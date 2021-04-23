@@ -333,3 +333,23 @@ def lengthOfLIS(self, nums: List[int]) -> int:
 		idx = bisect.bisect_left(tails, n)
 		tails[idx:idx+1] = [n]
 	return len(tails)
+
+# bfs solution
+
+visited = set() # set of strings that we've already visited and determined not to be useful
+q = deque([s]) # the magical q that will allow us to BFS
+
+while q:
+    curString = q.popleft() # get the currentstring that we test
+    
+    if curString == "": # if it is nothing then we can make the word break
+        return True
+    
+    for word in wordDict: # go through each word in word dictionary
+    # first we check if the current word actually is a part of the string
+    # by slicing the currentString from 0 to the len of the word, we can check if the prefix of the string and the word equals
+    # Then we check if the rest of the string has already been previously checked. If it isn't then we add to queue and mark it visited
+        if curString[0:len(word)] == word and curString[len(word)::] not in visited:
+            q.append(curString[len(word)::])
+            visited.add(curString[len(word)::])
+return False # we couldn't make a word break
