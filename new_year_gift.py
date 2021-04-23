@@ -391,3 +391,14 @@ class Solution:
                     dp[i]=True
                     break
         return dp[len(s)]
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        wordDict = set(wordDict)
+        dp = [True] + [False] * len(s)
+        for i in range(len(s)):
+            if dp[i]:
+                for j in range(i, len(dp)):
+                    if s[i:j] in wordDict:
+                        dp[j] = True
+        return dp[-1]
