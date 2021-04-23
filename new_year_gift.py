@@ -353,3 +353,27 @@ while q:
             q.append(curString[len(word)::])
             visited.add(curString[len(word)::])
 return False # we couldn't make a word break
+
+# Recursion with memoization
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        hash=defaultdict(list)
+        for word in wordDict:
+            hash[len(word)].append(word)
+        
+        def helper(i,dp):
+            if i==len(s):
+                return True
+            if dp[i]!= -1:
+                return dp[i]
+            for key,value in hash.items():
+                word=s[i:i+key]
+                if word in value and helper(i+key,dp):
+                    dp[i]=True    
+                    return True
+            dp[i]=False
+            return False
+        
+        dp=[-1]*len(s)
+        return helper(0,dp)
