@@ -402,3 +402,35 @@ class Solution:
                     if s[i:j] in wordDict:
                         dp[j] = True
         return dp[-1]
+
+import functools
+
+
+class Solution:
+    def __init__(self):
+        self.words = None
+        self.s = None
+    
+    @functools.cache
+    def check(self, start) -> bool:
+        s = self.s
+        wordDict = self.words
+        
+        if start == len(s):
+            return True
+        if start > len(s):
+            return False
+        
+        checked_starts = set()
+
+        for word in wordDict:
+            if s.startswith(word, start):
+                new_start = start+len(word)
+                if self.check(new_start):
+                    return True
+        return False
+    
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        self.s = s
+        self.words = wordDict
+        return self.check(start=0)
