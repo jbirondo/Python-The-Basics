@@ -590,3 +590,40 @@ class Solution:
         # --------------------------------
         
         return dfs(wanted=target)
+
+        # Version 1
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        memo = {}
+        
+        def dfs(t: int) -> int:
+            if t <= 0: return int(t == 0)
+            if t in memo: return memo[t]
+            memo[t] = sum( dfs(t - num) for num in nums )
+            return memo[t]
+        
+        return dfs(target)
+
+# Version 2
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        
+        @lru_cache(None)
+        def dfs(t: int) -> int:
+            if t <= 0: return int(t == 0)
+            return sum( dfs(t - num) for num in nums )
+        
+        return dfs(target)
+
+# Version 3
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        
+        @cache
+        def dfs(t: int) -> int:
+            if t <= 0: return int(t == 0)
+            return sum( dfs(t - num) for num in nums )
+        
+        return dfs(target)
