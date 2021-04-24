@@ -489,3 +489,45 @@ class Solution(object):
                 elif j < i+1:
                     dp[i]+=dp[i-j]
         return dp[-1]
+
+# I've been trying to finish the four problems in in this series - so far I've only finished LC 39: Combination Sum. This recursive is kinda messy, but I think it is a natural extension of LC 39, and it's what I first thought of when I saw this problem.
+
+# LC 39, asks for to return any combinations of the nums array (with any multiplicity of that taken number). If you've solve LC 39 the naive backtracking solution comes to mind. And we can extend that framework to this problem.
+
+# Idea:
+# * whenever we take a number, we decrement the target by that taken number
+# * but we need we have two cases on when and now to recurse
+# * case 1: if when we take that number we are still > 0, well we want to keep recursing on that number!
+# * case 2: otherwise go on to the next number and recurse
+# * we actually don't build the paths, but just increment
+# * and of course lets hash with a physical memo instead of decorating with @lru
+
+class Solution(object):
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        memo  = {}
+        def rec(idx,target):
+            count = 0
+            #careful not to keep going after target diminishes
+            if target <= 0:
+                if target == 0:
+                    #valid path
+                    return 1
+                return 0
+            if (idx,target) in memo:
+                return memo[(idx,target)]
+            for i in range(idx,len(nums)):
+                candidate = nums[i]
+                if target - candidate > 0:
+                    #stay on the index
+                    count += rec(idx,target-candidate)
+                else:
+                    #move up the index
+                    count += rec(idx+1,target-candidate)
+            memo[(idx,target)] = count
+            return count
+        return rec(0,target)
