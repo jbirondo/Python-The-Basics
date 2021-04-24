@@ -531,3 +531,20 @@ class Solution(object):
             memo[(idx,target)] = count
             return count
         return rec(0,target)
+
+class Solution(object):
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        f = [0 for _ in range(target + 1)]
+        f[0] = 1
+        for i in range(target + 1):
+            for num in sorted(nums):
+                if num > i :
+                    break
+                f[i] += f[i - num]
+
+        return f[target]
