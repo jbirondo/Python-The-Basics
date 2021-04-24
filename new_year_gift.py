@@ -627,3 +627,13 @@ class Solution:
             return sum( dfs(t - num) for num in nums )
         
         return dfs(target)
+
+def combinationSum4(self, nums: List[int], target: int) -> int:
+    	count = [0] * (target + 1)
+	count[0] = 1
+	for countPerIndex in range(1, target + 1):
+		for num in nums:
+			if num <= countPerIndex:
+				count[countPerIndex] += count[countPerIndex - num]
+
+	return count[target]
