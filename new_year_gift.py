@@ -474,3 +474,18 @@ class Solution:
 # If you will write it as oneliner, I will be happy.
 
 # If you have any questions, feel free to ask. If you like solution and explanations, please Upvote!
+
+class Solution(object):
+    
+    def combinationSum4(self, nums, target):
+        dp = [0] * target
+        nums = sorted(nums)
+        for i in range(target):
+            for j in nums:
+                if j >i+1:
+                    break
+                elif j == i+1:
+                    dp[i]+=1
+                elif j < i+1:
+                    dp[i]+=dp[i-j]
+        return dp[-1]
