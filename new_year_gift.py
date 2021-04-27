@@ -675,3 +675,24 @@ def combinationSum4(self, nums: List[int], target: int) -> int:
 
 # 1 <= nums.length <= 100
 # 0 <= nums[i] <= 1000
+
+def rob(self, nums: List[int]) -> int:
+    if len(nums) <= 2:
+        return self.rob1(nums)
+    return max(nums[0] + self.rob1(nums[2:len(nums)-1]), self.rob1(nums[1:]))
+    
+# The following is any solution to Robber I problem.
+def rob1(self, nums: List[int]) -> int:
+    if len(nums) == 0:
+        return 0
+    if len(nums) == 1:
+        return nums[0]
+    if len(nums) == 2:
+        return max(nums[0], nums[1])
+    m_2 = nums[0]
+    m_1 = max(nums[0], nums[1])
+    for n in range(2, len(nums)):
+        m_n = max(nums[n] + m_2, m_1)
+        m_2 = m_1
+        m_1 = m_n
+    return m_n
