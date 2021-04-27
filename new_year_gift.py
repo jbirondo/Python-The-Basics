@@ -731,3 +731,23 @@ class Solution:
         ans2 = rob2
             
         return max(ans1,ans2)
+
+# Rob the house twice, under different constraints. In one scenario, you can look at everything except the last house. In the other scenario, you cannot look at the first house.
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+      if len(nums) < 2: return nums[0]
+      house1 = [0] * len(nums)
+      house2 = [0] * len(nums)
+      
+      house1[0] = nums[0]
+      house1[1] = max(nums[1], house[0])
+      
+      house2[0] = 0
+      house2[1] = nums[1]
+      
+      for i in range(2, len(nums)):
+        house1[i] = max(house1[i - 1], nums[i] + house1[i - 2])
+        house2[i] = max(house2[i - 1], nums[i] + house2[i - 2])
+      
+      return max(house2[-1], house1[-2])
