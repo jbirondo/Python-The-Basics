@@ -710,3 +710,24 @@ class Solution:
             c, d = d, max(nums[j] + c, d)
             
         return max(b,d)
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        l = len(nums)
+        if l==1:
+            return nums[0]
+        l-=1
+        rob1 = 0
+        rob2 = 0
+        for i in range(0,l):
+            temp = max(rob1+nums[i], rob2)
+            rob1,rob2 = rob2,temp
+        ans1 = rob2
+        rob1, rob2 = 0,0
+        l+=1
+        for i in range(1,l):
+            temp = max(rob1+nums[i], rob2)
+            rob1,rob2 = rob2,temp
+        ans2 = rob2
+            
+        return max(ans1,ans2)
