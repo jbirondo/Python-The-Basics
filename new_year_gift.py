@@ -890,3 +890,36 @@ class Solution:
     
     def numDecodings(self, s: str) -> int:
         return self.numDecodings_recur(s, {})
+
+class Solution(object):
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        
+        # if the array is empty or start with 0 we return 0
+        
+        if not s or s[0] == '0':
+            return 0
+        
+        # initialize a dp table with length len(s) + 1
+        # index i in dp correlates to index i-1 in the string
+        # first element of dp is a dummy 1 ( to capture first two leading digits if they exist)
+        # second element corresponds to the first element
+        dp = (len(s) + 1) * [0]
+        dp[:2] = [1,1]
+        
+        for i in range(2, len(dp)): # updating dp
+            # if the current element is a valid number, the total number of decodes is the same as 
+            # the number of decodes right before it
+            if 0 < int(s[i-1]) <= 9:
+                dp[i] += dp[i-1]
+            # now if current element forms a valid number with the previous element too, we will add 
+            # the same number as two previous elements (because we need to remove element before this)
+            if 10 <= int(s[i-2:i]) <= 26:
+                dp[i] += dp[i-2]
+            
+        return dp[-1]
+		
+		```
