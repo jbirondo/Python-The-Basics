@@ -834,3 +834,21 @@ class Solution:
 
 # 1 <= s.length <= 100
 # s contains only digits and may contain leading zero(s).
+
+def numDecodings(self, s: str) -> int:
+    mp = collections.defaultdict(int)
+    def dfs(s):
+        if s in mp:
+            return mp[s]
+        if not s :
+            return 1
+        if s[0] == "0":
+            return 0
+        if len(s)==1:
+            return 1
+        ways = dfs(s[1:])
+        if s[0] == "1"  or (s[0]=="2" and s[1] <"7"):
+            ways += dfs(s[2:])
+        mp[s] = ways
+        return ways
+    return  dfs(s)
