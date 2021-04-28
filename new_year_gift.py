@@ -852,3 +852,41 @@ def numDecodings(self, s: str) -> int:
         mp[s] = ways
         return ways
     return  dfs(s)
+
+# Approach
+
+# At each step you either take 1 or 2 digits. You take 1 digit if it is not zero and you take 2 digit if it doesn't start with zero and less than or equalt to 26
+# We'll recursively call from 1st index in one call and 2nd index in another call
+# We need base conditions
+# i. if the length of the string is 1, return 1 if it is not equal to zero
+# ii. similarly, for length 2, you check if it starts with 0 and if it is less than or equal to 26. Again for values less than or equal to 26, there are edge cases at 10 and 20. You handle them and return the values
+# Add memoization
+# Simple! Vote if you liked this solution
+
+class Solution:
+    def numDecodings_recur(self, s: str, cache: dict) -> int:
+        if s in cache:
+            return cache[s]
+        if len(s) == 1 and s != '0':
+            return 1
+        if len(s) == 2:
+            if s.startswith('0'):
+                return 0
+            if int(s) <= 26:
+                if int(s) == 10:
+                    return 1
+                if int(s) == 20:
+                    return 1
+                return 2
+        count = 0
+        x = s[:1]
+        y = s[:2]
+        if x != "" and int(x) != 0:
+            count += self.numDecodings_recur(s[1:], cache)
+        if y != "" and not y.startswith('0') and int(y) <= 26:
+            count += self.numDecodings_recur(s[2:], cache)
+        cache[s] = count
+        return count
+    
+    def numDecodings(self, s: str) -> int:
+        return self.numDecodings_recur(s, {})
