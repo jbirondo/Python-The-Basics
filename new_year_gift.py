@@ -946,3 +946,59 @@ class Solution:
         self.hashTable[s] = ways #cache values
         return ways
 	```
+
+    Everything related to the letters can be totally skipped here, cause at the end the problem can be summarized like:
+Number of ways to combine string numbers in groups of 1 or 2, where substrings that have leading zeros, are zero or bigger than 26 are not allowed.
+
+Example: 226
+
+We have 3 options: [2, 2, 6], [22, 6], or [2,26]
+
+We can imagine this as a tree where every node we pick from 1-2 chars and the rest is the remaining.
+
+                 226
+			/            \                 
+		(2,26)          (22,6)               
+      /	       \
+   (22,6)    (226, X)
+  /             
+(226, X)
+When we iterated over the whole string, it's over.
+
+Problem is that there are times that we are repeating the subproblems, for example we end up twice to a node (22,6), that means that we have 22 selected and we can combinate it with the remaining 6.
+
+In order to avoid twice the calculation (even if in this example is really not a problem), we can cache the substrings.
+
+class Solution:
+    def helper(self, s, position, memo):
+        if position >= len(s):
+            return 1
+        
+        portion = s[position:]
+        
+        if portion in memo:
+            return memo[portion]
+        
+        result = 0
+        for index in range(1,3):
+            if position + index > len(s):
+                continue
+                
+            number = s[position:position+index]
+            
+            if  number[0] == "0" or int(number) > 26 or int(number) == 0:
+                continue
+                
+            result += self.helper(s, position+index, memo)
+            
+        memo[portion] = result
+        
+        return memo[portion]
+        
+    def numDecodings(self, s: str) -> int: 
+        memo = {}
+        return self.helper(s, 0, memo)
+O(N) space complexity, because we build a memo that at least will be as long as the string size. Also the recursive stack is the height of the tree, which is related to string length too.
+O(N) time, because we will visit at least N nodes for each string char. With memoization we prune the rest of the tree calls.
+
+Hope it helps !
