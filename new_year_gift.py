@@ -923,3 +923,26 @@ class Solution(object):
         return dp[-1]
 		
 		```
+
+class Solution:
+    def __init__(self):
+        self.hashTable = {}
+		
+    def numDecodings(self, s: str) -> int:
+        if s in self.hashTable: # Getting Cached Value If Any for string
+            return self.hashTable[s]
+        
+        if s=='0': #base case if string is actually zero
+            return 0
+        
+        if len(s)<=1: #base case if s = '' or a num between 1-9
+            return 1
+                  
+        ways = 0
+        if s[0]!='0': # dont add ways if string starts with zero
+            ways += self.numDecodings(s[1:]) #take one character
+            if int(s[:2])<=26: # take two only if <=26
+                ways += self.numDecodings(s[2:])
+        self.hashTable[s] = ways #cache values
+        return ways
+	```
