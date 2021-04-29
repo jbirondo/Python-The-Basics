@@ -1050,3 +1050,16 @@ Constraints:
 1 <= m, n <= 100
 It's guaranteed that the answer will be less than or equal to 2 * 109.
 
+Remember the recursive solutions will always be slow, even if they are memoized!
+This solution just to learn.
+
+class Solution:
+    def uniquePaths(self, m: int, n: int, memo = None) -> int:
+        if memo == None: memo = {}
+        key = str(m) + "," + str(n)
+        if key in memo: return memo[key]
+        if m == 1 or n == 1: return 1
+        
+        memo[key] = self.uniquePaths(m-1, n, memo) + self.uniquePaths(m, n-1, memo)
+        
+        return memo[key]
