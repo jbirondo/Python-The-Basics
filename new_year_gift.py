@@ -1125,3 +1125,18 @@ class Solution:
         # return the lower right corner of dp table
         # this takes theta(n x m)
         return dp[m-1][n-1]
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        @lru_cache(None)
+        def explore(i, j):
+            if i == m and j == n:
+                return 1
+            if i == m:
+                return explore(i, j+1)
+            if j == n:
+                return explore(i+1, j)
+            
+            return explore(i+1, j) + explore(i, j+1)
+        
+        return explore(1, 1)
