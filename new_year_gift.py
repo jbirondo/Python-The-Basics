@@ -1101,3 +1101,27 @@ class Solution:
             for j in range(1, n):            
                 count[i][j] = count[i-1][j] + count[i][j-1]
         return count[m-1][n-1]
+
+class Solution:
+    
+    def uniquePaths(self, m: int, n: int) -> int:
+        # populate the blank bottom up dp table
+        dp = []
+        for i in range(m):
+            columns = [""] * n
+            dp.append(columns)
+
+        # all 0th row and columns are 1, there will always only be 1 way
+        for row in dp:
+            row[0] = 1
+        for index in range(n):
+            dp[0][index] = 1
+
+        # populate the entire dp table
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+        # return the lower right corner of dp table
+        # this takes theta(n x m)
+        return dp[m-1][n-1]
