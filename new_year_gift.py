@@ -1162,3 +1162,19 @@ class Solution:
         denominator = self.fact(n)
         unique_paths = numerator // denominator
         return unique_paths
+
+def uniquePaths(self, m: int, n: int) -> int:
+    ups = [[0] * n for _ in range(m)]
+    for i in range(n):
+        ups[0][i] = 1
+    for i in range(m):
+        ups[i][0] = 1
+    self.uniquePathHelper(m-1, n-1, ups)
+    return ups[m-1][n-1]
+    
+def uniquePathHelper(self, m,n,ups):
+    if (ups[m][n] != 0):
+        return True
+    if (self.uniquePathHelper(m-1, n, ups) and self.uniquePathHelper(m, n-1, ups)):
+        ups[m][n] = ups[m-1][n] + ups[m][n-1]
+        return True
