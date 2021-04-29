@@ -1140,3 +1140,25 @@ class Solution:
             return explore(i+1, j) + explore(i, j+1)
         
         return explore(1, 1)
+
+The maximum we can (and will) go to the right (+x axis) direction is n because the total number of columns is n, and the maximum we can (and will) go to the down (-y axis) direction is m because the total number of rows is m.
+To reach the target, we have to go n RIGHTs and m DOWNs, now we can create multiple permutations with repetitions in O(1) time (if factorials are already in cache) to reach there, i.e. (m+n)!/(m!n!) because RIGHT is repeated n times and DOWN is repeated m times. e.g. DDR, DDR, DRD, DRD, RDD, RDD are permutations with repetitions and we can remove the redundant ones to get the final permutations as DDR, DRD, RDD (2+1)!/(2!1!)=3
+We keep factorial (to be reused as cache) if needed in future
+Since both m, n and n, m will return the same result, we can reduce computation of factorial by taking m as the maximum and n as the minimum of the two numbers
+class Solution:
+    factorial = [1, 1]
+
+    def fact(self, number: int) -> int:
+        if number > len(self.factorial) - 1:
+            self.factorial.append(number * self.fact(number - 1))
+        return self.factorial[number]
+
+    def uniquePaths(self, m: int, n: int) -> int:
+        m, n = m - 1, n - 1
+        m, n = max(m, n), min(m, n)
+        numerator = 1
+        for i in range(m + 1, m + n + 1):
+            numerator *= i
+        denominator = self.fact(n)
+        unique_paths = numerator // denominator
+        return unique_paths
