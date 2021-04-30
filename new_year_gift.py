@@ -1267,3 +1267,16 @@ class Solution:
         if index[0] == 1:
             reach = True
         return reach
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        max_index_reached =0
+        if len(nums)<=1:
+            return 1
+        for i in range(len(nums)):
+            max_index_reached = max(max_index_reached , i+nums[i])
+            if max_index_reached <= i:
+                return 0
+            if max_index_reached >= len(nums)-1:
+                return 1
+        return 0
