@@ -1214,3 +1214,20 @@ Constraints:
 1 <= nums.length <= 3 * 104
 0 <= nums[i] <= 105
 
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums) <= 1:
+            return True
+        if nums[0] ==0:
+            return False
+
+        maxReach = nums[0]
+        steps = maxReach
+        for i in range(1,len(nums)-1):
+            steps -=1
+            maxReach = max(maxReach,nums[i]+i)
+            if steps == 0:
+                steps = maxReach - i
+                if steps == 0:
+                    return False
+        return True
