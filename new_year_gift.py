@@ -1312,3 +1312,18 @@ def canJump(self, nums: List[int]) -> bool:
             goal = i
     return True if goal == 0 else False
 
+class Solution(object):
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        for index, num in enumerate(nums):
+            if num == 0 and index != len(nums)-1:
+                canMakeJump = False
+                for i in range(index):
+                    if nums[i] > index - i:
+                        canMakeJump = True
+                if not canMakeJump:
+                    return False
+        return True
