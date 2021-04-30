@@ -1290,3 +1290,17 @@ class Solution:
             if L[i-1]==0:return False
             L[i]=max(L[i-1]-1,nums[i])
         return True if L[-1]>=1 else False
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+
+        # set last element as target
+        target = len(nums)-1
+        
+        for i in range(target-1,-1,-1):
+            # checking either we can cross our target or not from the indeces before it.
+            if i + nums[i] >= target:
+                # setting new target.
+                target = i
+        
+        return target == 0 # checking we are at 0th index or not.
