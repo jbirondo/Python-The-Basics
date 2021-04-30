@@ -1280,3 +1280,13 @@ class Solution:
             if max_index_reached >= len(nums)-1:
                 return 1
         return 0
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums)==1: return True
+        L=[0]*(len(nums)-1)
+        L[0]=nums[0]
+        for i in range(1,len(L)):
+            if L[i-1]==0:return False
+            L[i]=max(L[i-1]-1,nums[i])
+        return True if L[-1]>=1 else False
