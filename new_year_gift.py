@@ -1231,3 +1231,39 @@ class Solution:
                 if steps == 0:
                     return False
         return True
+
+ class Solution:
+        def canJump(self, nums: List[int]) -> bool:
+        reach = False
+        index = []
+        if len(set(nums)) == 1 and nums[0] == 1:
+            return True
+        n = len(nums)
+        for i in range(0,n):
+            if nums[i]+i >= n-1:
+                index.append(1)
+            elif i != n-1 and nums[i] == 0:
+                index.append(0)
+            else:
+                index.append(0)
+        flag = 0
+        for i in index:
+            if i == 1:
+                flag  = 1
+                break
+        if flag == 0:
+            return reach
+        for j in reversed(range(0,n)):
+            if index[j] == 1:
+                tmp = []
+                for k in range(0,j):
+                    if nums[k] + k >= j:
+                        tmp.append(1)
+                    else:
+                        tmp.append(0)
+                for l in range(0,len(tmp)):
+                    if tmp[l] == 1:
+                        index[l] = 1
+        if index[0] == 1:
+            reach = True
+        return reach
