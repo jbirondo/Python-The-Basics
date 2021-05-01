@@ -1441,3 +1441,11 @@ class Solution:
                     break
                 list_node = list_node.next
         return temp
+
+class Solution:
+    def reverseList(self, head):
+        if head is None or head.next is None:
+            return head
+        result = self.reverseList(head.next)
+        head.next.next,head.next = head,None
+        return result
