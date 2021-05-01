@@ -1382,3 +1382,19 @@ def reverseList(self, head):
         previous_node = node
         node = next_node
     return previous_node
+
+def recur(self,curHeadNode,reverseThisNode,nextNode):
+      reverseThisNode.next = curHeadNode  # reverse the middle node to point to the first node
+  if nextNode is None:  # when no more node to proceed, the whole list is reversed, return the new head
+    return reverseThisNode
+  return self.recur(reverseThisNode,nextNode,nextNode.next)  # proceed recursion by moving the 3-node window forward 
+
+def reverseList(self, head: ListNode) -> ListNode:
+  if not head or not head.next:   #house keeping
+    return head 
+  firstToBeReversedNode = head.next
+  head.next=None  # make head to point to null
+  return self.recur(head,firstToBeReversedNode,firstToBeReversedNode.next)
+
+Not the fastest, but i think is pretty straightforward.
+Basically, the recur function takes 3 consecutive nodes at a time, and reverse the middle node to link to the first node, and place the third node as the next "to be reversed" node during the next recur function call. The recursion stops when no more node to proceed, which means the whole list is reversed, return the new head.
