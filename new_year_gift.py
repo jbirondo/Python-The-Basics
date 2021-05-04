@@ -1508,3 +1508,20 @@ def hasCycle(self, head: ListNode) -> bool:
         
     
     return False
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        
+        if head is None:
+            return False
+        
+        head.found = True
+        curr = head.next
+        
+        while curr:
+            if hasattr(curr, 'found'):
+                return True
+            curr.found = True
+            curr = curr.next
+            
+        return False
