@@ -1496,3 +1496,15 @@ pos is -1 or a valid index in the linked-list.
  
 
 Follow up: Can you solve it using O(1) (i.e. constant) memory?
+
+def hasCycle(self, head: ListNode) -> bool:
+    p1=head
+    p2=head
+    while p2 and p2.next:
+        p1=p1.next
+        p2=p2.next.next
+        if p1==p2:#if loop exists, this condition will be true at some point of time
+            return True
+        
+    
+    return False
