@@ -1554,3 +1554,14 @@ class Solution:
             if slow == fast:
                 return True
         return False
+
+def hasCycle(self, head: ListNode) -> bool:
+        if not head:                                             # Check if our head is None to return false immediately 
+            return False
+        sp, fp = head, head.next                                 # Set slow pointer to head and fast pointer to head.next 
+        while fp is not sp:                                      # while our sp != fp
+            if fp is None or fp.next is None:                    # We can skip checking the slow pointer here 
+                return False                                     # if there's an end return False, no cycle
+            sp = sp.next                                         # increment our slow pointer
+            fp = fp.next.next                                    # increment our fast pointer twice
+        return True                                              # if we broke the while loop conditions without returning False we can return True
