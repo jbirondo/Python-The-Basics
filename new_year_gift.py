@@ -1525,3 +1525,22 @@ class Solution:
             curr = curr.next
             
         return False
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        start = head
+        counter = {}
+        while start:
+            if start in counter:
+                counter[start] += 1
+                return True
+            else:
+                counter[start] = 1
+            
+            start = start.next
+            
+        for key in counter:
+            if counter[key] > 1:
+                return True
+            else:
+                False
