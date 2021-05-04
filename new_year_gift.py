@@ -1565,3 +1565,27 @@ def hasCycle(self, head: ListNode) -> bool:
             sp = sp.next                                         # increment our slow pointer
             fp = fp.next.next                                    # increment our fast pointer twice
         return True                                              # if we broke the while loop conditions without returning False we can return True
+
+# In this problem we can check for a cycle by seeing if we ever get directed via next to a ListNode we have already seen. We will keep track of the ListNodes as we iterate through the Linked List and if we ever come across a ListNode we have seen before then we know there is a cycle. If we ever reach None, then we know there was not a cycle.
+
+def hasCycle(self, head: ListNode) -> bool:
+	nodes = set()
+    current = head
+    while current:
+		if current in nodes:
+			return True
+        nodes.add(current)
+        current = current.next
+    return False
+# If we wanted to avoid using memory storing the nodes there is another approach we could take. We will
+# use the constaint of 10^4 possible nodes to our advantage for this. The idea is to keep looping through
+# nodes and if we come across a None at any point we do not have a cycle. If we go through 10^4 +1
+# nodes and we still have not found a None, then we know we must have a cycle because there cannot
+# be that many nodes in the Linked List.
+
+def hasCycle(self, head: ListNode) -> bool:
+	for i in range(10**4 + 1):
+		if not head:
+			return False
+        head = head.next
+return True
