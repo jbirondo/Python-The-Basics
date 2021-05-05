@@ -1639,3 +1639,39 @@ class Solution:
 
         cur.next = l1 or l2
         return root.next
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        head_node = ListNode(0)
+        root = head_node
+        
+        while l1 and l2:
+            
+            v1 = l1.val
+            v2 = l2.val
+            
+            if v1<v2:
+                head_node.next = l1
+                l1 = l1.next
+            else:
+                head_node.next = l2
+                l2 = l2.next
+                
+            head_node = head_node.next
+        
+        if l1:
+            head_node.next = l1
+        if l2:
+            head_node.next = l2
+        
+        return root.next
