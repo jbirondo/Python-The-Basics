@@ -1675,3 +1675,42 @@ class Solution(object):
             head_node.next = l2
         
         return root.next
+
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        l = ListNode()
+        head = l
+        if not l1 and not l2:
+            return None
+        elif not l1:
+            return l2
+        elif not l2:
+            return l1
+        while(l1 and l2):
+            if l1.val <= l2.val:
+                s = l1
+                l1 = l1.next
+            else:
+                s = l2
+                l2 = l2.next
+            s.next = None
+            l.next = s
+            l = s
+        while(l1):
+            s = l1
+            l1 = l1.next
+            s.next = None
+            l.next = s
+            l = s
+        while(l2):
+            s = l2
+            l2 = l2.next
+            s.next = None
+            l.next = s
+            l = s
+        return head.next
