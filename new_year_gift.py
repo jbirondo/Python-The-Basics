@@ -1791,3 +1791,48 @@ k == lists.length
 -10^4 <= lists[i][j] <= 10^4
 lists[i] is sorted in ascending order.
 The sum of lists[i].length won't exceed 10^4.
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        '''
+        Divide and Conquer: Nlogk
+        
+                       [[1,4,5],[1,3,4],[2,6]]
+                       /                    \
+                [[1,4,5],[1,3,4]]           [[2,6]]
+                /       \
+        [[1,4,5]]       [[1,3,4]]
+        
+                            k
+                        /       \
+                    k/2         k/2
+                /       \
+            k/4         k/4
+            
+        levels = logk at each level number of nodes are N
+        So, its Nlogk solution
+                
+        '''
+        
+        def merge(a,b):
+            if a is None and b is None: return
+            if a is None: return b
+            if b is None: return a
+            result = None
+            if a.val<b.val:
+                result = a
+                result.next = merge(a.next,b)
+            else:
+                result = b
+                result.next = merge(a,b.next)
+            return result
+        
+        def mergeUtil(lists,low,high):
+            if low == high: return lists[low]
+            mid = low + (high-low)//2
+            left = mergeUtil(lists,low,mid)
+            right = mergeUtil(lists,mid+1,high)
+            return merge(left,right)
+        
+        if not lists or len(lists)==0: return
+        return mergeUtil(lists,0,len(lists)-1)
