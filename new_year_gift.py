@@ -1858,3 +1858,36 @@ class Solution:
                 head.next = k
                 head = head.next
             return out
+
+from heapq import heappush, heappop
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+
+        # initiate a dummy head for the linked list to be used to append next elements
+        head = ListNode(-1)
+        current = head
+        # initiate an early heap that gets the head of all linked lists and move them all forward
+        heap = [] # this heap will have the size of len(lists) => k
+        for i, node in enumerate(lists):
+            if node:
+                heappush(heap, [node.val,i])
+                lists[i] = node.next # move them one forward
+        # now, for each element that we drop, we will add an element from the same list
+        while heap:
+            current_min, current_index = heappop(heap) 
+            if lists[current_index]:
+                heappush(heap, [lists[current_index].val,current_index])
+                lists[current_index] = lists[current_index].next
+            # traverse the tree
+            current.next = ListNode(current_min)
+            current = current.next
+            
+        return head.next
+
