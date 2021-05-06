@@ -1836,3 +1836,25 @@ class Solution:
         
         if not lists or len(lists)==0: return
         return mergeUtil(lists,0,len(lists)-1)
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        lis=[]
+        for i in lists:
+            head = i
+            while head:
+                lis.append(head.val)
+                head = head.next
+        lis= sorted(lis)
+        if len(lis)!=0:
+            k = ListNode()
+            k.val = lis[0]
+            del lis[0]
+            head = k
+            out = head
+            for i in lis:
+                k = ListNode()
+                k.val = i
+                head.next = k
+                head = head.next
+            return out
