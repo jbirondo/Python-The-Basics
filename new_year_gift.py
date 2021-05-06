@@ -1891,3 +1891,48 @@ class Solution:
             
         return head.next
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class MyListNode(ListNode):
+    def __init__(self, listnode):
+        super().__init__(listnode.val, listnode.next)
+        
+    def __lt__(self, other):
+        while True:
+            if not self and not other:
+                return 0
+            if not self:
+                return -1
+            if not other:
+                return 1
+            if self.val < other.val:
+                return -1
+            elif self.val > other.val:
+                return 1
+            else:
+                self = self.next
+                other = other.next
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        heap = []
+        
+        for lst in lists:
+            if lst:
+                heapq.heappush(heap, (lst.val, MyListNode(lst)))
+            
+        dummy = ListNode()
+        result = dummy
+        while heap:
+            value, lst = heapq.heappop(heap)
+            result.next = ListNode(value)
+            result = result.next
+            lst = lst.next
+            if lst:
+                heapq.heappush(heap, (lst.val, MyListNode(lst)))
+        
+        return dummy.next
