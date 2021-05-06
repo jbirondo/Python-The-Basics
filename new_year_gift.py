@@ -1936,3 +1936,33 @@ class Solution:
                 heapq.heappush(heap, (lst.val, MyListNode(lst)))
         
         return dummy.next
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+
+    # Create dummy node to start
+    pre_head = ListNode()
+    start_node = pre_head
+    heap = []
+    
+    # Iterate through each node and append all node values into a heap, heap will sort it 
+    for node in lists:
+        curr = node
+        while curr:
+            heapq.heappush(heap, curr.val)
+            curr = curr.next
+    
+    # We have the dummy node, we pop the val from min heap, and create listNode.
+    # Essentially we are creating a new linked lists instead of sorting it in place
+    while heap:
+        start_node.next = ListNode(heapq.heappop(heap))
+        start_node = start_node.next
+        
+        
+    return pre_head.next # Dummy node is not the real start head
+"""
+This method, we don't need compare every elements in the lists with each other, although it would be a more optime solution.
+time: O(n + nlogn)
+space: O(n)
+
+"""
