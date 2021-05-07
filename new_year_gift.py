@@ -2088,3 +2088,18 @@ class Solution(object):
             itr=itr.next
             ct+=1
         return head
+
+def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        stack = []
+        dh = ListNode(0, head)
+        dn = dh
+        while dn:
+            stack.append(dn)
+            dn = dn.next
+
+        for _ in range(n):
+            last_node = stack.pop()
+        
+        current_node = stack.pop()
+        current_node.next = last_node.next
+        return dh.next
