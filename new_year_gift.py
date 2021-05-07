@@ -2026,3 +2026,17 @@ class Solution:
             return d[to_remove+1]
         
         return head
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        p = d =head
+        c=0
+        while p!=None:
+            c+=1
+            if c>n+1:
+                d=d.next 
+            p=p.next
+        if c==n:
+            return head.next
+        d.next = d.next.next
+        return head
