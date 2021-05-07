@@ -2004,3 +2004,25 @@ The number of nodes in the list is sz.
 1 <= sz <= 30
 0 <= Node.val <= 100
 1 <= n <= sz
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        d = {}
+        curr = head
+        i = 1
+        while(curr):
+            d[i] = curr
+            curr = curr.next
+            i+=1
+        d[i] = None
+        
+        list_length = max(list(d.keys()))
+        
+        to_remove = list_length-n
+        
+        if(to_remove-1 in d):
+            d[to_remove-1].next = d[to_remove+1]
+        else:
+            return d[to_remove+1]
+        
+        return head
