@@ -2060,3 +2060,31 @@ def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
         node = dic[el-1]
         node.next = None 
     return head
+
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        length=0
+        itr=head
+        while(itr!=None):
+            length+=1
+            itr=itr.next
+        if length==1:
+            return None
+        st=length-n+1
+        if st==1:
+            return head.next
+        ct=1
+        itr=head
+        while(itr!=None):
+            if ct+1==st:
+                ne=itr.next.next
+                itr.next=ne
+                break
+            itr=itr.next
+            ct+=1
+        return head
