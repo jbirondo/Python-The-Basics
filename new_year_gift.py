@@ -2040,3 +2040,23 @@ class Solution:
             return head.next
         d.next = d.next.next
         return head
+
+def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+    counter = 0
+    current = head
+    if current.next == None:
+        return None
+    dic = {}
+    while current:
+        counter+=1
+        dic[counter] = current        
+        current = current.next
+    el = counter - n +1
+    node = dic[el]
+    if node.next != None:
+        node.val = node.next.val
+        node.next = node.next.next
+    else:
+        node = dic[el-1]
+        node.next = None 
+    return head
