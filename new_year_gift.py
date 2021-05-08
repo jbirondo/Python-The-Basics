@@ -2154,3 +2154,44 @@ class Solution:
             NL[-C].next = NL[C]
             C += 1
         NL[len(NL) // 2].next = None
+
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        if not head:
+            return head
+        # the key insight is that we need to interleave two halves of the linked list
+        # thus we need to (1) find where the mid point is located (using find mid which has a pretty simple implementation)
+        # (2) reverse the right half and (3) merge the two
+        def find_mid(head):
+            fast = slow = head
+            while fast and fast.next:
+                fast = fast.next.next
+                slow = slow.next
+            return slow
+         
+        def reverse(head):
+            prev, current = None, head
+            while current:
+                tmp = current.next
+                current.next = prev
+                prev = current
+                current = tmp
+            return prev
+        
+        # we get an instance of the head so that we can manipulate as we go
+        current = head 
+        # get the head to the right half of the linked list that is reserved
+        right = reverse(find_mid(head))
+        
+        # we will stop when righ half is done (since the current pointer traverse over the whole linked list and righ is the one that once finished we are done)
+        while right.next: # if this is None it means we have exhausted the list of right elements and the far right element is now last element of the right side
+            # we start with the first element of current stay as is and we keep its next pointer to be used later
+            tmp = current.next
+            current.next = right # update the next element of current
+            current = tmp # traversing to the next element that we skipped
+            
+            # a similiar implementation, we keep track of right pointer 
+            tmp = right.next # we know there exists a next node due to the while loop condition
+            right.next = current # update right element's next element with current next element
+            right = tmp # traverse to the right element. at this point we might have reached the end 
+        return head 
