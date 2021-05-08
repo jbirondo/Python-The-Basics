@@ -2195,3 +2195,39 @@ class Solution:
             right.next = current # update right element's next element with current next element
             right = tmp # traverse to the right element. at this point we might have reached the end 
         return head 
+
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        # can reverse seond half instead stack
+        
+        slow = fast = head
+        
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next 
+        
+        end = slow.next
+        slow.next = None
+        startOfReversed = None
+
+        while end:
+            nextNode = end.next
+            end.next = startOfReversed
+            startOfReversed, end = end, nextNode
+        
+        cur = head
+        while cur and startOfReversed:
+            
+            nextNodeStart = cur.next
+            nextNodeEnd = startOfReversed.next
+            
+            cur.next = startOfReversed
+            cur.next.next = nextNodeStart
+            
+            startOfReversed = nextNodeEnd
+            cur = nextNodeStart
+        
+        return head
