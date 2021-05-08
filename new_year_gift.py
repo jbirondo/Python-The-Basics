@@ -2140,3 +2140,17 @@ Constraints:
 
 The number of nodes in the list is in the range [1, 5 * 104].
 1 <= Node.val <= 1000
+
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        NL = []
+        node = head
+        while node:
+            NL.append(node)
+            node = node.next
+        C = 1
+        while C < len(NL) / 2:
+            NL[C-1].next = NL[-C]
+            NL[-C].next = NL[C]
+            C += 1
+        NL[len(NL) // 2].next = None
