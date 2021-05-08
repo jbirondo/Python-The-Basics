@@ -2231,3 +2231,40 @@ class Solution:
             cur = nextNodeStart
         
         return head
+
+First, let's just rearrange a list: [0,1,2,3,4,5,6] becomes [0,6,1,5,2,4,3]. The pattern = here is: for i in range(0, len(nums)//2) we point nums[i] to nums[n-1] and nums[n-i] to nums[i+1]. This took me a bit of thinking, and writing out, so try it yourself.
+Then take care of the middle element (if len(nums) is odd, it's i, otherwise it's i-1
+Ok, simple enough. But we've got a linked list. So we need to attach the nth node to the nth element in the list. use a dict for that. So nodeDict[i] = nodeDict[i-1].next
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if head.next ==None:
+            return head
+        nodeDict = {}
+        i=0
+        curr = head
+        while curr:
+            nodeDict[i] = curr
+            curr = curr.next
+            i+=1
+        n=i-1
+        i=0
+        
+        while i <= n//2:
+            nodeDict[i].next = nodeDict[n-i]
+            nodeDict[n-i].next = nodeDict[i+1]
+            print(i, nodeDict[i].val, nodeDict[n-i].val, nodeDict[i].next.val)
+            i=i+1
+        if n%2 ==1:
+            nodeDict[i].next = None
+        else:
+            nodeDict[i-1].next = None
+And that's it. Simple, inelegant, slow; but it works!
