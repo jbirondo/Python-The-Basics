@@ -2336,3 +2336,25 @@ The number of nodes in the graph is in the range [0, 100].
 Node.val is unique for each node.
 There are no repeated edges and no self-loops in the graph.
 The Graph is connected and all nodes can be visited starting from the given node.
+
+class Solution(object):
+    def cloneGraph(self, node):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        if node is None:
+            return None
+        
+        visited = {node : Node(node.val,[])}
+        queue = [node]
+        
+        while queue:
+            v = queue.pop(0)
+            for n in v.neighbors:
+                if n not in visited:
+                    visited[n] = Node(n.val,[])
+                    queue.append(n)
+                visited[v].neighbors.append(visited[n])
+
+        return visited[node]
