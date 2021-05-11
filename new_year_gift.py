@@ -2401,3 +2401,30 @@ while (queue):
         else:                    
             newCurr.neighbors.append(seenMap[next])
 return newNode
+
+class Solution:
+    	def cloneGraph(self, node: 'Node') -> 'Node':
+		if not node:
+			return 
+		v = helper(node, {}, [])
+		return v
+    
+    
+def helper(node, hashMap, inProgress):
+	if node.val in inProgress:
+		return
+
+	copy = Node(node.val)
+	hashMap[node.val] = copy
+	inProgress.append(node.val)
+
+	for child in node.neighbors:
+		if child.val in hashMap:
+			if child.val not in [item.val for item in hashMap[node.val].neighbors]:
+				hashMap[node.val].neighbors.append(hashMap[child.val])
+			if node.val not in [item.val for item in hashMap[child.val].neighbors]:
+				hashMap[child.val].neighbors.append(copy)
+        
+		helper(child, hashMap, inProgress)
+    
+	return hashMap[node.val]
