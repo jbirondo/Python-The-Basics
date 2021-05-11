@@ -2384,3 +2384,20 @@ class Solution:
         for node in visited.values():
             node.neighbors = [visited.get(neighbor, neighbor) for neighbor in node.neighbors]
         return visited[1]
+
+if (not node): return None
+queue = [node]
+newNode = Node(node.val)
+seenMap = { node: newNode}
+while (queue):
+    curr = queue.pop()
+    newCurr = seenMap[curr]
+    for next in curr.neighbors:
+        if (not next in seenMap):
+            newNext = Node(next.val)
+            newCurr.neighbors.append(newNext)
+            seenMap[next] = newNext
+            queue.insert(0, next)
+        else:                    
+            newCurr.neighbors.append(seenMap[next])
+return newNode
