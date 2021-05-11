@@ -2358,3 +2358,29 @@ class Solution(object):
                 visited[v].neighbors.append(visited[n])
 
         return visited[node]
+
+Simple one-liner
+# from copy import deepcopy
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        return deepcopy(node)
+Harder variant
+def clone(node, visited):
+    if node.val in visited:
+        return visited[node.val]
+    visited[node.val] = node.val
+    visited[node.val] = Node(node.val, [clone(neighbor, visited) for neighbor in node.neighbors])
+    return visited[node.val]
+
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        if node is None:
+            return
+
+        visited = {
+            node.val: node.val
+        }
+        visited[node.val] = Node(node.val, [clone(neighbor, visited) for neighbor in node.neighbors])
+        for node in visited.values():
+            node.neighbors = [visited.get(neighbor, neighbor) for neighbor in node.neighbors]
+        return visited[1]
