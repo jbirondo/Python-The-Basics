@@ -2428,3 +2428,29 @@ def helper(node, hashMap, inProgress):
 		helper(child, hashMap, inProgress)
     
 	return hashMap[node.val]
+
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        seen = set() # To keep track of visited nodes
+        queue = [] # Queue to perform BFS on the graph node
+        queue.append(node)
+        nodes = defaultdict(int) 
+		""" Defaultdictionary will help to create  only 1 instance of object 
+			any node with values node.val, which we can use for mapping edges"""
+		
+        while queue:
+            top = queue.pop(0)
+            if top and top.val not in seen:
+                if top.val not in nodes: 
+				""" Check if we have mapping between top.val  to actual node 
+					if not present then create node object with top.val """
+                    nodes[top.val] = Node(top.val)
+                seen.add(top.val)
+                for neigh in top.neighbors:
+                    if neigh.val not in nodes: 
+					""" Check if we have mapping between neigh.val to actual node 
+						if not present then create node object with neigh.val """
+                        nodes[neigh.val] = Node(neigh.val)
+                    nodes[top.val].neighbors.append(nodes[neigh.val])
+                    queue.append(neigh)
+        return nodes[1] if len(nodes) > 0 else None """ to check the edge case """
