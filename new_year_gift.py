@@ -2539,3 +2539,35 @@ class Solution:
         for n in range(nc):
             if not _(n,set()):return False
         return True
+
+Using Kahn's Algorithm, essentially:
+
+by performing BFS starting with the nodes which have indegree 0
+when we traverse to its adjacent nodes we decrease the indegree counter of the adjacent node by 1
+if that adjacent node is now indegree 0, then we can add it to the queue of bfs
+if you can count the same amount of nodes through the topological sort, then you have the right order and no cycles.
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        adj_list = defaultdict(list)
+        indegree = [0]*(numCourses)
+        
+        num=0
+        
+        for course,prereq in prerequisites:
+            adj_list[prereq].append(course)
+            indegree[course]+=1
+            
+        q = deque()
+        for course in range(numCourses):
+            if indegree[course] == 0:
+                q.append(course)
+
+        while q:
+            n = q.popleft()
+            num+=1
+
+            for nei in adj_list[n]:
+                indegree[nei] -= 1
+                if indegree[nei] == 0:
+                    q.append(nei)
+        return num == numCourses
