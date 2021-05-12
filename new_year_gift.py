@@ -2493,3 +2493,33 @@ Constraints:
 prerequisites[i].length == 2
 0 <= ai, bi < numCourses
 All the pairs prerequisites[i] are unique.
+
+class Solution:
+    def kahn(self, adj, inDegree):
+        counter = 0
+        processedQueue = []
+        for i in range(len(adj)):
+            if not inDegree[i]:
+                processedQueue.append(i)
+        
+        while processedQueue:
+            vertex = processedQueue.pop(0)
+            counter += 1
+            
+            for j in range(len(adj)):
+                if adj[vertex][j]:
+                    inDegree[j] -= 1
+                    if not inDegree[j]:
+                        processedQueue.append(j)
+        
+        return counter == len(adj)
+        
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        adj = [[0 for j in range(numCourses)] for i in range(numCourses)]
+        inDegree = [0 for i in range(len(adj))]
+        
+        for next_sub, prev_sub in prerequisites:
+            adj[prev_sub][next_sub] = 1
+            inDegree[next_sub] += 1
+            
+        return self.kahn(adj, inDegree)
