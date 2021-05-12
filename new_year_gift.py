@@ -2571,3 +2571,33 @@ class Solution:
                 if indegree[nei] == 0:
                     q.append(nei)
         return num == numCourses
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        adj_list=collections.defaultdict(list)
+        
+        for course,preq in prerequisites:
+            adj_list[preq].append(course)
+        color = {}
+        for u in range(numCourses):
+            color[u] = 'W'
+        print(color)
+        def dfs(u, color):
+            color[u] = 'G'
+            for v in adj_list[u]:
+                if color[v] == 'W':
+                    cycle = dfs(v, color)
+                    if cycle == True:
+                        return True
+                elif color[v] == "G":
+                    return True
+            color[u] = "B"
+            return False
+
+        is_cyclic = False
+        for u in range(numCourses):
+            if color[u] == 'W':
+                is_cyclic = dfs(u, color)
+                if is_cyclic == True:
+                    return False
+        return True
