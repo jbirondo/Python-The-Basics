@@ -2523,3 +2523,19 @@ class Solution:
             inDegree[next_sub] += 1
             
         return self.kahn(adj, inDegree)
+
+class Solution:
+    def canFinish(self, nc: int, prerequisites: List[List[int]]) -> bool:
+        v=set();gr=defaultdict(list);
+        for p in prerequisites:gr[p[0]].append(p[1])
+        def _(n,u):
+            if n in v:return n not in u
+            u.add(n)
+            v.add(n)
+            for nn in gr[n]:
+                if not _(nn,u):return False
+            u.remove(n)
+            return True
+        for n in range(nc):
+            if not _(n,set()):return False
+        return True
