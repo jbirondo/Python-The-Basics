@@ -2629,3 +2629,52 @@ Example 2:
 
 Input: heights = [[2,1],[1,2]]
 Output: [[0,0],[0,1],[1,0],[1,1]]
+
+While everyone is coming up with solutions that involves going from ocean to the continent. I wanted to solve it using the regular BFS way. It's slow but works
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        if not heights:
+            return []
+        res_coords = []
+        visited = set()
+        queue=collections.deque()
+        rows, cols = len(heights), len(heights[0])
+        for i in range(rows):
+            for j in range(cols):
+                if (i,j) not in visited:
+                    visited_1 = set()
+                    visited_1.add((i,j))
+                    visited.add((i,j))
+                    queue.append((i,j))
+                    flag_1 = False
+                    flag_2 = False
+                    while queue:
+                        node = queue.popleft()
+                        r,c = node
+                        if r == rows-1 or c == cols-1:
+                            flag_1 = True
+                        if r == 0 or c == 0:
+                            flag_2 = True
+                        nbrs = self.getNbrs(node, heights, flag_1, flag_2)
+                        for nbr in nbrs:
+                            if nbr not in visited_1:
+                                visited_1.add(nbr)
+                                queue.append(nbr)
+                    if flag_1 and flag_2:
+                        res_coords.append((i,j))
+        return res_coords
+        
+    def getNbrs(self, node, heights, flag_1, flag_2):
+        result = []
+        rows,cols = len(heights), len(heights[0])
+        r,c = node
+        if r+1 < rows and heights[r+1][c] <= heights[r][c]:
+            result.append((r+1,c))
+        if r-1 >= 0 and heights[r-1][c] <= heights[r][c]:
+            result.append((r-1,c))
+        if c+1 < cols and heights[r][c+1] <= heights[r][c]:
+            result.append((r,c+1))
+        if c-1 >= 0 and heights[r][c-1] <= heights[r][c]:
+            result.append((r,c-1))
+        return result
