@@ -2714,3 +2714,45 @@ class Solution:
 		
 		return list(pacific_visited.intersection(atlantic_visited))
 Time/Space: O(MN) where M is the num of rows and N is the num of cols
+
+class Solution:
+    def pacificAtlantic(self, nums: List[List[int]]) -> List[List[int]]:
+        
+        m,n = len(nums), len(nums[0])
+        
+        p_q = []
+        a_q =[]
+        
+        for i in range(m):
+            p_q.append((i, 0))
+            a_q.append((i, n-1))
+        
+        for j in range(n): 
+            p_q.append((0, j))
+            a_q.append((m-1, j))
+            
+            
+        def get_flow_nodes(q):
+            seen = set(q)
+            while q:
+                
+                new_q =[]
+                for i,j in q:
+                    for x,y in [(i+1, j), (i-1, j), (i, j-1), (i, j+1)]:
+                        if (x,y) in seen or x>m-1 or y>n-1 or x<0 or y<0: continue
+
+                        if nums[x][y]>= nums[i][j]:
+                            seen.add((x,y))
+                            new_q.append((x,y))
+                            
+                q= new_q
+            
+            return seen
+            
+
+        p_nodes = get_flow_nodes(p_q)
+        
+        #atlantic nodes
+        a_nodes = get_flow_nodes(a_q)
+        
+        return list(a_nodes.intersection(p_nodes))
