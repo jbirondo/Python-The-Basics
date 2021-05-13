@@ -2678,3 +2678,39 @@ class Solution:
         if c-1 >= 0 and heights[r][c-1] <= heights[r][c]:
             result.append((r,c-1))
         return result
+
+Implementation:
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        if not heights or not heights[0]:
+            return []
+		
+		row, col = len(heights), len(heights[0])
+        
+        pacific_queue = deque([(r, c) for r in range(row) for c in range(col) if (r == 0) or (c == 0)])
+        atlantic_queue = deque([(r, c) for r in range(row) for c in range(col) if (r == row-1) or (c == col-1)])
+		
+		def _bfs_helper(queue):
+			nonlocal row, col
+			
+            visited, directions = set(), [(-1, 0), (1, 0), (0, 1), (0, -1)]
+            
+            while queue:
+                x, y = queue.popleft()
+                visited.add((x, y))
+
+                for d in directions:
+                    dx, dy = d[0] + x, d[1] + y
+
+                    # check bounds
+                    if 0 <= dx < row and 0 <= dy < col and (dx, dy) not in visited and heights[dx][dy] >= heights[x][y]:
+                        queue.append((dx, dy))
+                        visited.add((dx, dy))
+            return visited
+		
+		pacific_visited = _bfs_helper(pacific_queue)
+        atlantic_visited = _bfs_helper(atlantic_queue)
+		
+		return list(pacific_visited.intersection(atlantic_visited))
+Time/Space: O(MN) where M is the num of rows and N is the num of cols
