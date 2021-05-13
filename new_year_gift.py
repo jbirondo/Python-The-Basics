@@ -2777,3 +2777,47 @@ class Solution:
         p, a = bfs(pacific), bfs(atlantic)
                         
         return p.intersection(a)
+
+from collections import deque
+class Solution(object):
+    def pacificAtlantic(self, heights):
+        """
+        :type heights: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        if not heights:
+            return []
+        m , n = len(heights), len(heights[0]) # get the coordinate structure
+        # initiate a list of coordinate for each ocean
+
+
+        def bfs_traverse(edge_vetices):
+            # we will perform a BFS ==> intiating a queue
+            queue = deque()
+            # we will need a set simply because it is simple to get the intersect of two lists (check the return statement)
+            # also it works as the "visited" list to make sure we won't check the same entry twice
+            reached = set()
+            # first initate the set and queue with the edge vertices
+            for edge_vert in edge_vetices:
+                queue.append((edge_vert, heights[edge_vert[0]][edge_vert[1]])) # I keep track of the parent height, you dont need to though
+                reached.add(edge_vert) # all the edge vertices are already connected to the ocean so we add them to its corresponding set
+            
+            while queue: # perform a BFS
+                current, current_height = queue.popleft() # pop the queue 
+                x, y = current
+                for next_x, next_y in [(x-1,y), (x+1,y),(x,y-1),(x,y+1)]: # update the queue with neighboring candidates
+                    # these candidates should be (1) within the matrix boundary, (2) have higher heights than their parents
+                    # (3) and have not been seen before
+                    if 0<=next_x<m and 0<=next_y<n and heights[next_x][next_y] >= current_height and (next_x, next_y) not in reached:
+                        queue.append(((next_x,next_y), heights[next_x][next_y] )) # update the queue
+                        reached.add((next_x, next_y)) # update the reached set
+            return reached
+        
+        # initiate the ocean edges
+        pacific = [(0,i) for i in range(n)] + [(j,0) for j in range(1,m)]
+        atlantic = [(m-1,i) for i in range(n)] + [(j,n-1) for j in range(m)]
+        # return the reached set for each ocean
+        pacific_set = bfs_traverse(pacific)
+        atlantic_set = bfs_traverse(atlantic)
+        
+        return list(atlantic_set.intersection(pacific_set))  # we want to get a list of coordinates that are reached from both edges
