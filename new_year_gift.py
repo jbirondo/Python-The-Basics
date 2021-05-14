@@ -2913,3 +2913,66 @@ def numIslands(self, grid):
             self.dfs(grid, row-1, col)
             self.dfs(grid, row, col+1)
             self.dfs(grid, row, col-1)
+
+BFS
+Time complexity Big O (nm)
+Maximum siblings in queue will be min(M, N)
+So space complexity is min(M,N)'
+
+    def numIslands(self, grid):
+        
+        if len(grid) == 0 or len(grid[0]) == 0:
+            return grid
+        
+        rows = len(grid)
+        cols = len(grid[0])
+        islands = 0
+        
+        for row in range(rows):
+            for col in range(cols):
+                if grid[row][col] == "1":
+                    islands += 1
+                    # when we see the Island "1" we can perform the BFS to update the land around
+                    self.bfs(grid, row, col)
+                    
+        return islands
+    
+    
+    def bfs(self, grid, row, col):
+        
+        def isValid(grid, row, col):
+            if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]):
+                return False
+            else:
+                return True
+            
+        queue = collections.deque()
+        visited = set()
+        
+        directions = [[1,0],[-1,0], [0,1],[0,-1]]
+        
+        #add the element to the queue
+        queue.append((row, col))
+        #mark as visited
+        grid[row][col] = "0"
+        visited.add((row, col))
+        
+        while (len(queue) > 0):
+            
+            level = len(queue)
+            current = queue.popleft()
+            #print(current)
+            currrent_row = current[0]
+            current_col = current[1]
+          
+            
+            #for i in range(level):
+                
+            for direction in directions:
+                next_row = currrent_row + direction[0]
+                next_col = current_col + direction[1]
+
+                    
+                if isValid(grid, next_row, next_col) and grid[next_row][next_col] == "1":
+                    queue.append((next_row, next_col))
+                    grid[next_row][next_col] = "0" ```
