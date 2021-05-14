@@ -2864,3 +2864,52 @@ m == grid.length
 n == grid[i].length
 1 <= m, n <= 300
 grid[i][j] is '0' or '1'.
+
+DFS
+Time complexity Big O (nm)
+Space Complexity (nm) in the worst case when all elements == '1'
+
+
+def numIslands(self, grid):
+        
+        
+        # 1) Check IF there A GRID or Has any ROWS (length is > 0)
+        if grid == None or len(grid) == 0:
+            return 0
+        
+        
+        # 2) Initial the islands
+        islands = 0
+        
+        rows = len(grid)
+        cols = len(grid[0])
+        
+        # 3) If we have [0] , we do not care
+       
+        #if we have the "1" # we got the land ! 
+        # then we need to visit ALL the neighbours if they are Also +1 
+        # we can FLIP the visited ELEMENT form to 1 -> to 0, so we do not double count
+        # at THIS grid, we MAKE DFS or BFS, to calculate, visit ,the nodes and return the output
+        
+        for row in range(rows):
+            for col in range(cols):
+                if grid[row][col] == "1":
+                    islands += 1
+                    self.dfs(grid, row, col)
+                    
+        return islands
+    
+    def dfs(self, grid, row, col):
+        #check the boundries
+        #base case
+        
+        if (row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]) or grid[row][col] == "0"):
+            return       
+        
+        #recursive call within 4 neighbours
+        else:
+            grid[row][col] = "0" # MARK the current element - so it is VISITED
+            self.dfs(grid, row+1, col)
+            self.dfs(grid, row-1, col)
+            self.dfs(grid, row, col+1)
+            self.dfs(grid, row, col-1)
