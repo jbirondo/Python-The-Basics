@@ -3012,3 +3012,44 @@ class Solution:
                     self.DFS(grid, row, col)
         
         return islands
+
+Approach 2: BFS
+
+
+class Solution:
+    
+    def BFS(self, grid: List[List[str]], x: int, y: int):
+        
+        dirs = [(0,1),(1,0),(0,-1),(-1,0)]
+        
+        q = collections.deque()
+        q.append((x,y))
+        
+        while q:
+            x, y = q.popleft()
+            
+            for dx, dy in dirs:
+                new_x = x+dx
+                new_y = y+dy
+                
+                if 0 <= new_x < len(grid) and 0 <= new_y < len(grid[0]) and grid[new_x][new_y] == '1':
+                    q.append((new_x, new_y))
+                    grid[new_x][new_y] = '*'
+        
+    def numIslands(self, grid: List[List[str]]) -> int:
+        
+        if not grid:
+            return 0
+        
+        islands = 0
+        row_size = len(grid)
+        col_size = len(grid[0])
+        
+        for row in range(row_size):
+            for col in range(col_size):
+                if grid[row][col] == '1': # island
+                    islands += 1
+                    self.BFS(grid, row, col)
+        
+        
+        return islands
