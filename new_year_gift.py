@@ -2976,3 +2976,39 @@ So space complexity is min(M,N)'
                 if isValid(grid, next_row, next_col) and grid[next_row][next_col] == "1":
                     queue.append((next_row, next_col))
                     grid[next_row][next_col] = "0" ```
+
+Approach 1: DFS
+
+class Solution:
+    
+    def DFS(self, grid: List[List[str]], row: int, col:int):
+        
+        row_size = len(grid)
+        col_size = len(grid[0])
+        
+        dirs = [(0,1), (1,0), (0,-1), (-1,0)]
+        
+        for dx, dy in dirs:
+            new_row = row + dx
+            new_col = col + dy
+            
+            if 0 <= new_row < row_size and 0 <= new_col < col_size and grid[new_row][new_col] == '1':
+                grid[new_row][new_col] = '*' # visited
+                self.DFS(grid, new_row, new_col)
+    
+    def numIslands(self, grid: List[List[str]]) -> int:
+        
+        if not grid:
+            return 0
+        
+        islands = 0
+        self.row_size = len(grid)
+        self.col_size = len(grid[0])
+        
+        for row in range(self.row_size):
+            for col in range(self.col_size):
+                if grid[row][col] == '1': # island
+                    islands += 1
+                    self.DFS(grid, row, col)
+        
+        return islands
