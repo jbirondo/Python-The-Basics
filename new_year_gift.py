@@ -3181,3 +3181,49 @@ class Solution:
                 maxunionsize = max(maxunionsize, 1)
         
         return maxunionsize
+
+# Create a node DS
+# Create a node for every num in the array and set it as next of a n+1 valued node if present
+# also set num - 1 valued node as the parent of current node if present 
+# if the node has parent set its top property as False to maintain O(n) (more info below)
+# iterate through the node of top nodes and calculate the max length of each graph
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.count = 1
+        self.next = None
+        self.top = True
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        node_map = {}
+        max_count = 0
+        
+        for num in nums:
+            if num not in node_map:
+                num_node = Node(num)
+                
+                if (num+1) in node_map:
+                    num_node.next = node_map[num+1]
+                    node_map[num+1].top = False
+                    
+                if (num-1) in node_map:
+                    node_map[num-1].next = num_node
+                    num_node.top = False
+                
+                node_map[num] = num_node
+                    
+        for num in node_map:
+            curr = node_map[num]
+            
+            if not curr.top: # causes the time complexity to remain O(n) (O(2n) maybe max)
+                continue
+                
+            count = 1
+            while curr.next:
+                count += 1
+                curr = curr.next
+            max_count = max(count, max_count)
+        
+        return max_count
