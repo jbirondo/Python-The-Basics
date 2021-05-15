@@ -3118,3 +3118,18 @@ class Solution:
                     curr += 1
                 maxi = max(maxi, curr - start)
         return maxi
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums.sort()
+        maxy,c=1,1
+        for i in range(1,len(nums)):
+            diff=nums[i]-nums[i-1]
+            if diff==1:
+                c+=1
+            elif diff>1:
+                c=1
+            maxy=max(maxy,c)
+        return maxy
