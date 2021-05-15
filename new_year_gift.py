@@ -3133,3 +3133,51 @@ class Solution:
                 c=1
             maxy=max(maxy,c)
         return maxy
+
+Instead of the standard array for parent (list(range(n))), this time use a map since the range of numbers is very large, and not consecutive
+Unions is a map of parentId -> elements. This helps in tracking the sets and the max_union_size
+For every element in array, we have a few options. More explanations in the code below
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        
+        maxunionsize = 0
+        parent = {}
+        unions = defaultdict(list)
+
+        for n in nums:
+            cont = 0               # this variable tells if n-1 or n+1 has already been seen (read as continue)
+            if n in parent:
+                continue
+            if n-1 in parent:      # add the curr num to the already present union
+                cont = 1
+                parent[n] = parent[n-1]
+                unions[parent[n-1]].append(n)
+                maxunionsize = max(maxunionsize, len(unions[parent[n-1]]))
+
+            if n+1 in parent:
+                cur_parent = parent[n+1]
+                cur_union = unions[cur_parent]
+
+                if cont==1:        # n-1 was also present, merge parents (eg case: 2,4,3)
+                    prev_parent = parent[n-1]
+                    prev_union = unions[prev_parent]
+                    for x in prev_union:         # merging unions (can be sped up by picking up shorter union to traverse)
+                        parent[x] = cur_parent
+                    unions[cur_parent].extend(prev_union)
+                    maxunionsize = max(maxunionsize, len(unions[cur_parent]))
+                    del unions[prev_parent]
+                    
+                else:                # only n+1 is present (similar steps as first if case)
+                    cont = 1
+                    parent[n] = cur_parent
+                    unions[cur_parent].append(n)
+                    maxunionsize = max(maxunionsize, len(unions[cur_parent]))
+
+            # no relation present, standalone number
+            if cont==0:
+                parent[n] = n
+                unions[n] = [n]
+                maxunionsize = max(maxunionsize, 1)
+        
+        return maxunionsize
