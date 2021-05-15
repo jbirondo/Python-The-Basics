@@ -3227,3 +3227,31 @@ class Solution:
             max_count = max(count, max_count)
         
         return max_count
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        largest_sequence = 0
+		nums_visit = {}
+		
+        for num in nums:
+            nums_visit[num] = False
+        for num in nums:
+            nums_visit[num] = True
+            sequence_count = 1
+
+            next_num = num + 1
+            while next_num in nums_visit and not nums_visit[next_num]:
+                nums_visit[next_num] = True
+                sequence_count += 1
+                next_num = next_num + 1
+
+            prev_num = num - 1
+            while prev_num in nums_visit and not nums_visit[prev_num]:
+                nums_visit[prev_num] = True
+                sequence_count += 1
+                prev_num = prev_num - 1
+
+            if sequence_count > largest_sequence:
+                largest_sequence = sequence_count
+
+        return largest_sequence
