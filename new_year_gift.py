@@ -3104,3 +3104,17 @@ Constraints:
 
 0 <= nums.length <= 104
 -109 <= nums[i] <= 109
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        if len(nums) < 2:
+            return len(nums)
+        nums = sorted(set(nums))
+        maxi = 1
+        for start in range(len(nums)):
+            curr = start + maxi
+            if curr < len(nums):
+                while curr < len(nums) and nums[curr] == (nums[start] + (curr - start)):
+                    curr += 1
+                maxi = max(maxi, curr - start)
+        return maxi
