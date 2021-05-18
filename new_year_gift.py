@@ -3318,3 +3318,6 @@ class Solution:
                     matrix[row][col] = 0
         return matrix
 The only issue with this is that it touches each element twice. But regrdless it is O(n) O(1) and it is much more intuitive and easier to understand, (I don't like too many flags)
+
+The time complexity is O(mnm + mnn + mn) = O(mn*(m+n+1)) = O(mn)
+
