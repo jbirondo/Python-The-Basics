@@ -3344,3 +3344,38 @@ class Solution:
             for i in matrix:
                 print(i)
         f(matrix)
+
+	# 1. Traverse Matrix and look out for any 0s
+	# 2. if you find a zero, call function to populate it's neighboring cells (cells above, below & sides)
+	
+    def populate_sides(row, col): # helper function that will populate neighboring cells
+        # left and right
+        matrix[row][col] = 'M' 
+		# we use an identifier "M" to mark cells where we know we will need to add zeros
+        for col2 in range(COLS):
+            if col != col2:
+                if matrix[row][col2] == 0: # if we see another zero we need to populate its sides
+                    populate_sides(row, col2)
+                else:
+                    matrix[row][col2] = 'M'
+        # below and above
+        for row2 in range(ROWS):
+            if row != row2:
+                if matrix[row2][col] == 0:
+                    populate_sides(row2, col)
+                else:
+                    matrix[row2][col] = 'M'
+                    
+    COLS = len(matrix[0])
+    ROWS = len(matrix)
+    
+    for row in range(ROWS): 
+        for col in range(COLS): # standard iteration through 2d array
+            if matrix[row][col] == 0:
+                populate_sides(row, col)
+                
+    # add zeros
+    for row in range(ROWS):
+        for col in range(COLS):
+            if matrix[row][col] == 'M':
+                matrix[row][col] = 0
