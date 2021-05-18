@@ -3294,3 +3294,27 @@ m == matrix.length
 n == matrix[0].length
 1 <= m, n <= 200
 -231 <= matrix[i][j] <= 231 - 1
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n, m = len(matrix), len(matrix[0])
+        # we traverse over the matrix, every time we see a zero, we set its columns and rows to None unless it is zero already
+        for row in range(n):
+            for col in range(m):
+                if matrix[row][col] !=  None:
+                    if matrix[row][col] == 0:
+                        print(row, col)
+                        for i in range(m):
+                            matrix[row][i] = 0 if matrix[row][i] == 0 else  None
+                        for j in range(n):
+                            matrix[j][col] = 0 if matrix[j][col] == 0 else  None
+                            
+        for row in range(n):
+            for col in range(m):
+                if matrix[row][col] is None:
+                    matrix[row][col] = 0
+        return matrix
+The only issue with this is that it touches each element twice. But regrdless it is O(n) O(1) and it is much more intuitive and easier to understand, (I don't like too many flags)
