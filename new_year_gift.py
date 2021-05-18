@@ -3379,3 +3379,77 @@ class Solution:
         for col in range(COLS):
             if matrix[row][col] == 'M':
                 matrix[row][col] = 0
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Use the first elt in each row/each col as marker for whether or not that 
+        row or col should be zeroed out.
+		
+		First cells marked X (a.k.a. all cells in matrix where matrix[r][0] or matrix[c][0]):
+		[
+			[x, x, x, x]
+			[x, 1, 2, 3]
+			[x, 1, 2, 3]
+		]
+		
+        ALGORITHM:
+        First iteration. 
+        If a cell is 0:
+        1) we set the first cell in its row to 0. (matrix[row][0] = 0)
+        2) We set the first cell in its col to 0. (matrix[0][col] = 0)
+        
+        Second iteration, go through all first cell in rows and first cell in cols.
+        If a first cell in row is 0, set entire row to 0.
+        If a first cell in col is 0, set entire col to 0.
+        
+        THERE IS A CORNER CASE.
+        Note, first cell in row zero and first cell in col zero is the same.
+        In second iteration, if we see matrix[0][0] set to 0.
+        
+        - Was it triggered by a zero in col zero => Set all entries in col zero to 0.
+        - Was it triggered by a zero in row zero => Set all entries in row zero to 0.
+        - Was matrix[0][0] originally 0? => Set all entries in row zero and col zero to 0.
+        
+        Seeing matrix[0][0] set to 0 after the second iteration doesn't help us differentiate
+        between the 3 cases.
+        
+        So that needs to be handled separately.
+        """
+        """
+        n_rows = len(matrix)
+        n_cols = len(matrix[0])
+        
+        # Corner case.
+        row_0_should_clear = False
+        col_0_should_clear = False
+        
+        for r in range(n_rows):
+            if matrix[r][0] == 0:
+                col_0_should_clear = True
+                break
+                
+        for c in range(n_cols):
+            if matrix[0][c] == 0:
+                row_0_should_clear = True
+                
+        # General case.
+        for r in range(1, n_rows):
+            for c in range(1, n_cols):
+                if matrix[r][c] == 0:
+                    matrix[r][0] = 0    # Set first elt in row to zero.
+                    matrix[0][c] = 0    # Set first elt in col to zero.
+                    
+        for r in range(1, n_rows):
+            for c in range(1, n_cols):
+                if matrix[r][0] == 0 or matrix[0][c] == 0:
+                    matrix[r][c] = 0
+                    
+        # Corner case (cont.)        
+        if row_0_should_clear:
+            for c in range(n_cols):
+                matrix[0][c] = 0
+        
+        if col_0_should_clear:
+            for r in range(n_rows):
+                matrix[r][0] = 0
