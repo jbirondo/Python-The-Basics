@@ -3321,3 +3321,26 @@ The only issue with this is that it touches each element twice. But regrdless it
 
 The time complexity is O(mnm + mnn + mn) = O(mn*(m+n+1)) = O(mn)
 
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        def initialize(matrix,x,y,n,m):
+            for i in range(0,m):
+                matrix[x][i]=0
+            for i in range(0,n):
+                matrix[i][y]=0
+        def f(matrix):
+            n=len(matrix)
+            m=len(matrix[0])
+            d=set()
+            for i in range(n):
+                for j in range(m):
+                    if(matrix[i][j]==0):
+                        d.add((i,j))
+            for i in d:
+                initialize(matrix,i[0],i[1],n,m)
+            for i in matrix:
+                print(i)
+        f(matrix)
