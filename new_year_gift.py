@@ -3550,3 +3550,33 @@ class Solution:
             elif up: i -= 1
             
         return res
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        t=l=0
+        b=len(matrix)-1
+        r=len(matrix[0])-1
+        res=[]
+        while t<=b and l<=r: 
+            
+            for i in range(l,r+1):
+                res.append(matrix[t][i])
+            
+            
+            for i in range(t+1,b):
+                res.append(matrix[i][r])
+            
+            if t!=b:
+                for i in range(r,l-1,-1):
+                    res.append(matrix[b][i])
+
+            if l!=r:
+                for i in range(b-1,t,-1):
+                    res.append(matrix[i][l])
+            
+            l+=1
+            t+=1
+            r-=1
+            b-=1
+            
+        return  res
