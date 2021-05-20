@@ -3726,3 +3726,12 @@ class Solution(object):
         matrix[i].reverse()
 
     return matrix
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+        start = 0
+        while n - 2*start > 1:
+            for row in range(start,n-start-1):
+                matrix[start][row],matrix[row][n-start-1],matrix[n-start-1][n-row-1],matrix[n-row-1][start] = matrix[n-row-1][start],matrix[start][row],matrix[row][n-start-1],matrix[n-start-1][n-row-1]
+            start+=1
