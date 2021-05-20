@@ -3755,3 +3755,16 @@ class Solution:
                 temp = matrix[i][j]
                 matrix[i][j] = matrix[i][len(matrix[0]) - j - 1]
                 matrix[i][len(matrix[0]) - j - 1] = temp
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        for row in range(len(matrix)):
+            for col in range(row,len(matrix[0])):
+                matrix[row][col],matrix[col][row]=matrix[col][row],matrix[row][col]
+        print(matrix)
+        for row in range(len(matrix)):
+            for col in range(len(matrix)//2):
+                matrix[row][col],matrix[row][-col-1]=matrix[row][-col-1],matrix[row][col]
