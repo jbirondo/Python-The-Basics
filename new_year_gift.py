@@ -3735,3 +3735,23 @@ class Solution:
             for row in range(start,n-start-1):
                 matrix[start][row],matrix[row][n-start-1],matrix[n-start-1][n-row-1],matrix[n-row-1][start] = matrix[n-row-1][start],matrix[start][row],matrix[row][n-start-1],matrix[n-start-1][n-row-1]
             start+=1
+
+class Solution:
+    def transposeMatrix(self, matrix):
+        for i in range(len(matrix)):
+            for j in range(i + 1, len(matrix[0])):
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[j][i]
+                matrix[j][i] = temp
+                
+    
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        self.transposeMatrix(matrix)
+        for j in range(len(matrix[0]) // 2):
+            for i in range(len(matrix)):
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[i][len(matrix[0]) - j - 1]
+                matrix[i][len(matrix[0]) - j - 1] = temp
