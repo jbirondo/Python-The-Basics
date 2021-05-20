@@ -3712,3 +3712,17 @@ class Solution:
         for i in range(n):
             for j in range(n//2):
                 matrix[i][j], matrix[i][n-1-j] = matrix[i][n-1-j], matrix[i][j]
+
+class Solution(object):
+    def rotate(self, matrix):
+
+    #matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+    for m in range(len(matrix)):
+        for n in range(m, len(matrix[m])):
+            matrix[m][n], matrix[n][m] = matrix[n][m], matrix[m][n]
+
+    for i in range(len(matrix)):
+        matrix[i].reverse()
+
+    return matrix
