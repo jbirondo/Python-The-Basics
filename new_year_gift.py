@@ -3871,3 +3871,54 @@ class Solution(object):
                                 new_state = State((offset_row, offset_column), next_letter_index, current_state.visited.copy())
                                 stack.append(new_state)
         return False
+
+# This is an advanced problem. It took me some time to see other solutions and come up with this approach after seeing other solution.
+# This problem uses DFS approach along with backtracking. (The Fact that the visited is marked as True before getting into recursion inside the function and again marking it as False if we have not gotten the answer is the reason why this problem is a backtracking problem.) 
+
+# Algo
+    # You have to try each location in the board is as a strating point. So 2d loop at the start is necessary.
+    # We start from each character, and try to move in each possible direction until we can match the complete word. We use DFS for this.
+        # When we know that we have seen the complete word, we mark found in global variable, and return True from main function.
+        # Note that you cannot mark same location more than once so, we have to use visited 2d array to mark it as visited.
+        # At times we may have gone in a wrong path and due to this we would have mark some locations useless as visited, we have unvisit them, if we see that id haven't lead to the answer. This is why this problem is backtracking + DFS.
+    # Space - O(m * n), because in worst case, the whold word length stack space would be used.
+    # Time - O(N * 3 ^ L). N is total number of cells in the board. L is the length of the word. 3 power because, we will have three sides to expand each time.
+
+
+class Solution:
+    
+    def __init__(self):
+        self.found = False
+    
+    def helper(self, board, i, j, word, word_index, visited):
+        
+        if board[i][j] == word[word_index] and word_index == len(word) - 1:
+            self.found = True
+            return
+        
+        if board[i][j] != word[word_index]:
+            return
+        
+        visited[i][j] = True
+        # print(i, j)
+        if i - 1 >= 0 and not visited[i-1][j]:
+            self.helper(board, i - 1, j, word, word_index + 1, visited)
+        if j + 1 < len(board[i]) and not visited[i][j+1]:
+            self.helper(board, i, j + 1, word, word_index + 1, visited)
+        if i + 1 < len(board) and not visited[i+1][j]:
+            self.helper(board, i + 1, j, word, word_index + 1, visited)
+        if j - 1 >= 0 and not visited[i][j-1]:
+            self.helper(board, i, j - 1, word, word_index + 1, visited)
+        visited[i][j] = False
+    
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                visited = [[False for _ in range(len(board[i]))] for _ in range(len(board))]
+                self.helper(board, i, j, word, 0, visited)
+                if self.found:
+                    return True
+                # print('-------------')
+                
+        return False
