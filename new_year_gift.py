@@ -3978,3 +3978,36 @@ class Solution:
         if max(counter.values()) > 0: return False
         for row, col in starts:
             if dfs(col, row, 0): return True
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def recr(i,j,w,b,idx):
+            # If index of string exausted we completed the search so return true
+            if idx == len(w)-1:
+                return True
+            
+            # Mark the visited index to avoid revisiting
+            # b[i][j] = chr(ord(b[i][j]) - 65) # OR use below
+            temp = b[i][j]
+            b[i][j] = '-1'
+            
+            # Check for 4 conditions
+            if i>0 and b[i-1][j] == w[idx+1] and recr(i-1, j, w, b, idx+1):
+                return True
+            elif i<len(b)-1 and b[i+1][j] == w[idx+1] and recr(i+1, j, w, b, idx+1):
+                return True
+            elif j>0 and b[i][j-1] == w[idx+1] and recr(i, j-1, w, b, idx+1):
+                return True 
+            elif j<len(b[0])-1 and b[i][j+1] == w[idx+1] and recr(i, j+1, w, b, idx+1):
+                return True
+            
+            # b[i][j] = chr(ord(b[i][j]) + 65) # OR use below
+            b[i][j] = temp
+            
+            return False
+        
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                if board[i][j] == word[0] and recr(i,j,word,board,0):
+                    return True
+        return False
