@@ -3812,3 +3812,62 @@ board and word consists of only lowercase and uppercase English letters.
  
 
 Follow up: Could you use search pruning to make your solution faster with a larger board?
+
+Time and space complxity should be roughly the same as the accepted recursive solution. However, I had to copy the 'visited' hashset for each backtracking state because I couldn't figure out a way to iteratively use existing memory to maintain the 'visited' state like the recursive solution did.
+
+class State():
+    def __init__(self, point, word_index, visited):
+        self.point = point
+        self.word_index = word_index
+        self.visited = visited
+
+class Solution(object):
+    def exist(self, board, word):
+        self.rows = len(board)
+        self.columns = len(board[0])
+        self.board = board
+        
+        for i in range(0, self.rows):
+            for j in range(0, self.columns):
+                if self.board[i][j] == word[0]:
+                    word_found = self.dfs(i, j, word)
+                    if word_found:
+                        return True
+        return False
+        
+    def dfs(self, row, column, word):
+        if len(word) == 1:
+            if self.board[row][column] == word:
+                return True
+            else:
+                return False
+            
+        visited = set()
+        initial_state = State((row,column), 0, visited)
+        stack = []
+        stack.append(initial_state)
+        
+        while (len(stack) > 0):
+            current_state = stack[-1]
+            stack.pop()
+            
+            next_letter_index = current_state.word_index + 1
+            if next_letter_index == len(word):
+                #At this point, we know there's a path that contains the entire word
+                return True
+            
+            if current_state.point not in current_state.visited:
+                current_state.visited.add(current_state.point)
+            
+            expected_letter = word[next_letter_index]
+            
+            for row_offset, column_offset in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                offset_row = current_state.point[0] + row_offset
+                offset_column = current_state.point[1] + column_offset
+                if (offset_row >= 0 and offset_row < self.rows) and (offset_column >= 0 and offset_column < self.columns):
+                        if (offset_row, offset_column) not in current_state.visited:
+                            if self.board[offset_row][offset_column] == expected_letter:
+                                #Make sure to create a copy the 'visited' hashset. If we don't, all states will share the same hashset in memory. 
+                                new_state = State((offset_row, offset_column), next_letter_index, current_state.visited.copy())
+                                stack.append(new_state)
+        return False
