@@ -3922,3 +3922,37 @@ class Solution:
                 # print('-------------')
                 
         return False
+
+This is a pretty standard backtrack + pruning, with the addition of a bit of code to handle the more time consuming corner cases. The code returns the matrix to its original state before returning.
+
+        if set(word) - set(x for y in board for x in y):
+            return False
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def find(row, col, remain, direction):
+            if board[row][col] == remain[-1]:
+                temp = remain.pop()
+                board[row][col] = None
+
+                res = (
+                    not remain or
+                    direction != 'down' and row > 0 and find(row - 1, col, remain, 'up') or
+                    direction != 'up' and row < len(board) - 1 and find(row + 1, col, remain, 'down') or
+                    direction != 'right' and col > 0 and find(row, col - 1, remain, 'left') or 
+                    direction != 'left' and col < len(board[0]) - 1 and find(row, col + 1, remain, 'right')
+                )
+
+                board[row][col] = temp
+                remain.append(temp)
+                return res
+            return False
+
+        if set(word) - set(x for y in board for x in y):
+            return False
+
+        remain = list(word[::-1])
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if find(i, j, remain, None):
+                    return True
+        return False
