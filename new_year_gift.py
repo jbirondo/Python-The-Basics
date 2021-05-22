@@ -4126,3 +4126,6 @@ def maxDepth(self, root: TreeNode) -> int:
 			return level
 		return max(traverse(root.left, level + 1), traverse(root.right, level + 1))
 	return traverse(root, 0)
+
+    def maxDepth(self, root: TreeNode) -> int:
+        return 0 if not root else 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
