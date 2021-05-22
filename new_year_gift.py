@@ -4119,3 +4119,10 @@ class Solution:
                 return max(maxDepth,findMaxDepth(node.left,maxDepth+1), findMaxDepth(node.right,maxDepth+1))
         
         return findMaxDepth(root)
+
+def maxDepth(self, root: TreeNode) -> int:
+    	def traverse(root, level):
+		if not root:
+			return level
+		return max(traverse(root.left, level + 1), traverse(root.right, level + 1))
+	return traverse(root, 0)
