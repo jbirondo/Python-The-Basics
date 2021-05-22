@@ -4070,3 +4070,35 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
         return height
+
+class Solution:
+    def maxDepth(self, root):
+        if not root: return 0
+        
+        res , st , depth = [] , [] , []
+        curr_depth , max_depth = 1 , 1
+        
+        cycle = True
+        while cycle:
+            if root.left != None:
+                st.append(root)
+                depth.append(curr_depth)
+                root = root.left
+                root.val += 1
+                curr_depth += 1
+                if curr_depth > max_depth: max_depth = curr_depth
+            else:
+                res.append(root.val)
+                if root.right != None:
+                    root = root.right
+                    curr_depth += 1
+                    if curr_depth > max_depth: max_depth = curr_depth
+                else:
+                    if st:
+                        root = st[-1]
+                        curr_depth = depth[-1]
+                        st.pop()
+                        depth.pop()
+                        root.left = None
+                    else: cycle = False
+        return max_depth
