@@ -4102,3 +4102,20 @@ class Solution:
                         root.left = None
                     else: cycle = False
         return max_depth
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        
+        def findMaxDepth(node,maxDepth=0):
+            if not node:
+                return maxDepth
+            else:
+                return max(maxDepth,findMaxDepth(node.left,maxDepth+1), findMaxDepth(node.right,maxDepth+1))
+        
+        return findMaxDepth(root)
