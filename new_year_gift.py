@@ -4186,3 +4186,12 @@ class Solution:
         else:
             return False
    Practically if the nodes match, look at the offshoot nodes, If they both are nothing, return true becacuse you have reached the end of the branch. Compare all results so that you are sure you have received all trues.
+
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if p is None or q is None:
+            return p is q
+        elif p.val==q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right):
+            return True
+        else:
+            return False
