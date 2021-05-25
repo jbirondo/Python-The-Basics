@@ -4227,3 +4227,15 @@ class Solution:
             self.pre_order(node.right, lst)
             self.pre_order(node.left, lst)
         return lst
+
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        def twoTreeTraversal(p: TreeNode, q:TreeNode) -> bool:
+            if p and q and p.val == q.val:
+                    return twoTreeTraversal(p.left, q.left) and twoTreeTraversal(p.right, q.right)
+            elif p or q:
+                return False
+            else:
+                return True
+        
+        return twoTreeTraversal(p,q)
