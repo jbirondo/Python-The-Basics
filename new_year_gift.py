@@ -4195,3 +4195,35 @@ class Solution:
             return True
         else:
             return False
+
+class Solution:
+    def isSameTree_(self, p, q):
+        
+        # recursive dfs
+        # T: O(N)
+        # S: O(N)
+        
+        if p and q:
+            return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        return p is q
+
+    
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        
+        # recursive pre-order traversal
+        # T: O(N)
+        # S: O(N)
+        
+        p1 = self.pre_order(p, [])
+        q1 = self.pre_order(q, [])
+		
+        return p1 == q1
+    
+    def pre_order(self, node, lst):
+        if not node:
+            lst.append(None)
+        else:
+            lst.append(node.val)
+            self.pre_order(node.right, lst)
+            self.pre_order(node.left, lst)
+        return lst
