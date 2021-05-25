@@ -4167,3 +4167,22 @@ Constraints:
 
 The number of nodes in both trees is in the range [0, 100].
 -104 <= Node.val <= 104
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        if p  == None or q == None:
+            if p  == None and  q == None:
+                return True
+            else:
+                return False
+        elif p.val ==  q.val:
+            return (self.isSameTree(p.left, q.left) and True and self.isSameTree(p.right, q.right))
+        else:
+            return False
+   Practically if the nodes match, look at the offshoot nodes, If they both are nothing, return true becacuse you have reached the end of the branch. Compare all results so that you are sure you have received all trues.
