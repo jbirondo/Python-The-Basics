@@ -4285,3 +4285,12 @@ class Solution:
             tp.right=tree(node.left)
             return tp
         return tree(root)
+
+def invertTree(self, root: TreeNode) -> TreeNode:
+        def invert(node):
+            if not node or (not node.left and not node.right):
+                return node
+            node.right, node.left  = invert(node.left), invert(node.right)
+            return node
+        invert(root)
+        return root
