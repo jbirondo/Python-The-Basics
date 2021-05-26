@@ -4274,3 +4274,14 @@ Constraints:
 
 The number of nodes in the tree is in the range [0, 100].
 -100 <= Node.val <= 100
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        def tree(node):
+            if not node:
+                return None
+            tp=TreeNode(node.val)
+            tp.left=tree(node.right)
+            tp.right=tree(node.left)
+            return tp
+        return tree(root)
