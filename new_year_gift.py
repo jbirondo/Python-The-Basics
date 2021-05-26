@@ -4320,3 +4320,35 @@ class Solution(object):
 			root.left=temp
 			self.invert(root.left)
 			self.invert(root.right)
+
+# O(n) time/ O(n) space
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        queue = [root]
+        while queue:
+            node = queue.pop(0)
+            if not node:
+                continue
+            if not node.left and not node.right:
+                continue
+            node.left, node.right = node.right, node.left
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        return root
+
+# O(n) time / O(h) space where h is the height of the tree
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+		 self.invert(root)
+		 return root
+        
+    def invert(self, root):
+        if not root:
+            return
+        if not root.left and not root.right:
+            return
+        root.left, root.right = root.right, root.left
+        self.invert(root.left)
+        self.invert(root.right)
