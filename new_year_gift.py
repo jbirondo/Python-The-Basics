@@ -4307,3 +4307,16 @@ class Solution:
         
         do_invert(root)
         return root
+
+class Solution(object):
+    	def invertTree(self, root):
+		self.invert(root)
+		return root
+
+	def invert(self,root):
+		if(root):
+			temp=root.right
+			root.right=root.left
+			root.left=temp
+			self.invert(root.left)
+			self.invert(root.right)
