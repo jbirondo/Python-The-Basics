@@ -4294,3 +4294,16 @@ def invertTree(self, root: TreeNode) -> TreeNode:
             return node
         invert(root)
         return root
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        def do_invert(node):
+            if not node:
+                return
+            
+            node.left, node.right = node.right, node.left
+            do_invert(node.left)
+            do_invert(node.right)
+        
+        do_invert(root)
+        return root
