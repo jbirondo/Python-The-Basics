@@ -4508,3 +4508,31 @@ class Solution:
         cur,res = dfs(root,res)
         
         return max(cur,res)
+
+We are going to approach this problem by asking ourselves 'For each node, what is the maximum path sum if we include this node in the path?' We have 4 cases to consider. 1.) We only use this node in the path. 2.) We use this node and the best path we found in the left subtree that leads to this node. 3.) We use this node and the best path we found in the right subtree that leads to this node. 4.) The path formed by connecting the best path in the left subtree with the current node and the best path in the right subtree. We initialize the maximum path sum to the root val and dfs through the tree. If any of the paths from the 4 cases stated above is greater than what we have found so far we update the maximum path sum.
+
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        ans = root.val
+        def dfs(node):
+            nonlocal ans
+            if not node:
+                return 0
+            else:
+                left = dfs(node.left)
+                right = dfs(node.right)
+                if node.val + left + right > ans:
+                    ans = node.val + left + right
+                if node.val + left > ans:
+                    ans = node.val + left
+                if node.val + right > ans:
+                    ans = node.val + right
+                if node.val > ans:
+                    ans = node.val
+                return max(node.val, node.val + left, node.val + right)
+            
+        max_path_using_root = dfs(root)
+        if max_path_using_root > ans:
+            return max_path_using_root
+        else:
+            return ans
