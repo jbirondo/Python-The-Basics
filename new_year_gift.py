@@ -4470,3 +4470,41 @@ class Solution:
     def maxPathSum(self, root: TreeNode) -> int:
         self.maxPathSumU(root)   
         return self.ans
+
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        #
+        # stack = []
+        res = float('-inf')
+        
+        def dfs(root,res):
+            
+            if not (root.left or root.right):
+                cur = root.val
+                res = max(res,cur)
+                return cur,res
+            
+            cur = root.val
+            res = max(res,cur)
+            
+            if root.left:
+                left,tmp = dfs(root.left,res)
+                res = max(res,tmp)
+                if left > 0:
+                    cur += left
+                    res = max(cur,res)
+            if root.right:
+                right,tmp = dfs(root.right,res)
+                res = max(res,tmp)
+                if right > 0:
+                    cur += right
+                    res = max(cur,res)
+            
+            if root.left and root.right and cur == root.val+left+right:
+                res = max(res,cur)
+                cur = root.val+max(left,right)
+            return cur,res
+        
+        cur,res = dfs(root,res)
+        
+        return max(cur,res)
