@@ -4415,3 +4415,35 @@ def maxPathSum(self, root: TreeNode) -> int:
         return single_max 
     search(root, 0)
     return ans[0]
+
+Hello, my train of thought was : print the inorderTraversal of the tree and use kadane Algorithm to find the maximumSubArray, this would give you the maximumPath.
+
+But i can't manage to pass all the tests could somebody look at the code and explain me why ?
+I think this have to do with the fact i used InOrderTraversal instead of preOrder but i'm not sure...
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        def inOrderTraversal(root,array):
+            if root is None:
+                return
+            inOrderTraversal(root.left,array)
+            array.append(root.val)
+            inOrderTraversal(root.right,array)
+        inOrder = []
+        inOrderTraversal(root,inOrder)
+        maxSum = inOrder[0]
+        currentSum = inOrder[0]
+        if len(inOrder) <= 1:
+            return inOrder[0]
+        for i in range(1,len(inOrder)):
+            currentSum = max(inOrder[i],currentSum + inOrder[i])
+            print(currentSum)
+            maxSum = max(currentSum,maxSum)
+            print(maxSum)
+        return maxSum
