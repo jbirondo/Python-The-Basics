@@ -4447,3 +4447,26 @@ class Solution:
             maxSum = max(currentSum,maxSum)
             print(maxSum)
         return maxSum
+
+class Solution:
+    
+    def __init__(self):
+        self.ans=float("-inf")
+    
+    def maxPathSumU(self,root):
+        
+        if root==None:
+            return 0
+        
+        ls=self.maxPathSumU(root.left)
+        rs=self.maxPathSumU(root.right)
+        
+        self.ans=max(self.ans,ls+rs+root.val)
+        self.ans=max(self.ans,max(ls,rs)+root.val)
+        self.ans=max(self.ans,root.val)
+        return max(max(ls,rs)+root.val,root.val)
+        
+    
+    def maxPathSum(self, root: TreeNode) -> int:
+        self.maxPathSumU(root)   
+        return self.ans
