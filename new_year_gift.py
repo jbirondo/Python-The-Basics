@@ -4585,3 +4585,21 @@ class Solution:
         result[level].append(node.val)
         self.treeTraversal(node.left, result, level + 1)
         self.treeTraversal(node.right, result, level + 1)
+
+
+def level_order_traversal(self,root,level_number,levels_values):
+        if not root:return 
+        if(level_number in levels_values):
+            levels_values[level_number].append(root.val)
+        else:
+            levels_values[level_number]=[root.val]
+        if(root.left):self.level_order_traversal(root.left,level_number+1,levels_values)
+        if(root.right):self.level_order_traversal(root.right,level_number+1,levels_values)
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        hashmap={}
+        self.level_order_traversal(root,0,hashmap)
+        ans=[]
+        for i in sorted(hashmap.keys()):
+            ans.append(hashmap[i])
+        return ans
