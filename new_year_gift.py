@@ -4645,3 +4645,23 @@ class Solution:
                 if node.right: queue.append(node.right)
             result.append(level)
         return result
+
+def levelOrder(self, root: TreeNode) -> List[List[int]]:
+    
+    d=defaultdict(list)
+    
+    
+    def dfs(node,level):
+        
+        if node is None: return
+        
+        d[level].append(node.val)
+        
+        dfs(node.left,level+1)
+        dfs(node.right,level+1)
+    
+    
+    dfs(root,0)
+    
+    
+    return d.values()
