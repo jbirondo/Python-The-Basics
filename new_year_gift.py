@@ -4665,3 +4665,30 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
     
     
     return d.values()
+
+BFS Implementation:
+Move level wise by maintaining a queue that stores all the elements. We check the length of the queue before each iteration in order to know how many elements are present in the particular level. Then for each node in the queue we append its left and/or right to the queue if they arenot none.
+
+def levelOrder(self, root: TreeNode) -> List[List[int]]:
+      queue, list0 = [root], [] # Queue is used to store all the nodes in level order, list0 is a list of lists with each list representing a level in the binary tree
+      while queue and root:
+          list1 = []                  # Used to store nodes of a particular level
+          for i in range(len(queue)): # The current length of the queue represents the number of nodes in the current level
+              node = queue.pop(0)
+              queue += filter(None, (node.left, node.right)) # Add left and right of 'node' to queue if they are not null
+              list1.append(node.val)  
+          list0.append(list1)
+      return list0
+DFS Implementation:
+Move down the tree instead of across it. Recursively check left and right subtrees of each node while passing the current depth as a parameter to the method depth_first_search
+
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        ret = []
+        def depth_first_search(root, depth): # Nested method to compute depth of each node and append it to list
+            if not root: return              # Stopping condition when we reach None
+            if len(ret) == depth: ret.append([])  # len(ret) represents the number of levels already in ret
+            ret[depth].append(root.val)
+            depth_first_search(root.left, depth + 1) # Recursively move down left subtree
+            depth_first_search(root.right, depth + 1) # Recursively move down right subtree
+        depth_first_search(root, 0) # Calling the method depth_first_search and initializing depth of root to 0
+        return ret
