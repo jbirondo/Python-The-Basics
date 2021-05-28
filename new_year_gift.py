@@ -4570,3 +4570,18 @@ Constraints:
 
 The number of nodes in the tree is in the range [0, 2000].
 -1000 <= Node.val <= 1000
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        result = []
+        self.treeTraversal(root, result, 0)
+        return result
+        
+    def treeTraversal(self, node, result, level):
+        if node == None:
+            return
+        if len(result) < level + 1:
+            result.append([])
+        result[level].append(node.val)
+        self.treeTraversal(node.left, result, level + 1)
+        self.treeTraversal(node.right, result, level + 1)
