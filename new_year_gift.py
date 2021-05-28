@@ -4603,3 +4603,21 @@ def level_order_traversal(self,root,level_number,levels_values):
         for i in sorted(hashmap.keys()):
             ans.append(hashmap[i])
         return ans
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        answer = []
+        if root is None:
+            return []
+        queue = [(root,0)]
+        while len(queue) > 0 :
+            pos,rank = queue.pop(0)
+            if len(answer) <= rank :
+                answer.append([pos.val])
+            else :
+                answer[rank].append(pos.val)
+            if pos.left is not None:
+                queue.append((pos.left,rank+1))
+            if pos.right is not None:
+                queue.append((pos.right,rank+1))
+        return answer
