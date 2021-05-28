@@ -4621,3 +4621,27 @@ class Solution:
             if pos.right is not None:
                 queue.append((pos.right,rank+1))
         return answer
+
+What is level in our binary tree? It is set of nodes, for which distance between root and these nodes are constant. And if we talk about distances, it can be a good idea to use bfs.
+
+We put our root into queue, now we have level 0 in our queue.
+On each step extract all nodes from queue and put their children to to opposite end of queue. In this way we will have full level in the end of each step and our queue will be filled with nodes from the next level.
+In the end we just return result.
+Complexity
+Time complexity is O(n): we perform one bfs on our tree. Space complexity is also O(n), because we have answer of this size.
+
+Code
+class Solution:
+    def levelOrder(self, root):
+        if not root: return []
+        queue, result = deque([root]), []
+        
+        while queue:
+            level = []
+            for i in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:  queue.append(node.left)
+                if node.right: queue.append(node.right)
+            result.append(level)
+        return result
