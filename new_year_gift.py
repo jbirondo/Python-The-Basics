@@ -4847,3 +4847,76 @@ class Codec:
                     x.right = right
                     
         return tree
+
+Implemented serialize and deserize using both recursive and iterative approaches. O(n) time and O(H) space where H is the height of the binary tree.
+
+class Codec:
+    def serialize(self, root):
+        def serialize_REC(root,result=[]):
+            if not root:
+                result.append('-1001')
+                return result
+            result.append(str(root.val))
+            serialize_REC(root.left)
+            serialize_REC(root.right)
+            return result
+        
+        def serialize_ITR(root,result=[]):
+            stack=[root] if root else [None]
+            result=[]
+            while stack:
+                node=stack.pop()
+                result.append(str(node.val) if node else '-1001')
+                if node:
+                    stack.append(node.right) 
+                    stack.append(node.left) 
+            return result
+        if random.randrange(0,2,1):
+            return '#'.join(serialize_REC(root))
+        return '#'.join(serialize_ITR(root)) 
+
+    def deserialize(self, data):
+        arr=list(map(lambda x: int(x) if x!='-1001' else None,data.split('#')))
+        r=random.randrange(0,3,1) 
+        if  r==0:
+            return self.deserialize_ITR(arr)
+        elif r==1:
+            self.i=0
+            return self.deserialize_REC_globalvar(arr)
+        else:
+            return self.deserialize_REC_localvar(arr)[0]
+        
+    def deserialize_ITR(self, data):
+        stack=[]
+        for i in range(len(data)):
+            child=TreeNode(data[i]) if data[i]  is not None else None  #big bug: .... if arr[i] else None : this caused child==None if arr[i]==0
+            if i==0:
+                root=child
+            if stack:
+                stack[-1][1]+=1
+                if stack[-1][1]==1:
+                    stack[-1][0].left=child
+                elif stack[-1][1]==2:
+                    stack[-1][0].right=child
+                    while stack and stack[-1][1]==2 : # we can pop ANY node as long as its both children are known
+                        stack.pop()
+            stack.append([child,0]) if child else 0
+        return root
+    
+    def deserialize_REC_globalvar(self, data,):
+        if data[self.i] is None : #node is None
+            self.i+=1
+            return None
+        node=TreeNode(data[self.i]) 
+        self.i+=1
+        node.left=self.deserialize_REC_globalvar(data)
+        node.right=self.deserialize_REC_globalvar(data,)
+        return node
+    def deserialize_REC_localvar(self, data,i=0):
+        if data[i] is None : #node is None
+            i+=1
+            return None,i
+        node=TreeNode(data[i]) 
+        node.left,i=self.deserialize_REC_localvar(data,i+1)
+        node.right,i=self.deserialize_REC_localvar(data,i)
+        return node,i
