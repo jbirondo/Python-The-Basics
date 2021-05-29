@@ -4772,3 +4772,78 @@ class Codec:
                 idx += 1
 
         return root
+
+class Codec:
+    
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        
+        BFS solution
+        if it is Null it puts A in a list
+        else it converts the int to string
+        adn appends it in list
+        """
+        
+        if not root:
+            return ''
+        
+        stri = []
+        lst = [root]
+        
+        while lst:
+            
+            
+            y = lst.pop(0)
+            stri.append(str(y.val) if not (y is None) else 'A')
+            
+            if y:
+                lst.append(y.left)
+                lst.append(y.right)
+        #print(stri)       
+        return stri
+                
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        
+        we recreate the string into a tree
+        iteratively create the tree 
+        
+        """
+        
+        if data == '':
+            return []
+        data = [ s for s in data]
+        tree = TreeNode(int(data.pop(0)))
+        tmp = tree
+        nodes = [tmp]
+                        
+        while data:
+            
+            x = nodes.pop(0)
+            if x:
+                
+                leftval = 'A'
+                rightval = 'A'
+                if data:
+                    leftval = data.pop(0)
+                if data:
+                     rightval = data.pop(0)
+                left = TreeNode(int(leftval)) if leftval != 'A' else None
+                right = TreeNode(int(rightval)) if rightval != 'A' else None
+                if left:
+                    nodes.append(left)
+                    x.left = left
+
+                if right:
+                    nodes.append(right)
+                    x.right = right
+                    
+        return tree
