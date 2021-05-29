@@ -4920,3 +4920,32 @@ class Codec:
         node.left,i=self.deserialize_REC_localvar(data,i+1)
         node.right,i=self.deserialize_REC_localvar(data,i)
         return node,i
+
+class Codec:
+    
+    def serialize(self, root):
+        
+        ret = [root]
+        
+        for u in filter(None, ret):
+            
+            ret.append(u.left)
+            ret.append(u.right)
+        
+        return ",".join("null" if u is None else str(u.val) for u in ret)
+            
+        
+
+    def deserialize(self, data):
+        
+        nodes = deque(None if x == "null" else TreeNode(int(x)) for x in data.split(","))
+        
+        it = iter(nodes)
+        next(it)
+        
+        for u in filter(None, nodes):
+            
+            u.left = next(it)
+            u.right = next(it)
+        
+        return nodes[0]
