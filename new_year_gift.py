@@ -4734,3 +4734,41 @@ Constraints:
 
 The number of nodes in the tree is in the range [0, 104].
 -1000 <= Node.val <= 1000
+
+class Codec:
+    def serialize(self, root):
+        if not root: return ""
+        queue, res = deque([root]), []
+        
+        while queue:
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if node.val == 10000: res.append("*")
+                else: 
+                    res.append(str(node.val))
+                    if node.left: queue.append(node.left)
+                    else: queue.append(TreeNode(10000))
+                    if node.right: queue.append(node.right)   
+                    else: queue.append(TreeNode(10000))
+                        
+        return '='.join(res)
+
+    def deserialize(self, data):
+        if not data: return None
+        data_l = data.split('=')
+        root = TreeNode(data_l[0])
+        queue = deque([root])
+        idx = 1
+                            
+        while queue:
+            length = len(queue)
+            for _ in range(length):
+                node = queue.popleft()
+                node.left = None if data_l[idx] == '*' else TreeNode(data_l[idx])
+                if node.left: queue.append(node.left)
+                idx += 1
+                node.right = None if data_l[idx] == '*' else TreeNode(data_l[idx])
+                if node.right: queue.append(node.right)
+                idx += 1
+
+        return root
