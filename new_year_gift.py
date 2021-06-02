@@ -5005,7 +5005,7 @@ class Solution:
         return is_sub(root,subroot)
 
 def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
-	stack = [root]
+    	stack = [root]
 
 	while stack:
 		node = stack.pop()
@@ -5038,3 +5038,22 @@ def check(self, r:TreeNode, s:TreeNode) -> bool:
 			else:
 				stack.append((node1.right, node2.right))
 	return True
+
+    def isSubtree(self, root, subRoot):
+        if not root or not subRoot:
+            return False
+
+        if root.val == subRoot.val:
+            if self.isSame(root, subRoot):
+                return True
+            
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+        
+    def isSame(self, p, q):
+        if not p or not q:
+            return p == q
+
+        if p.val != q.val:
+            return False
+
+        return self.isSame(p.left, q.left) and self.isSame(p.right, q.right)
