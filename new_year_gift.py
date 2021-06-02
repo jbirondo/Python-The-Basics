@@ -4984,3 +4984,22 @@ The number of nodes in the root tree is in the range [1, 2000].
 The number of nodes in the subRoot tree is in the range [1, 1000].
 -104 <= root.val <= 104
 -104 <= subRoot.val <= 104
+
+class Solution:
+    def isSubtree(self, root: TreeNode, subroot: TreeNode) -> bool:
+        
+        def is_same(a,b):
+            if not a and not b:
+                return True
+            if not a or not b:
+                return False
+            return a.val == b.val and is_same(a.left,b.left) and is_same(a.right,b.right)
+        
+        def is_sub(root,sub):
+            if not root and not sub:
+                return True
+            if not root or not sub:
+                return False
+            return is_same(root,sub) or is_sub(root.left,sub) or is_sub(root.right,sub) 
+        
+        return is_sub(root,subroot)
