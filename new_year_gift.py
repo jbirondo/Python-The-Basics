@@ -5097,3 +5097,43 @@ class Solution:
         
         check_sub(root)
         return ans
+
+class Solution:
+    
+    def __init__(self):
+        self.flag = False
+        
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        
+        def check(node1,node2):
+            
+            if (not node1 and not node2):
+                return 
+            
+            if  (not node1 and node2) or (not node2 and node1) or node1.val != node2.val:
+                self.flag = False 
+                return 
+            
+            check(node1.left,node2.left)
+            
+            check(node1.right,node2.right)
+            
+        
+        def inorder(node):
+            if not node or self.flag == True:
+                return 
+            
+            if node.val == subRoot.val:
+                self.flag = True 
+                check(node,subRoot)
+                if self.flag == True:
+                    return 
+            
+            inorder(node.left)
+            
+            inorder(node.right) 
+        
+        inorder(root)
+        
+        
+        return self.flag 
