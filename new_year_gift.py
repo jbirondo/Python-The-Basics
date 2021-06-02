@@ -5057,3 +5057,43 @@ def check(self, r:TreeNode, s:TreeNode) -> bool:
             return False
 
         return self.isSame(p.left, q.left) and self.isSame(p.right, q.right)
+
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        '''
+        Avoiding String Comparison:
+        
+        Idea is similar to find duplicate subtrees problem.
+        1. Serialize subroot postorder manner
+        2. Find if root has that serialization in same postorder manner. 
+        
+        Time and Space complexity: O(m+n)
+        
+        '''
+
+        def seri_subtree(subRoot):
+            if subRoot is None:
+                return '#'
+            left = seri_subtree(subRoot.left)
+            right = seri_subtree(subRoot.right)
+            temp = 'l'+left+str(subRoot.val)+'r'+right
+            return temp
+        
+        table = {}
+        seri = seri_subtree(subRoot)
+        table[seri] = True
+        ans = False
+        
+        def check_sub(root):
+            nonlocal ans
+            if root is None:
+                return '#'
+            left = check_sub(root.left)
+            right = check_sub(root.right)
+            temp = 'l'+left+str(root.val)+'r'+right
+            if temp in table:
+                ans = True
+            return temp
+        
+        check_sub(root)
+        return ans
