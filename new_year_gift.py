@@ -5309,3 +5309,22 @@ def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
         root.left = self.buildTree(leftPreorder,leftInorder)
         root.right = self.buildTree(rightPreorder,rightInorder)
         return root
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not inorder:
+            return None
+        
+        root = TreeNode(preorder[0])
+        inorder_idx = inorder.index(preorder[0])
+        preorder.pop(0)
+        
+        left_nodes = inorder[:inorder_idx]
+        right_nodes = inorder[inorder_idx + 1:]
+        root.left = self.buildTree(preorder, left_nodes)
+        root.right = self.buildTree(preorder, right_nodes)
+        
+        return root
+In preorder traversal, the nodes are marked visited in the order Root, Left, Right. In inorder traversal, the nodes are marked visited in the order Left, Root, Right.
+With this information we can determine that the root of the tree is the first element in the preorder list.
+The nodes in the left subtree are the nodes to the left of the root value's index in the inorder list and the nodes in the right subtree are the nodes to the right of the root value's index in the inorder list.
