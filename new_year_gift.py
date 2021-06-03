@@ -5230,3 +5230,33 @@ class Solution(object):
 
 
 The preorder traversal has each root in the tree, followed by its left and then right subtree while the inorder traversal has a left subtree followed by the current root then the right subtree. So we can use the preorder array to get each root. Then we find that value in the inorder array, and the left subtree will be all the values in the inorder array to the left of that root value and the right subtree consists of the values to the right. Then we recursively build the trees for the left and right subtrees and increment the preorder index to get the next root for these subtrees.
+
+The idea here is to that
+preOrder[0] = root ,
+if we find the root value in Inorder then
+the half below the inorder postion of the root is the left tree
+and the other half contains the right subtree
+You can either search the root value in the inorder list or you can simply create a hash map/dictionary to store the map inorder list values to indexes ( As every element is unique)
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        inOrderHash = dict()
+        n = len(preorder)
+        m = len(inorder)
+        for i in range(m):
+            inOrderHash[inorder[i]] = i
+
+        def buildTreeHelper(preStart, inStart, inEnd, preEnd):
+            if preStart>=preEnd or inStart >=inEnd:
+                 return None
+            root = TreeNode(preorder[preStart])
+            InOIndex = inOrderHash[root.val]
+            root.left = buildTreeHelper(preStart+1, inStart, InOIndex, preEnd)
+            root.right = buildTreeHelper(preStart+InOIndex-inStart+1, InOIndex+1, inEnd, preEnd)
+            return root
+        return buildTreeHelper(0,0,m,n)
