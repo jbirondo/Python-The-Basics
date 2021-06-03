@@ -5190,3 +5190,43 @@ class Solution:
         root.right = self.buildTree(preorder, right_inorder)
         
         return root
+
+class Solution(object):
+    def buildTree(self,preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        global preorder_ind
+        preorder_ind = 0
+        head = TreeNode()
+        self.buildTreeHelper(head, preorder, inorder)
+
+        return head
+
+
+    def buildTreeHelper(self, p, preorder, inorder):
+        global preorder_ind
+        root_val = preorder[preorder_ind]
+        p.val = root_val
+
+        if root_val in inorder:
+            ind = inorder.index(root_val)
+        else:
+            return
+
+        leftSub = inorder[0:ind]
+        rightSub = inorder[ind+1:]
+
+        if len(leftSub) != 0 and preorder_ind + 1 < len(preorder):
+            preorder_ind += 1
+            p.left = TreeNode()
+            self.buildTreeHelper(p.left, preorder, leftSub)
+        if len(rightSub) != 0 and preorder_ind + 1 < len(preorder):
+            preorder_ind += 1
+            p.right = TreeNode()
+            self.buildTreeHelper(p.right, preorder, rightSub)
+
+
+The preorder traversal has each root in the tree, followed by its left and then right subtree while the inorder traversal has a left subtree followed by the current root then the right subtree. So we can use the preorder array to get each root. Then we find that value in the inorder array, and the left subtree will be all the values in the inorder array to the left of that root value and the right subtree consists of the values to the right. Then we recursively build the trees for the left and right subtrees and increment the preorder index to get the next root for these subtrees.
