@@ -5260,3 +5260,32 @@ class Solution(object):
             root.right = buildTreeHelper(preStart+InOIndex-inStart+1, InOIndex+1, inEnd, preEnd)
             return root
         return buildTreeHelper(0,0,m,n)
+
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        root = None
+        
+        pq = deque(preorder)
+        iq = deque(inorder)
+        seen = set()
+        
+        def rec():
+            node = TreeNode(pq.popleft())
+            seen.add(node.val)
+            
+            if node.val != iq[0]:
+                #find left
+                node.left = rec()
+            
+            #pop self from inorder
+            iq.popleft()
+               
+            # if inorder still has unseen items, find right
+            if iq and iq[0] not in seen:
+                node.right = rec()
+            
+            return node
+            
+        
+        return rec()
+        
+        #preorder = [3,9,1,20,15,7], inorder = [1,9,3,15,20,7]
