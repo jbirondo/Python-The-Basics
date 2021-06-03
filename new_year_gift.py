@@ -5289,3 +5289,23 @@ class Solution(object):
         return rec()
         
         #preorder = [3,9,1,20,15,7], inorder = [1,9,3,15,20,7]
+
+def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+    		if len(preorder)==0:
+            return None
+        rootData = preorder[0]
+        root = TreeNode(rootData)
+        inOrderIndex = inorder.index(rootData)
+        if inOrderIndex == -1:
+            return None
+        leftInorder = inorder[0:inOrderIndex]
+        rightInorder = inorder[inOrderIndex +1:]
+        
+        lenLeftSubtree = len(leftInorder)
+        
+        leftPreorder = preorder[1:lenLeftSubtree+1]
+        rightPreorder = preorder[lenLeftSubtree+1:]
+        
+        root.left = self.buildTree(leftPreorder,leftInorder)
+        root.right = self.buildTree(rightPreorder,rightInorder)
+        return root
