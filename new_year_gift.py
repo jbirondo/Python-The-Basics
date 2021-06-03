@@ -5172,3 +5172,21 @@ preorder and inorder consist of unique values.
 Each value of inorder also appears in preorder.
 preorder is guaranteed to be the preorder traversal of the tree.
 inorder is guaranteed to be the inorder traversal of the tree.
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if(len(inorder) == 0):
+            return None
+        
+        root_element = preorder.pop(0)
+        root = TreeNode(root_element)
+        
+        inorder_index = inorder.index(root_element)
+        
+        left_inorder = inorder[:inorder_index]
+        right_inorder = inorder[inorder_index+1:]
+        
+        root.left = self.buildTree(preorder, left_inorder)
+        root.right = self.buildTree(preorder, right_inorder)
+        
+        return root
