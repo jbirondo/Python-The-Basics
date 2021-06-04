@@ -5396,3 +5396,22 @@ image
 Link to diagram to edit or play with more test cases:
 
 https://docs.google.com/drawings/d/1sOhhFcJcbcWa8V2NP1gd3HmTPUYq-WFid4vmLP3Vh3w/edit?usp=sharing
+
+def visit(node):
+    yield node.val
+
+def in_order(node):
+    if node is not None:
+        yield from in_order(node.left)
+        yield from visit(node)
+        yield from in_order(node.right)
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        last = None
+        for node in in_order(root):
+            if last is not None:
+                if last >= node:
+                    return False
+            last = node
+        return True
