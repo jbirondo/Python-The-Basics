@@ -5463,3 +5463,26 @@ class Solution(object):
         return self.isValidHelper(root.left, mn, root.val) and self.isValidHelper(root.right, root.val, mx)
 		
 For a binary tree to be valid, everything in the left subtree must be less than the current value of the root and everything in the right subtree must be greater than the root. Then to check if the tree is valid we can check if the current node value is less than or equal to the minimum value or greater than or equal to the maximum value. The maximum value for the left subtree is the current root value because everything to the left must be less than the root and the minimum value for the right subtree is the current root value because everything to the right must be greater than the root. We can then validate the tree by recursing on the left and right subtrees with these new maximum and minimum values.
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        if root==None:
+            return 1
+        if root.left==None and root.right==None:
+            return 1
+
+        list=[]
+        self.Inorder(root,list)
+        s=set(list)
+        if list==sorted(list) and len(list)==len(s):
+            return 1
+        return 0
+        
+    
+    
+    def Inorder(self,root,list):
+        if root==None:
+            return
+        self.Inorder(root.left,list)
+        list.append(root.val)
+        self.Inorder(root.right,list)
