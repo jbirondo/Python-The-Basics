@@ -5374,3 +5374,25 @@ class Solution(object):
             return False
         return self.isValidBST(root.left, minumum, root.val) and \
                self.isValidBST(root.right, root.val, maximum)
+
+The idea behind the approach is to track the upper and lower limit of a node.
+
+Upper limit of left child node will be equal to it's parent value.
+Lower limit of the left child node will be equal to lower limit of it's parent node.
+Upper limit of right child node will be equal to upper limit of it's parent node.
+Lower limit of right child node will be equal to it's parent value.
+Run inorder traversal over the tree and validate the upper and lower limits for each node.
+
+class Solution:
+    def isValidBST(self, root, upper_limit=float('inf'), lower_limit=float('-inf')):
+        return True if root is None else ( 
+            root.val > lower_limit
+            and root.val < upper_limit
+            and self.isValidBST(root.left, root.val, lower_limit)
+            and self.isValidBST(root.right, upper_limit, root.val))
+Recursive call diagram for input [5,1,14,-1,2,3,16]:
+image
+
+Link to diagram to edit or play with more test cases:
+
+https://docs.google.com/drawings/d/1sOhhFcJcbcWa8V2NP1gd3HmTPUYq-WFid4vmLP3Vh3w/edit?usp=sharing
