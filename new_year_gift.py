@@ -5443,3 +5443,23 @@ Lower is now the lower bound for the right subtree as all the children in the ri
 For the other hand, the left subtree is evaluated through a recursive too. Out val variable is passed as upper for the recursive call as all the children in the left subtree have to be less than the value of the current node.
 
 If none of these calls returns a False, we send a True and that means that the BST is satisfied.
+
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        
+        return self.isValidHelper(root, -100000000000, 10000000000)
+    
+    def isValidHelper(self, root, mn, mx):
+        if root == None:
+            return True
+        
+        if root.val <= mn or root.val >= mx:
+            return False
+        
+        return self.isValidHelper(root.left, mn, root.val) and self.isValidHelper(root.right, root.val, mx)
+		
+For a binary tree to be valid, everything in the left subtree must be less than the current value of the root and everything in the right subtree must be greater than the root. Then to check if the tree is valid we can check if the current node value is less than or equal to the minimum value or greater than or equal to the maximum value. The maximum value for the left subtree is the current root value because everything to the left must be less than the root and the minimum value for the right subtree is the current root value because everything to the right must be greater than the root. We can then validate the tree by recursing on the left and right subtrees with these new maximum and minimum values.
