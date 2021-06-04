@@ -5415,3 +5415,31 @@ class Solution:
                     return False
             last = node
         return True
+
+    def isValidBST(self, root: TreeNode, lower=float('-inf'), upper=float('inf')) -> bool:
+    		#part A
+		if not root:
+            return True
+        
+        val = root.val
+		# part B
+        if val <= lower or val >= upper:
+            return False
+        # part C
+        if not self.isValidBST(root.right, val, upper):
+            return False
+        if not self.isValidBST(root.left, lower, val):
+            return False
+        return True
+        
+To our method we added the lower and upper as input parameters with default infinite values to avoid modifying the signature of it. In the first if, we have a base case (see Part A in code)which validates empty trees, If node is None, True is returned from the method. If not, we continue and assign the value of the root element to a variable.
+
+Next, we check if val is less or equal to lower or if val is greater or equal to upper (see Part B in code). We do this because the value of the current node should be greater than all the values of the children in the left subtree, and it should be less than all the values of the children in the right subtree. If you remember, we set as default with infinite values, so this will not be triggered yet, because we are on the root node.
+
+Now that we have checked the current node, it’s time to check it for the subtrees (see Part C in code). For this, we make a recursive call to the right subtree of the current node. The right node is passed as node, val is passed as lower while upper stays the same.
+
+Lower is now the lower bound for the right subtree as all the children in the right subtree have to be greater than the value of the current node. If the recursive call returns False, we're done and that's it.
+
+For the other hand, the left subtree is evaluated through a recursive too. Out val variable is passed as upper for the recursive call as all the children in the left subtree have to be less than the value of the current node.
+
+If none of these calls returns a False, we send a True and that means that the BST is satisfied.
