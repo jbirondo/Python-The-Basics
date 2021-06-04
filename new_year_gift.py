@@ -5365,3 +5365,12 @@ Constraints:
 
 The number of nodes in the tree is in the range [1, 104].
 -231 <= Node.val <= 231 - 1
+
+class Solution(object):
+    def isValidBST(self, root, minumum = float('-inf'), maximum = float('inf')):
+        if not root:
+            return True
+        if root.val >= maximum or root.val <= minumum:
+            return False
+        return self.isValidBST(root.left, minumum, root.val) and \
+               self.isValidBST(root.right, root.val, maximum)
