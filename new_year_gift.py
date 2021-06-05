@@ -5588,3 +5588,20 @@ class Solution(object):
 			lastValue[0] = root.val
 			self.reverseInorder(root.right, k, numberOfVisits, lastValue)
 		return lastValue[0]
+
+class Solution(object):
+    def kthSmallest(self, root, k):
+        global count, output
+        count = k
+        def inorder(node):
+            global count, output
+            if(count>0 and node):
+                inorder(node.left)
+                if(count > 0):
+                    count -= 1
+                    if(count == 0):
+                        output = node.val
+                    else:
+                        inorder(node.right)
+        inorder(root)
+        return output
