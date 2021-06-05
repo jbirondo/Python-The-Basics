@@ -5562,3 +5562,29 @@ class Solution:
         out = [0, 0]
         self._inorder(root, out, k)
         return out[0]
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+	def kthSmallest(self, root, k):
+		"""
+		:type root: TreeNode
+		:type k: int
+		:rtype: int
+		"""
+		value = self.reverseInorder(root, k, [0], [-1])
+		return value
+
+	def reverseInorder(self, root, k, numberOfVisits, lastValue):
+		if root is None or numberOfVisits[0] >= k:
+			return
+		self.reverseInorder(root.left, k, numberOfVisits, lastValue)
+		if numberOfVisits[0] < k:
+			numberOfVisits[0] += 1
+			lastValue[0] = root.val
+			self.reverseInorder(root.right, k, numberOfVisits, lastValue)
+		return lastValue[0]
