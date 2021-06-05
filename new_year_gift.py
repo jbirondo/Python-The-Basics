@@ -5642,3 +5642,169 @@ class Solution:
             return
         self.inorder(root.right)
 Its necessary to understand that we must use the find or search approach in such kind of problems. We need to completely terminate recursion when we reach our desirable state.
+
+class Solution:
+    # follow-up: we store the number of nodes in the left subtree as an attribute on each node.
+    # this helps us decide whether we want to go left or right for the k-th smallest element.
+    # we should then, of course, increment or decrement this counter as we insert or delete nodes.
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(n) time and O(n) space
+        # recursive in-order traversal, then select element k - 1 from the array
+        def traverse(node: TreeNode) -> None:
+            if not node:
+                return
+            traverse(node.left)
+            array.append(node.val)
+            traverse(node.right)
+
+        array = []
+        return traverse(root) or array[k - 1]  # neat little trick
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(n) time and O(n) space
+        # recursive in-order traversal, then select element k - 1 from the array - condensed
+        return (dfs := lambda node: dfs(node.left) + [node] + dfs(node.right) if node else [])(root)[k - 1].val
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(k) space
+        # recursive in-order traversal with early stopping
+        def traverse(node: TreeNode) -> None:
+            if not node:
+                return
+            traverse(node.left)
+            if len(array) == k:
+                return
+            array.append(node.val)
+            traverse(node.right)
+
+        array = []
+        return traverse(root) or array[-1]
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(k) space
+        # iterative in-order traversal with early stopping
+        node, stack = root, []
+        while node or stack:
+            if node:
+                stack.append(node)
+                node = node.left
+            else:
+                node = stack.pop()
+                k -= 1
+                if k == 0:
+                    return node.val
+                node = node.right
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(k) space
+        # iterative in-order traversal with early stopping - condensed
+        node, arr, val = root, [], None
+        while k:
+            val, node, arr, k = (0, node.left, arr + [node], k) if node else (arr[-1].val, arr.pop().right, arr, k - 1)
+        return val
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(1) space
+        # lazy in order traversal using an iterator with early stopping
+        def traverse(node: TreeNode):
+            if not node:
+                return
+            yield from traverse(node.left)
+            yield node.val
+            yield from traverse(node.right)
+
+        for i, val in enumerate(traverse(root)):
+            if k - i == 1:
+                return val
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(1) space
+        # lazy in order traversal using an iterator with early stopping - condensed
+        def traverse(node: TreeNode):
+            yield from (*traverse(node.left), node.val, *traverse(node.right)) if node else ()
+
+        return next(val for i, val in enumerate(traverse(root), 1) if not k - i)
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(1) space
+        # cannot do a one-liner using the Walrus operator here it seems:
+        # SyntaxError: assignment expression cannot be used in a comprehension iterable expression
+        gen = (dfs := lambda node: (yield from (*dfs(node.left), node.val, *dfs(node.right)) if node else ()))(root)
+        return next(val for i, val in enumerate(gen) if k - i == 1)
+
+    def kthSmallest(self, root, k):  # O(h) amortized time if balanced, O(n) worst case time, and O(h) space
+        # recursive binary search
+        def count_nodes(node: TreeNode) -> int:
+            if not node:
+                return 0
+            return 1 + count_nodes(node.left) + count_nodes(node.right)
+
+        def traverse(node: TreeNode, n: int) -> int:
+            count = count_nodes(node.left)
+            if count < n:
+                return traverse(node.right, n - count - 1)
+            elif count == n:
+                return node.val
+            return traverse(node.left, n)
+
+        return traverse(root, k - 1)
+
+    def kthSmallest(self, root, k):  # O(h) amortized time if balanced, O(n) worst case time, and O(h) space
+        # recursive binary search - condensed
+
+        def traverse(node: TreeNode, n: int) -> int:
+            ctr = (dfs := lambda node: 1 + dfs(node.left) + dfs(node.right) if node else 0)(node.left)
+            return traverse(node.right, n - ctr - 1) if ctr < n else node.val if ctr == n else traverse(node.left, n)
+
+        return traverse(root, k - 1)
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # amortized O(h) time (if balanced), worst case O(n) time
+        # iterative binary search
+        def count_nodes(node: TreeNode) -> int:
+            if not node:
+                return 0
+            return 1 + count_nodes(node.left) + count_nodes(node.right)
+
+        node, count = root, count_nodes(root.left)
+        while count != k - 1:
+            if count < k - 1:
+                node = node.right
+                k -= count + 1
+            else:
+                node = node.left
+            count = count_nodes(node.left)
+        return node.val
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # amortized O(h) time (if balanced), worst case O(n) time
+        # iterative binary search - condensed
+        def count_nodes(node: TreeNode) -> int:
+            return 1 + count_nodes(node.left) + count_nodes(node.right) if node else 0
+
+        node, count = root, count_nodes(root.left)
+        while count != k - 1:
+            node, k = (node.right, k - count - 1) if count < k - 1 else (node.left, k)
+            count = count_nodes(node.left)
+        return node.val
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(1) space
+        # Morris traversal
+        node = root
+        while node:
+            if not node.left:
+                k -= 1
+                if k == 0:
+                    return node.val
+                node = node.right
+            else:
+                rightmost = node
+                node = temp = node.left
+                while temp.right:
+                    temp = temp.right
+                rightmost.left = None
+                temp.right = rightmost
+
+    def kthSmallest(self, root: TreeNode, k: int) -> int:  # O(k) time and O(1) space
+        # Morris traversal - condensed
+        node, val = root, None
+        while k:
+            if not node.left:
+                val, node, k = node.val, node.right, k - 1
+            else:
+                rightmost, node, temp = node, node.left, node.left
+                while temp.right:
+                    temp = temp.right
+                rightmost.left, temp.right = None, rightmost
+        return val
