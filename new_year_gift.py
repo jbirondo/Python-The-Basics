@@ -5605,3 +5605,40 @@ class Solution(object):
                         inorder(node.right)
         inorder(root)
         return output
+
+Here is my optimized code using the find approach. Here the condition for find is when count equals 0.
+
+class Solution:
+    def kthSmallest(self,root,k):
+        self.count=k
+        node=self.inorder(root)
+        return node.val
+       
+    def inorder(self,root):
+        if not root:
+            return None
+        left=self.inorder(root.left)
+        if left:
+            return left
+        self.count-=1
+        if self.count==0:
+            return root
+        return self.inorder(root.right)
+The code below is inefficient although we will get the right answer. We have not terminated the recursion. Placing a return statement when count is 0, will not terminate the recursion. It will only stop the right subtree traversal of that particular node. Other nodes' left and right subtree will still be explored which is unnecessary.
+
+class Solution:
+    def kthSmallest(self,root,k):
+        self.count,self.ksm=k,0
+		self.inorder(root)
+        return self.ksm
+       
+    def inorder(self,root):
+        if not root:
+            return
+        self.inorder(root.left)
+        self.count-=1
+        if self.count==0:
+			self.ksm=root.val
+            return
+        self.inorder(root.right)
+Its necessary to understand that we must use the find or search approach in such kind of problems. We need to completely terminate recursion when we reach our desirable state.
