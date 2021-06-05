@@ -5548,3 +5548,17 @@ def kthSmallest(self, root: TreeNode, k: int) -> int:
         dfs(root)    
         return nums[-1]
 		```
+
+class Solution:
+    def _inorder(self, node, out, k):
+        if node:
+            self._inorder(node.left, out, k)
+            if out[1] < k:
+                out[1] += 1
+                out[0] = node.val
+            self._inorder(node.right, out, k)
+        
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        out = [0, 0]
+        self._inorder(root, out, k)
+        return out[0]
