@@ -5896,3 +5896,16 @@ class Solution(object):
 				return self.lowestCommonAncestor(root.right,p,q)
 			else:
 				return root
+
+def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    	if p.val>q.val:
+		p, q = q, p
+	return self.find_lca(root, p, q)
+
+def find_lca(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+	if (root.val>=p.val and root.val<=q.val):
+		return root
+	elif (root.val>p.val and root.val>q.val):
+		return self.find_lca(root.left, p, q)
+	elif (root.val<p.val and root.val<q.val):
+		return self.find_lca(root.right, p, q)
