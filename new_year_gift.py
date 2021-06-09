@@ -5996,3 +5996,57 @@ class Trie:
         Returns if there is any word in the trie that starts with the given prefix.
         """
         return True if (r:=self._traverse(prefix) ) else False
+
+from functools import reduce
+class Trie:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        T = lambda : defaultdict(T)
+        self.root = T()
+        self.END = '#'
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        reduce(dict.__getitem__, word, self.root)[self.END] = word
+        
+        # equivalent to the following code:
+        #curr = self.root
+        #for ch in word:
+        #    curr = curr[ch]
+        #curr[self.END] = word
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        curr = self.root
+        for ch in word:
+            if ch not in curr:
+                return False
+            curr = curr[ch]
+        return self.END in curr
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        curr = self.root
+        for ch in prefix:
+            if ch not in curr:
+                return False
+            curr = curr[ch]
+        return True
+        
+
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
