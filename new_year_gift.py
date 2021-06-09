@@ -5953,3 +5953,46 @@ Constraints:
 1 <= word.length, prefix.length <= 2000
 word and prefix consist only of lowercase English letters.
 At most 3 * 104 calls in total will be made to insert, search, and startsWith.
+
+class Trie:
+    class Node:
+        def __init__(self):
+            self.children=[None]*26
+            self.isword=False
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.root=Trie.Node()
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        self._traverse(word,toadd=True).isword=True
+        
+    def _traverse(self,word,toadd=False) -> any:
+        root=self.root
+        p=0
+        while p<len(word):
+            c=ord(word[p])-0x61
+            if not root.children[c]:
+                if not toadd:
+                    return None
+                else:
+                    root.children[c]=self.Node()
+            root=root.children[c]
+            p+=1
+        return root
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        return r.isword if (r:=self._traverse(word) ) else False
+
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        return True if (r:=self._traverse(prefix) ) else False
