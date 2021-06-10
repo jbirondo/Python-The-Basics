@@ -6243,3 +6243,24 @@ Constraints:
 word in addWord consists lower-case English letters.
 word in search consist of  '.' or lower-case English letters.
 At most 50000 calls will be made to addWord and search.
+
+class WordDictionary:
+    def __init__(self):
+        self.map = collections.defaultdict(list)
+
+    def addWord(self, word):
+        self.map[len(word)].append(word)       
+    
+
+    def search(self, word):
+        indexes = [ i for i,v in enumerate(word) if v !='.']
+        
+        for item in self.map[len(word)]:
+            ismatch = True
+            for i in indexes:
+                if item[i] != word[i]:
+                    ismatch = False
+                    continue
+            if ismatch:
+                return True
+        return False
