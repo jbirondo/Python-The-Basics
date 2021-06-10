@@ -6338,3 +6338,47 @@ class WordDictionary:
                 return True
         
         return False
+
+class WordDictionary:
+    
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.len_to_words = defaultdict(set)
+        self.letter_to_words = defaultdict(set)
+        self.n_stored = 0
+
+    def addWord(self, word: str) -> None:
+        self.n_stored += 1
+        self.len_to_words[len(word)].add(word)
+        letters = set(c for c in word)
+        for letter in letters:
+            self.letter_to_words[letter].add(word)
+        # print(f"{self.len_to_words=}; {self.letter_to_words=}")
+
+    def search(self, word: str) -> bool:
+        # Iteratively generate a candidate list, keep intersecting
+        # print(f"Searching for {word}")
+        candidates = self.len_to_words[len(word)]
+        # print(f"\t{candidates=}")
+        letters = set(c for c in word if c != ".")
+        for letter in letters:
+            # print(f"\t{letter=}")
+            # print(f"\tIntersecting with {self.letter_to_words[letter]}")
+            candidates = candidates.intersection(self.letter_to_words[letter])
+            # print(f"\t{candidates=}")
+        
+        # Now this list is short enough that we can brute force it
+        return any(self._matches(word, candidate) for candidate in candidates)
+
+    def _matches(self, word, candidate) -> bool:    
+        for w, c in zip(word, candidate):
+            if w != c and w != ".":
+                return False
+        return True
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
