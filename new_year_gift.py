@@ -6426,3 +6426,50 @@ class WordDictionary:
 # obj = WordDictionary()
 # obj.addWord(word)
 # param_2 = obj.search(word)
+
+class TrieNode:
+    def __init__(self, letter=None):
+        # initialize TrieNode
+        # it should have link to the downstream neighbirs
+        # also a signal that checks whether current node is end of
+        # a word
+        self.neighbors = {} # this allows us to access both the letter and its node instance 
+        self.last_letter = False
+        
+class WordDictionary:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.trie = TrieNode()
+        
+
+    def addWord(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        head = self.trie # get a pointer to the root of the trie
+        for letter in word:
+            # if we already dont have it in the neighbors add it
+            if letter not in head.neighbors:
+                head.neighbors[letter] = TrieNode(letter)
+            # traverse to the correct neighbor
+            head = head.neighbors[letter]
+        head.last_letter = True # last letter of the word is marked so that search method knows whether it reached the end
+            
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        head = self.trie
+        def search_recursive(head, index):
+            # getting to the end of the trie and last head matched
+            if index == len(word):
+                return head.last_letter
+            if word[index] in head.neighbors:
+                return search_recursive(head.neighbors[word[index]], index + 1)
+            if word[index] == '.':
+                return any([search_recursive(neighbor, index + 1) for neighbor in head.neighbors.values()])
+            return False
+        return search_recursive(head,0)
