@@ -6382,3 +6382,47 @@ class WordDictionary:
 # obj = WordDictionary()
 # obj.addWord(word)
 # param_2 = obj.search(word)
+
+class WordDictionary:
+    
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.trie = {}
+        
+
+    def addWord(self, word: str) -> None:
+        node = self.trie
+
+        for ch in word:
+            if not ch in node:
+                node[ch] = {}
+            node = node[ch]
+        node['$'] = True
+
+    def search(self, word: str) -> bool:
+        q = [self.trie]
+        
+        for ch in word:            
+            ln = len(q) 
+            for i in range(ln): # only pop what you put in last iteration 
+                t = q.pop(0)
+                if ch not in t:
+                    if ch == ".":
+                        for node in t:
+                            if t[node] != True: # Append all nodes that are hashtables
+                                q.append(t[node])                    
+                else: # if character is there append its hashtable
+                    q.append(t[ch])
+        
+        if not q: return False # If its empty, it's false
+        
+        for nod in q:
+            if '$' in nod: # Check if there is any word 
+                return True
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
