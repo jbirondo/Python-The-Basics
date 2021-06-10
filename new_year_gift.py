@@ -6264,3 +6264,42 @@ class WordDictionary:
             if ismatch:
                 return True
         return False
+
+class WordDictionary:
+    
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.value = ''
+        self.children = dict()
+
+    def addWord(self, word: str) -> None:
+        self._addWord(word, word)
+
+    def _addWord(self, word: str, remaining: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        if not remaining:
+            self.value = word
+            return
+        c = remaining[0]
+        if c in self.children:
+            self.children[c]._addWord(word, remaining[1:])
+        else:
+            new_node = self.children[c] = WordDictionary()
+            new_node._addWord(word, remaining[1:])
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        if not word:
+            return bool(self.value)
+        c = word[0]
+        if c == '.':
+            return any(n.search(word[1:]) for n in self.children.values())
+        if c in self.children:
+            return self.children[c].search(word[1:])
+        return False
