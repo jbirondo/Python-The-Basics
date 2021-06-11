@@ -6724,3 +6724,61 @@ class Solution:
                 dfs(board,i,j,trie.child)
         
         return output 
+
+class Solution:
+    
+    def __init__(self):
+        self.trie = {}
+        self.direction = [(1,0), (-1, 0), (0, 1), (0, -1)]
+        self.valid_words = set()
+		
+     # inserting a word into trie
+    def insert_word(self, word):
+        node = self.trie
+        
+        for char in word:
+            if char not in node:
+                node[char] = {}
+            node = node[char]
+        
+        node["end"] = True
+
+    def dfs(self, grid, r, c, node, word):
+        
+        if "end" in node:
+            self.valid_words.add(word)
+        
+        char = grid[r][c]
+        grid[r][c] = "#"  
+
+        for row, col in self.direction:
+            nr, nc = r+row, c +col 
+             
+            if not (0<=nr< self.rows) or not (0<=nc<self.cols):
+                continue 
+ 
+            if grid[nr][nc] not in node:
+                continue
+ 
+            self.dfs(grid, nr, nc, node[grid[nr][nc]], word+grid[nr][nc])
+        
+        grid[r][c] = char 
+        return False
+    
+    def findWords(self, grid, dictonary):
+        
+        self.rows = len(grid)
+        self.cols = len(grid[0])
+        
+        for word in dictonary:
+            self.insert_word(word)
+        
+        
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if grid[r][c] not in self.trie:
+                    continue
+                self.dfs(grid, r, c, self.trie[grid[r][c]], grid[r][c])
+
+                    
+        return self.valid_words
