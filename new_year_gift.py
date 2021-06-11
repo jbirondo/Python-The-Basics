@@ -6512,3 +6512,53 @@ board[i][j] is a lowercase English letter.
 1 <= words[i].length <= 10
 words[i] consists of lowercase English letters.
 All the strings of words are unique.
+
+class Solution:
+    class TrieNode:
+        def __init__(self):
+            self.next=[None]*26
+            self.word=None
+            self.children=0
+        def probe(self,word,add=False)->bool:
+            root,p=self,0
+            while p<len(word):
+                c=ord(word[p])-0x61
+                if not root.next[c]:
+                    if add:
+                        root.next[c]=Solution.TrieNode()
+                        root.children+=1
+                    else:
+                        return None
+                root=root.next[c]
+                p+=1
+            return root
+        def add(self,word)->None:
+            self.probe(word,True).word=word
+            
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        def dfs(r,c,root):
+            if not (newroot:=root.probe(board[r][c]) ):
+                return
+            saved,board[r][c]=board[r][c],'*'
+            if newroot.word :
+                res.append(newroot.word)
+                newroot.word=None
+            for dr,dc in dirs:
+                nr,nc=r+dr,c+dc
+                if nr>=0 and nr<m and nc>=0 and nc<n and board[nr][nc]!='*':
+                        dfs(nr,nc,newroot)
+            board[r][c]=saved            
+            if newroot.children==0:
+                root.next[ord(saved)-0x61]=None
+                root.children-=1
+                
+        m,n=len(board),len(board[0])
+        dirs=((-1,0),(1,0),(0,-1),(0,1))
+        root=self.TrieNode()
+        for word in words:
+            root.add(word)
+        res=[]
+        for r,row in enumerate(board):
+            for c,col in enumerate(row):
+                dfs(r,c,root)
+        return res
