@@ -6675,3 +6675,52 @@ class Solution:
                 if board[i][j] in root.kids: helper(i, j, root.kids[board[i][j]], set(), board[i][j])         
                 
         return list(res)
+
+class TrieNode:
+    def __init__(self):
+        self.child = {}
+    
+    def insert(self,word):   #insert word in a trie
+        current = self.child
+        for l in word:
+            if l not in current:
+                current[l] = {}
+            current =current[l]
+        current['#'] = True
+        current['!'] = word
+    
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        
+        trie = TrieNode()
+        for word in words:
+            trie.insert(word)   #insert all words in trie
+            
+        output = []
+        
+        def dfs(board,i,j,nextletter):
+            if i < 0 or j < 0 or i >= len(board) or j >= len(board[0]) or nextletter.get(board[i][j]) == None:
+                return   #make sure within bounds
+ 
+            c = board[i][j]   #saving the characters for other dfs calls
+    
+            if '#' in nextletter[board[i][j]] and nextletter[board[i][j]]['#'] == True:
+                output.append(nextletter[board[i][j]]['!'])   #adding the word in output
+                nextletter[board[i][j]]['#'] = False  #making the word unavailable in trie so that it can be used as prefix for other words
+            
+            nextletter = nextletter[board[i][j]]        
+            
+            board[i][j] = '*'
+            
+            dfs(board,i-1,j,nextletter)
+            dfs(board,i+1,j,nextletter)
+            dfs(board,i,j-1,nextletter)
+            dfs(board,i,j+1,nextletter)
+            
+            board[i][j] = c
+            
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                dfs(board,i,j,trie.child)
+        
+        return output 
