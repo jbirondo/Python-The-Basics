@@ -6562,3 +6562,78 @@ class Solution:
             for c,col in enumerate(row):
                 dfs(r,c,root)
         return res
+
+class Solution: # Pre-optimized version. Use Trie to speed up pruning but without any other optimizations.
+    class TrieNode:
+        def __init__(self):
+            self.next=[None]*26
+            self.isword=False
+        def search(self,word)->bool:
+            # BUG 3: None.isword error: return self._probe(word).isword 
+            r=self._probe(word)
+            return r.isword if r else False
+        def _probe(self,word,add=False):
+            root=self
+            p=0
+            while p<len(word):
+                c=ord(word[p])-0x61
+                if not root.next[c]:
+                    if add:
+                        root.next[c]=Solution.TrieNode()
+                    else:
+                        return None
+                root=root.next[c]
+                p+=1
+            return root
+        def add(self,word)->None:
+            newnode=self._probe(word,True)
+            newnode.isword=True
+        def startswith(self,word)->bool:
+            return self._probe(word) 
+        def printtrie(self,sofar='',istop=True):
+            if istop:
+                print("Trie:",end=" ")
+            if self.isword:
+                            print(sofar,end=" ")
+            for i,next in enumerate(self.next):
+                # BUG 2. should be self.isword:  if next.isword: print(sofar,end=" ")
+                if next:
+                    next.printtrie(sofar+chr(0x61+i),False)
+            if istop:
+                print()
+            
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        root=self.TrieNode()
+        recursions=0
+        def dfs(r,c,sofar,current,pruning,root=root):
+            nonlocal recursions
+            recursions+=1
+            newroot=root.startswith(current) if root else None
+            if pruning and not newroot:
+                return
+            visited.add(n*r+c)
+            sofar+=current
+            if newroot and newroot.isword :
+                res.add(sofar)
+            for dr,dc in dirs:
+                nr,nc=r+dr,c+dc
+                if nr>=0 and nr<m and nc>=0 and nc<n and nr*n+nc not in visited :
+                        dfs(nr,nc,sofar,board[nr][nc],pruning,newroot)
+            visited.remove(n*r+c)
+                
+        for word in words:
+            root.add(word)
+        dirs=((-1,0),(1,0),(0,-1),(0,1))
+        m,n=len(board),len(board[0])
+        # BUG 4. there could be duplicates eg two eat starting from different cell. need to use set to dedup: res=[]
+        # BUG 5. later on, I remove leafnodes gradually from Trie every time a matched word is found, this guarantees no duplicate and no need for a set
+        res=set()
+        visited=set()
+        pruning=True
+        for r,row in enumerate(board):
+            for c,col in enumerate(row):
+                # BUG 1. should have use prefix to early terminate an unqualified starting node, because single char might be a valid word like 'a'
+                # Later, I refactored and moved the prefix check into dfs() function
+                dfs(r,c,'',col,pruning,root)
+        print("Total recursions for matrix of size ",'{}*{} = '.format(m,n),recursions)
+        return list(res)
