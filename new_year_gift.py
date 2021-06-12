@@ -6866,3 +6866,20 @@ class Solution:
                 result[n - 1][1] = max(result[n - 1][1], insert[1])
                 result[n - 1][0] = min(result[n - 1][0], insert[0])
         return result
+
+from bisect import insort
+from typing import List
+class Solution:
+  def insert(self,intervals:List[List[int]],newInterval:List[int]) -> List[List[int]]:
+    intervals.sort(key = lambda x:x[0])
+    insort(intervals,newInterval)
+    start = 0
+    end = len(intervals) - 1
+    while (start< end):
+      if((intervals[start][1] >= intervals[start+1][0]) and (intervals[start][0] <=intervals[start][1])):
+        intervals[start][1] = max(intervals[start][1],intervals[start+1][1])
+        del intervals[start + 1]
+        end -= 1
+      else:
+        start += 1
+    return intervals
