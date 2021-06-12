@@ -6883,3 +6883,20 @@ class Solution:
       else:
         start += 1
     return intervals
+
+def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+    t=0
+    for i in range(len(intervals)):
+        if intervals[i][0]>newInterval[0]:
+            intervals.insert(i,newInterval)
+            t=1
+            break
+    if t==0:
+        intervals.append(newInterval)
+    fin=[intervals[0]]
+    for i in intervals[1:]:
+        if i[1]>=fin[-1][1] and i[0]<=fin[-1][1]:
+            fin[-1]=[fin[-1][0],i[1]]
+        elif i[1]>=fin[-1][1] and i[0]>=fin[-1][1]:
+            fin.append(i)
+    return fin
