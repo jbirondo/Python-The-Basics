@@ -6900,3 +6900,25 @@ def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[Lis
         elif i[1]>=fin[-1][1] and i[0]>=fin[-1][1]:
             fin.append(i)
     return fin
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:     
+        res = []
+        i = 0
+        while i < len(intervals):
+            interval = intervals[i]
+            if interval[1] < newInterval[0]:
+                res.append(interval)
+            elif interval[0] > newInterval[1]:
+                break
+            else:
+                newInterval[0] = min(newInterval[0], interval[0])
+                newInterval[1] = max(newInterval[1], interval[1])
+        
+            i += 1
+        
+        res.append(newInterval)
+        for j in range(i, len(intervals)):
+            res.append(intervals[j])
+                    
+        return res  
