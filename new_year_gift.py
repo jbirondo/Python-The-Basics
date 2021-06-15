@@ -6977,3 +6977,12 @@ class Solution:
                     stack.append(iv)
 		#print(stack)
         return len(intervals)-len(stack)+1
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key=lambda x: x[1])
+        last, ans = 0, 0
+        for i in range(1, len(intervals)):
+            if intervals[last][1] > intervals[i][0]: ans += 1
+            else: last = i
+        return ans
