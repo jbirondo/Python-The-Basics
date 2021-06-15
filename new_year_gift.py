@@ -7029,3 +7029,31 @@ class Solution:
                 pend = min(pend,intervals[i][1])
                 remove+=1
         return remove
+
+def eraseOverlapIntervals(self, intervals):
+        
+        if len(intervals) == 1:
+            return 0
+        
+        intervals.sort(key=lambda x: x[1])
+        
+        #Sort intervals BY THE END TIME, THAN compare OTHER interval, ITS START TIME, WITH THE END TIME of THE
+        #previous (LAST) interval
+        
+        #If we have OVERLAP, that means, IT must be removed
+        
+        #greedy algorithm, we want to accumulate THE MOST meetings possible in the list 
+        
+        # [[1,2],[2,3],[3,4],[1,3]]
+        # [[1, 2], [2, 3], [1, 3], [3, 4]] (SORTED by END TIME)
+        
+        
+        lastInterval = intervals[0]
+        count = 0
+        for i in range(1, len(intervals), 1):
+            if intervals[i][0] >= lastInterval[1]:
+                lastInterval = intervals[i]
+            else:
+                count += 1
+                
+        return count
