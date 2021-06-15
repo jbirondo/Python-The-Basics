@@ -6986,3 +6986,16 @@ class Solution:
             if intervals[last][1] > intervals[i][0]: ans += 1
             else: last = i
         return ans
+    def sol(self, intervals) -> int:
+        end = float('-inf')
+        erased = 0
+        # Sort intervals by end time
+        intervals.sort(key=lambda a: a[1])
+        # Traverse intervals
+        for interval in intervals:
+            if interval[0] >= end:
+                end = interval[1]
+            # Track Overlap (Need not track intervals themselves)
+            else:
+                erased += 1
+        return erased
