@@ -6999,3 +6999,20 @@ class Solution:
             else:
                 erased += 1
         return erased
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        # whenever there is overlap between two elements, one must be removed
+        # then the follow up would be: which one should be removed and which one should stay
+        # at this step we use greedy method: the one having less influence on the following elements stays which is expressed by last = intervals[i] if intervals[i][1] < last[1] else last
+        
+        intervals.sort()
+        last = intervals[0]
+        count = 0
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < last[1]:
+                count += 1
+                last = intervals[i] if intervals[i][1] < last[1] else last
+            else:
+                last = intervals[i]
+        return count
