@@ -7126,3 +7126,28 @@ class Solution:
         if res&32768:
             res |= (~65535)
         return res
+
+class Solution:
+    def getSum(self, a: int, b: int) -> int:
+        aa = abs(a)
+        ab = abs(b)
+        
+        if aa < ab:
+            return self.getSum(b, a)
+        
+        if a == 0: return b
+        if b == 0: return a
+        
+        la = [None] * aa
+        lb = [None] * ab
+        
+        sign = 1 if a > 0 else -1
+        
+        if a * b > 0:
+            la.extend(lb)
+            
+        if a * b < 0:
+            for e in lb:
+                la.remove(e)
+        
+        return len(la) * sign
