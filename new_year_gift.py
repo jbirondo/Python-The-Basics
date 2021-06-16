@@ -7151,3 +7151,7 @@ class Solution:
                 la.remove(e)
         
         return len(la) * sign
+
+class Solution:
+    def getSum(self, a: int, b: int) -> int:
+        return sum([a, b])
