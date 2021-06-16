@@ -7109,3 +7109,20 @@ Constraints:
 class Solution:
     def getSum(self, a: int, b: int) -> int:
         return int(math.log10((10**a) *(10**b)))
+
+class Solution:
+    def getSum(self, a: int, b: int) -> int:
+        a &= 65535
+        b &= 65535
+        res = carry = 0
+        bit = 1
+        for _ in range(16):
+            d1 = bool(a&bit)
+            d2 = bool(b&bit)
+            if (d1^d2^carry):
+                res |= bit
+            carry = d1&d2 or d1&carry or d2&carry
+            bit <<= 1
+        if res&32768:
+            res |= (~65535)
+        return res
