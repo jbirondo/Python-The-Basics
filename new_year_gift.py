@@ -7105,3 +7105,7 @@ Output: 5
 Constraints:
 
 -1000 <= a, b <= 1000
+
+class Solution:
+    def getSum(self, a: int, b: int) -> int:
+        return int(math.log10((10**a) *(10**b)))
