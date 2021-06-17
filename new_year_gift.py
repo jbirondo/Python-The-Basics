@@ -7217,3 +7217,15 @@ class Solution:
     def hammingWeight(self, n: int) -> int:
         result = bin(n).count("1")
         return result 
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        n = bin(n)[2:]
+        n = sorted(n)
+        x, j = len(n), 0
+        for i in range(1,x+1):
+            if n[-i] == '1':
+                j += 1
+            else:
+                return j
+        return j
