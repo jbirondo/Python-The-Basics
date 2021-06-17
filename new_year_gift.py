@@ -7194,3 +7194,12 @@ Explanation: The input binary string 11111111111111111111111111111101 has a tota
 Constraints:
 
 The input must be a binary string of length 32.
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        num = 0
+        while n:
+            if n & 1:
+                num += 1
+            n >>= 1
+        return num
