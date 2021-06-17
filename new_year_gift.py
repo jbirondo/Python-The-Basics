@@ -7212,3 +7212,8 @@ class Solution:
                 count += 1
             n = n//2
         return count  
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        result = bin(n).count("1")
+        return result 
