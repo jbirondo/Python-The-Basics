@@ -7292,3 +7292,10 @@ class Solution:
             result.append(str(bin(i).replace("0b","")).count("1"))
 
         return result
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        dp = [0,1,1,2]
+        while len(dp)<n+1:
+            dp.extend([num+1 for num in dp])
+        return dp[:n+1]
