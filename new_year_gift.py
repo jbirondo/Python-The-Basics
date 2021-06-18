@@ -7274,3 +7274,12 @@ Follow up:
 
 It is very easy to come up with a solution with a runtime of O(n log n). Can you do it in linear time O(n) and possibly in a single pass?
 Can you do it without using any built-in function (i.e., like __builtin_popcount in C++)?
+
+class Solution:
+    def countBits(self, num: int) -> List[int]:
+        c=[]
+        for i in range(0,num+1):
+            t=bin(i).replace("0b","")
+            x=t.count('1')
+            c.append(x)
+        return c
