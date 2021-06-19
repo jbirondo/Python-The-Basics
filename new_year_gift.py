@@ -7356,3 +7356,25 @@ class Solution:
 		Memory Usage: 15.5 MB, less than 48.94% of Python3 online submissions for Missing Number.
 		"""
 		return int((len(nums)*(len(nums)+1))/2)-sum(nums)
+
+class Solution(object):
+    def missingNumber(self, nums):
+        
+        noZero = True
+        mx = -1
+        sm = 0
+        
+        for num in nums:
+            if num == 0:
+                noZero = False
+            
+            mx = max(mx, num)
+            sm += num
+            
+            
+        if noZero:
+            return 0
+        
+        t = mx * (mx + 1) // 2
+        
+        return mx + 1 if t == sm else t - sm
