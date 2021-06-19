@@ -7348,3 +7348,11 @@ n == nums.length
 1 <= n <= 104
 0 <= nums[i] <= n
 All the numbers of nums are unique
+
+class Solution:
+    	def missingNumber(self, nums):
+		"""
+		Runtime: 124 ms, faster than 90.27% of Python3 online submissions for Missing Number.
+		Memory Usage: 15.5 MB, less than 48.94% of Python3 online submissions for Missing Number.
+		"""
+		return int((len(nums)*(len(nums)+1))/2)-sum(nums)
