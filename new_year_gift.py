@@ -7378,3 +7378,8 @@ class Solution(object):
         t = mx * (mx + 1) // 2
         
         return mx + 1 if t == sm else t - sm
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        return (n*(n+1))//2 - sum(nums)
