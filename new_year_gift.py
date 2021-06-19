@@ -7383,3 +7383,32 @@ class Solution:
     def missingNumber(self, nums: List[int]) -> int:
         n = len(nums)
         return (n*(n+1))//2 - sum(nums)
+
+    class Solution:
+        def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+		#since the list only has n-1 space, we create a variable just for the last index
+        final_elem = [10000]
+		#we store the position of zero in the array to check later for 0 case
+        pos_zero = 99999
+		#iterate through the array, and mulitply each index with -1. Take speacial care for the nth element.
+        for i in range(n):
+            if(abs(nums[i])==n):
+                final_elem[0]*=-1
+            elif(abs(nums[i])==0):
+                pos_zero=i
+                nums[abs(nums[i])]*=-1
+            else:
+                nums[abs(nums[i])]*=-1
+		# if throughout the iterations, our zero position variable doesn't changem then it means we never encountered a zero, and so our answer is zero
+        if(pos_zero==99999):
+            return 0
+		# we can iterate through the array to find the element that is still greater than zero
+        for i in range(n):
+            if(nums[i]>0):
+                return i
+		# just tot check the nth element
+        if(final_elem[0]>0):
+            return n
+		#if we dont find answer till now, then it means that our missing element had a zero in the array at its index, so we just return the postioin of zero in the array
+        return pos_zero
