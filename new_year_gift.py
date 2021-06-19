@@ -7412,3 +7412,12 @@ class Solution:
             return n
 		#if we dont find answer till now, then it means that our missing element had a zero in the array at its index, so we just return the postioin of zero in the array
         return pos_zero
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums_b = [False for i in range(0, len(nums) + 1)]
+        for i in range(len(nums)):
+            nums_b[nums[i]] = True
+        for i in range(len(nums) + 1):
+            if nums_b[i] == False:
+                return i
