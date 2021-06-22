@@ -7534,3 +7534,9 @@ class Solution:
         #return cache_v2()
         #return merge_swap(n,0,31)
         return merge_swap_hard_coded_v5(n)
+
+def reverseBits(n):
+    orgbits = list(str(n))
+    for j in range(0,16):
+        orgbits[j], orgbits[31-j] = orgbits[31-j], orgbits[j]
+    return int("".join(orgbits),2)
