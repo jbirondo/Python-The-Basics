@@ -7540,3 +7540,15 @@ def reverseBits(n):
     for j in range(0,16):
         orgbits[j], orgbits[31-j] = orgbits[31-j], orgbits[j]
     return int("".join(orgbits),2)
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        l = 32
+        rb = 0
+        while n > 0:
+            m = n % 2
+            n = n // 2
+            if m == 1:
+                rb = rb + 1 * 2 ** (l - 1)
+            l -= 1
+        return rb
