@@ -7552,3 +7552,11 @@ class Solution:
                 rb = rb + 1 * 2 ** (l - 1)
             l -= 1
         return rb
+
+def reverseBits_1(self, n:int) -> int:
+    mask = 2**31
+    ans = 0
+    for i in range(32):
+        if n & mask : ans += 2**i
+        mask >>= 1
+    return ans
