@@ -7459,3 +7459,24 @@ Explanation: The input binary string 11111111111111111111111111111101 represents
 Constraints:
 
 The input must be a binary string of length 32
+
+The basic idea here is that I wanted to simulate a 2 pointer approach where we have a left pointer and a right pointer. The right pointer scans the bits for 1's and the left pointer sets the bits (on an initially empty array of bits aka zero).
+
+I check right most bits using a check bits formula (that I picked up from the CTCI book) where i is in range 0-32:
+
+n & (1 << i) != 0
+For the left "pointer" I use the hexdecimal 0x80000000 to represent the binary 10000000000000000000000000000000
+Or you could also use 1 << 31 - i
+
+As the right "pointer" moves from right to left (by left shifting <<) to check for significant bits, the left "pointer" is moving left to right (by right shifting) setting bits to 1 by using the OR | operand.
+
+def reverseBits(self, n: int) -> int:
+	left = 0x80000000
+	res = 0
+
+	for i in range(32):
+		if n & (1 << i) != 0:
+			# can also use res |= 1 << 31 - i 
+			res |= (left >> i) 
+
+	return res
