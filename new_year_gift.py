@@ -7480,3 +7480,57 @@ def reverseBits(self, n: int) -> int:
 			res |= (left >> i) 
 
 	return res
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        def bf_v1(n):
+            x=0
+            for i in range(32):
+                x=x<<1|n&1
+                n>>=1
+            return x
+        def bf_with_early_termination_v2(n):
+            x=0
+            pow=31
+            while n:
+                x|=(n&1)<<pow
+                #x+=(n&1)<<pow #equiv
+                n>>=1
+                pow-=1
+            return x
+        def cache_v3():
+            cache=[0]*4
+            def reverse_byte(b):
+                x=0
+                pow=7
+                while b:
+                    x+=(b&1)<<pow
+                    b>>=1
+                    pow-=1
+                return x 
+            x=0
+            for i in range(4):
+                cache[i]=reverse_byte(n>>8*i&0xff)
+                x|=cache[i]<<8*(3-i)
+            return x    
+        def merge_swap_v4(n,i,j):
+            if i==j:
+                x= (n>>i&1)<<i
+                return x
+            halfwidth=(j-i)//2
+            lo=merge_swap(n,i,i+halfwidth)
+            hi=merge_swap(n,i+halfwidth+1,j)
+            return lo<<halfwidth+1|hi>>halfwidth+1
+        def merge_swap_hard_coded_v5(n):
+            n=(0xaaaaaaaa&n)>>1|(n&0x55555555)<<1
+            n=(0xcccccccc&n)>>2|(n&0x33333333)<<2
+            n=(0xf0f0f0f0&n)>>4|(n&0x0f0f0f0f)<<4
+            n=(0xff00ff00&n)>>8|(n&0x00ff00ff)<<8
+            n=(0xffff0000&n)>>16|(n&0x0000ffff)<<16 # equiv: n= n>>16|n<<16
+            return n
+        
+        #return bf_v0(n)
+        #return bf_with_early_termination_v1(n)
+        #return cache_v2()
+        #return merge_swap(n,0,31)
+        return merge_swap_hard_coded_v5(n)
