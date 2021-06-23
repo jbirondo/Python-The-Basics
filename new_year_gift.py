@@ -7613,3 +7613,22 @@ class Solution:
             if n in mp:
                 return(mp[n], i)
             mp[nums[i]] = i  
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        self.nums = nums
+        self.target = target
+        dict = {}
+        length = len(nums)
+        for i in range(0, length):
+            reste = target - nums[i] 
+            if dict.__contains__(reste) and dict.get(reste) != i:
+                return [dict.get(reste), i]
+            dict[nums[i]] = i
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i, number in enumerate(nums[:-1]):
+            complementary = target - number
+            if complementary in (nums[i+1:]):
+                return nums.index(number), nums.index(complementary)
