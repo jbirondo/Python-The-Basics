@@ -7716,3 +7716,16 @@ class Solution:
             i=i+1
             
         return max_profit
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+      maxValueFromRight = prices[-1]
+      maxProfit = 0
+      
+      for i in prices[::-1]:
+        if i<maxValueFromRight:
+          maxProfit = max(maxProfit, maxValueFromRight - i)
+        else:
+          maxValueFromRight = i
+      
+      return maxProfit
