@@ -7696,3 +7696,23 @@ def maxProfit(self, prices: List[int]) -> int:
             low= i
 
     return max_profit
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        
+        max_profit = 0
+        best_price = prices[0] #Assume best_price to buy as first day price initially
+        
+        for i in the range(i,n):
+            diff = prices[i] - best_price #price diff b/w today's & assumed best price
+            
+            if diff > 0 and diff > max_profit:  #Update max_profit
+                max_profit = diff
+
+            if prices[i] < best_price:  #Update best_price to buy based on today's price
+                best_price = prices[i]
+                
+            i=i+1
+            
+        return max_profit
