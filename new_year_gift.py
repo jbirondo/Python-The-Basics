@@ -7679,3 +7679,20 @@ Constraints:
 
 1 <= prices.length <= 105
 0 <= prices[i] <= 104
+
+def maxProfit(self, prices: List[int]) -> int:
+    low= prices[0]
+    max_profit= 0
+
+    if prices == sorted(prices)[::-1]:
+        return 0
+
+    for i in prices[1::]:
+        pr= i - low
+        if pr > max_profit:
+            max_profit= pr
+
+        elif low > i: 
+            low= i
+
+    return max_profit
