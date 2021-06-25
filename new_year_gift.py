@@ -7812,3 +7812,13 @@ class Solution:
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         return  not len(set(nums)) == len(nums)
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        
+        s = set(nums)
+        if(len(nums) == len(s)):
+            return False
+        else:
+            return True
+
