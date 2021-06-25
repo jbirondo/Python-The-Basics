@@ -7798,3 +7798,13 @@ Constraints:
 
 1 <= nums.length <= 105
 -109 <= nums[i] <= 109
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        dict = {}
+        for x in range(0, len(nums)):
+            if nums[x] not in dict:
+                dict[nums[x]] = True
+            else:
+                return False
+        return True
