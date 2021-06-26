@@ -7897,3 +7897,20 @@ class Solution:
             Rproduct *= nums[i]
             
         return result
+
+class Solution(object):
+    def productExceptSelf(self, nums):
+        N = len(nums)
+        
+        left = [1]*N
+        for i in xrange(1, len(nums)):
+            left[i] = left[i-1] * nums[i-1]
+        
+        right = [1]*N
+        for i in xrange(N-2, -1, -1):
+            right[i] = right[i+1] * nums[i+1]
+        
+        ans = []
+        for i in xrange(N):
+            ans.append(left[i]*right[i])
+        return ans
