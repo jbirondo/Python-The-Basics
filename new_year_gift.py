@@ -7914,3 +7914,18 @@ class Solution(object):
         for i in xrange(N):
             ans.append(left[i]*right[i])
         return ans
+
+class Solution(object):
+    def productExceptSelf(self, nums):
+        N = len(nums)
+        
+        opt = [1]*N
+        for i in xrange(1, len(nums)):
+            opt[i] = opt[i-1] * nums[i-1]
+        
+        t = 1
+        for i in xrange(N-2, -1, -1):
+            t *= nums[i+1]
+            opt[i] *= t
+        
+        return opt
