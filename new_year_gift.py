@@ -8021,3 +8021,15 @@ class Solution:
             maxs = max(maxs,curr)
 
         return maxs
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxSub=nums[0]
+        cur=0
+        
+        for i in nums:
+            if cur<0:
+                cur=0
+            cur+=i
+            maxSub=max(maxSub,cur)
+        return maxSub
