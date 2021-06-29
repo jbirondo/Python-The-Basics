@@ -8000,3 +8000,14 @@ Constraints:
  
 
 Follow up: If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxSum = nums[0]
+        maxEnding = nums[0]
+        
+        for i in range(1, len(nums)):
+            maxEnding = max(maxEnding + nums[i], nums[i])
+            maxSum = max(maxSum, maxEnding)     
+                            
+        return maxSum
