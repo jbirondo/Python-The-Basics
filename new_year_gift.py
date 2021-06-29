@@ -8033,3 +8033,14 @@ class Solution:
             cur+=i
             maxSub=max(maxSub,cur)
         return maxSub
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        local_max = 0
+        global_max = -10 ** 5
+        for num in nums:
+            local_max = max(num, num + local_max)
+            if local_max > global_max:
+                global_max = local_max
+
+        return global_max
