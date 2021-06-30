@@ -8109,3 +8109,22 @@ class Solution:
             prevMin, prevMax = min(num,num*prevMin,num*prevMax), max(num,num*prevMin,num*prevMax)
             maxProduct = max(maxProduct,prevMax)
         return maxProduct
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 1:
+            return nums[0]
+        best = nums[0]
+        
+        longestSubPos = [nums[0]]*n 
+        longestSubNeg =  [nums[0]]*n 
+        
+        
+        for i in range(1,n):
+            
+            longestSubPos[i] = max(nums[i], nums[i]*longestSubPos[i-1], nums[i] * longestSubNeg[i-1])
+            longestSubNeg[i] = min(nums[i], nums[i]*longestSubPos[i-1], longestSubNeg[i-1]*nums[i])
+            best = max(best, longestSubPos[i])
+        
+        return best
