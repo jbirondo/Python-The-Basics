@@ -8100,3 +8100,12 @@ class Solution:
                 maxneg = temp * n if temp > 0 else n
             maxprod = max(maxprod, maxcurr)
         return maxprod
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        prevMin = prevMax = 1
+        maxProduct = nums[0]
+        for num in nums:
+            prevMin, prevMax = min(num,num*prevMin,num*prevMax), max(num,num*prevMin,num*prevMax)
+            maxProduct = max(maxProduct,prevMax)
+        return maxProduct
