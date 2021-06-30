@@ -8128,3 +8128,14 @@ class Solution:
             best = max(best, longestSubPos[i])
         
         return best
+
+    def maxProduct(self, nums: List[int]) -> int:
+        ans = -math.inf
+        n = len(nums)
+        mi,ma = [1]*(n+1),[1]*(n+1)
+        for i in range(1,n+1):
+            v = nums[i-1]
+            mi[i] = min(v,mi[i-1]*v,ma[i-1]*v)
+            ma[i] = max(v,ma[i-1]*v,mi[i-1]*v)
+            ans = max(ans,mi[i],ma[i])
+        return ans
