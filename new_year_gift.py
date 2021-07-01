@@ -8189,3 +8189,16 @@ Example 3:
 Input: nums = [11,13,15,17]
 Output: 11
 Explanation: The original array was [11,13,15,17] and it was rotated 4 times. 
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        start = 0
+        end = len(nums) - 1
+        while start <= end:
+            mid = start + (end - start)//2        
+            if nums[mid] > nums[end]:
+                start = mid + 1
+            elif mid == 0 or nums[mid - 1] > nums[mid]:
+                return nums[mid]
+            else:
+                end = mid - 1
