@@ -8214,3 +8214,7 @@ class Solution:
             else:
                 high=mid
         return nums[high]
+
+class Solution(object):
+    def findMin(self, nums):
+        return min(nums)
