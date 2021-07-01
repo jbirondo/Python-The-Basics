@@ -8202,3 +8202,15 @@ class Solution:
                 return nums[mid]
             else:
                 end = mid - 1
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        low=0
+        high=len(nums)-1
+        while low<high:
+            mid=(low+high)>>1
+            if nums[mid]>nums[high]:
+                low=mid+1
+            else:
+                high=mid
+        return nums[high]
