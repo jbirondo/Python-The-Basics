@@ -8334,3 +8334,23 @@ class Solution:
                 l = m + 1
 				
         return -1
+
+def search(self, nums: List[int], target: int) -> int:
+    l=0
+    r=len(nums)-1
+    
+    while l<=r:
+        mid=(l+r)//2
+        if nums[mid]==target:
+            return mid
+        if nums[mid]>=nums[0]:#left sorted region
+            if nums[mid]<target or target<nums[0]: #if we either need to increase num or decrease it when target is lower than left boundary of left sorted region that is nums[0]
+                l=mid+1
+            else:
+                r=mid-1 #decrease num when target is greater than left boundary of left sorted region that is nums[0]
+        else:#right sorted region
+            if nums[mid]>target or target>nums[-1]: #if we either need to decrease num or increase it when target is larger than right boundary of right sorted region that is nums[-1]
+                r=mid-1
+            else:
+                l=mid+1 #increase num when target is lesser than right boundary of right sorted region that is nums[-1]
+    return -1 
