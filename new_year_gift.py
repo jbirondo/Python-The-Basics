@@ -8258,3 +8258,26 @@ Example 3:
 
 Input: nums = [1], target = 0
 Output: -1
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        def util(nums, target, start, end):
+            if start > end:
+                return -1
+            mid = (start+end)//2
+            if nums[mid] == target:
+                return mid
+            if nums[mid] >= nums[start]:
+                if target>=nums[start] and target <= nums[mid]:
+                    return util(nums, target, start, mid)
+                else:
+                    return util(nums, target, mid+1, end)
+            else:
+                if target <= nums[end] and target >= nums[mid]:
+                    return util(nums, target, mid+1, end)
+                return util(nums, target, start, mid)
+            return -1
+        start = 0
+        end = len(nums) - 1
+        idx = util(nums, target, start,end)
+        return idx
