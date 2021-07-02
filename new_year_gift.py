@@ -8281,3 +8281,33 @@ class Solution:
         end = len(nums) - 1
         idx = util(nums, target, start,end)
         return idx
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        start = 0
+        end = len(nums) - 1
+        
+        # Revised Binary Search
+        while start <= end:
+            mid = start + (end - start) // 2
+            
+            if nums[mid] == target:
+                return mid
+            
+            # Sorted Array is in left half
+            elif nums[mid] >= nums[start]:
+                # Check if target is within the range of sorted array
+                if target >= nums[start] and target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
+            
+            # Sorted Array is in right half
+            else:
+                # Check if target is within the range of sorted array
+                if target <= nums[end] and target > nums[mid]:
+                    start = mid + 1
+                else:
+                    end = mid - 1
+                    
+        return -1
