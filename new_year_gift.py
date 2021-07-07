@@ -8384,3 +8384,31 @@ Example 3:
 
 Input: nums = [0]
 Output: []
+
+"""
+Hash Table
+Time: O(N^2)
+Space: O(N)
+
+memo := {num:[index1, index2,...]}
+Iterate through every i and j, see if the required number exist in memo.
+"""
+import collections
+class Solution(object):
+    def threeSum(self, nums):
+        memo = collections.defaultdict(list)
+        N = len(nums)
+        ans = set()
+        
+        for k in xrange(N):
+            memo[nums[k]].append(k)
+        
+        for i in xrange(N):
+            for j in xrange(i+1, N):
+                t = (nums[i]+nums[j])*-1
+                
+                for k in memo[t]:
+                    if k!=i and k!=j:
+                        ans.add(tuple(sorted([nums[i], nums[j], nums[k]])))
+                        break
+        return ans
