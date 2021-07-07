@@ -8482,3 +8482,30 @@ class Solution(object):
                     j += 1
                     
         return ans
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        if len(nums)<3:
+            return []
+        dic = collections.defaultdict(int)
+        for num in nums:
+            dic[num] += 1
+            
+        res = set()
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                v1 = nums[i]
+                v2 = nums[j]
+                dic[v1]-=1
+                dic[v2]-=1
+            
+                v3 = 0-(v1+v2)
+                if dic.get(v3, 0) > 0:
+                    tpl = tuple(sorted([v1, v2, v3]))
+                    if tpl not in res:
+                        res.add(tpl)
+
+                dic[v1]+=1
+                dic[v2]+=1
+        
+        return [list(pair) for pair in res]
