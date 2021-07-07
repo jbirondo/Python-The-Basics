@@ -8412,3 +8412,37 @@ class Solution(object):
                         ans.add(tuple(sorted([nums[i], nums[j], nums[k]])))
                         break
         return ans
+
+"""
+Two Pointers
+Time: O(N^2)
+Space: O(1)
+
+Sort the nums.
+Iterate through i.
+j = i+1 and k = N-1, see if the sum s equals to 0.
+if s>0, means that we need to reduce the s and it can only be done by decreasing k.
+if s<0, means that we need to increase the s and it can only be done by increasing j.
+"""
+class Solution(object):
+    def threeSum(self, nums):
+        nums.sort()
+        ans = set()
+        N = len(nums)
+        
+        for i in xrange(N):
+            j = i+1
+            k = N-1
+            
+            while j<k:
+                s = nums[i]+nums[j]+nums[k]
+                if s>0:
+                    k -= 1
+                elif s<0:
+                    j += 1
+                else:
+                    ans.add(tuple(sorted([nums[i], nums[j], nums[k]])))
+                    k -= 1
+                    j += 1
+                    
+        return ans
