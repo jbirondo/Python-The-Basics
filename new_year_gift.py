@@ -8544,3 +8544,20 @@ Example 4:
 
 Input: height = [1,2,1]
 Output: 2
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:        
+        l=0
+        r=len(height)-1
+        mx_ = 0
+        
+        while l != r:
+            mx_ = max(
+                mx_,
+                min(height[l], height[r])*(r-l)
+            )
+            if height[l] <= height[r]:
+                l += 1
+            else:
+                r -= 1
+        return mx_
