@@ -8561,3 +8561,21 @@ class Solution:
             else:
                 r -= 1
         return mx_
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        
+        max_volume = 0
+        left, right = 0, len(height) - 1
+        
+        while left < right:
+            left_height, right_height = height[left], height[right]
+            curr_volume = (right - left) * min(left_height, right_height)
+            max_volume = max(max_volume, curr_volume)
+            
+            if left_height <= right_height:
+                left += 1
+            if right_height <= left_height:
+                right -= 1
+        
+        return max_volume
