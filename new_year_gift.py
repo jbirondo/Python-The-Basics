@@ -8593,3 +8593,37 @@ def maxArea(self, height: List[int]) -> int:
 			l+=1
 			r-=1
 	return maxArea
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+
+    max = 0
+    index_1 = 0 
+    index_2 = len(height)-1
+    
+    while index_1 < index_2:
+        
+        min_index_12 = min(height[index_1],height[index_2])
+        area = min_index_12*(index_2-index_1)
+        
+        if max < area:
+            max = area
+
+        if height[index_1] < height[index_2]:
+            i = index_1+1
+            while height[i]< height[index_1]:
+                i+=1
+            index_1 = i            
+            
+        elif height[index_1] > height[index_2]:
+            j = index_2-1
+            while height[j]< height[index_2]:
+                j-=1
+            index_2 = j
+            print(index_2)
+            
+        elif height[index_1]==height[index_2]:
+            index_1 +=1
+            index_2 -=1
+            
+    return max
