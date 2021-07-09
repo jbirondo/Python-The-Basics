@@ -8673,3 +8673,14 @@ def fib(self, n):
         return n
     else:
         return self.fib(n-1) + self.fib(n-2)
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n < 3:
+            return n
+			
+        data = {1: 1, 2: 2}
+        for i in range(3, n + 1):
+            data[i] = data[i - 1] + data[i - 2]
+            
+        return data[n]
