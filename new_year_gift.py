@@ -8745,3 +8745,11 @@ class Solution:
         for i in range(2,n):
             res.append(res[i-1] + res[i-2])
         return res[-1]
+
+class Solution:
+    def __init__(self):
+        self.d={1:1,2:2}
+    def climbStairs(self, n: int) -> int:
+        if n not in self.d:
+            self.d[n]= self.climbStairs(n-1) + self.climbStairs(n-2)
+        return self.d[n]
