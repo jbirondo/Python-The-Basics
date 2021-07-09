@@ -8684,3 +8684,10 @@ class Solution:
             data[i] = data[i - 1] + data[i - 2]
             
         return data[n]
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        prev, result = 0, 1
+        for i in range(n):
+            prev, result = result, result + prev
+        return result
