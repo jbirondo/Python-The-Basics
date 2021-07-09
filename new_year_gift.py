@@ -8691,3 +8691,46 @@ class Solution:
         for i in range(n):
             prev, result = result, result + prev
         return result
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        
+        # 0: Make a function for combinations
+        
+        def factorial(x):
+            y = 1
+            if x == 0:
+                return y
+            else:
+                for i in range(1, x):
+                    y *= i + 1
+            return y
+        
+        
+        def combinations(n, k):
+            return factorial(n) / (factorial(k) * factorial(n - k))     
+        
+        # 1: Count the number of 2 in the number of stairs
+        
+        nb_two = n // 2 
+        nb_one = n % 2
+        
+        # 2: Sum the combinations
+        
+        sum_out = 0
+        
+        for i in range(nb_two, 0, -1):
+            # Debug
+            # print(nb_two, nb_one, combinations(nb_two + nb_one, nb_two))
+            
+            # Get the sum
+            sum_out += combinations(nb_two + nb_one, nb_two) 
+            
+            # Update
+            nb_two -= 1
+            nb_one += 2
+            
+            
+        sum_out += 1 # Add the last config when all is 1
+            
+        return int(sum_out)
