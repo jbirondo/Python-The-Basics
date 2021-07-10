@@ -8893,3 +8893,32 @@ def coinChange(coins, amount):
         if minPath > 0:
             return minPath
         return -1
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if len(coins) == 1:
+            if amount % coins[0] == 0:
+                return amount // coins[0]
+            else:
+                return -1
+        else:
+            arr = []
+            for i in range(len(coins) + 1):
+                if i == 0:
+                    arr.append([float('inf') - 1] * (amount + 1))
+                else:
+                    arr.append([0] + [None] * (amount))
+            j = 1
+            while j < (amount + 1):
+                if j % coins[0] == 0:
+                    arr[1][j] = (j // coins[0])
+                else:
+                    arr[1][j] = float('inf') - 1
+                j += 1
+            for i in range(2,len(arr)):
+                for j in range(1,len(arr[0])):
+                    if coins[i - 1] <= j:
+                        arr[i][j] = min(arr[i - 1][j] ,1 + arr[i][j - coins[i - 1]])
+                    else:
+                        arr[i][j] = arr[i - 1][j]
+            return arr[-1][-1] if arr[-1][-1] < float('inf') else -1
