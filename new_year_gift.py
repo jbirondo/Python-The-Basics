@@ -8868,3 +8868,28 @@ def coinChange(coins, amount):
 					else:
 						q.append(amt-c)
 	return -1
+
+def coinChange(coins, amount):
+    	if amount == 0:
+            return 0
+        visited = set()
+        minPath = float('inf')
+        stack = [(amount, 0)] # amount, lenght
+        while stack:
+            amt, path = stack.pop()
+
+            # skip -ve
+            if amt < 0:
+                continue
+            elif amt == 0:
+                minPath = min(minPath, path)
+            
+            if amt not in visited:
+                visited.add(amt)
+            
+                for c in coins:
+                    stack.append((amt-c, path+1))
+                    
+        if minPath > 0:
+            return minPath
+        return -1
