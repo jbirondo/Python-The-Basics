@@ -8839,3 +8839,32 @@ def coinChange(coins, amount):
 		depth += 1
 
 	return -1
+
+def coinChange(coins, amount):
+    
+	if amount == 0:
+		return 0
+	from collections import deque
+	q = deque()
+	q.append(amount) # amt, depth
+	visited = set()
+	depth = 0
+	while q:
+		depth += 1
+		for i in range(len(q)):
+			amt = q.popleft()
+
+			if amt not in visited:
+				visited.add(amt)
+
+				# move down a level
+				for c in coins:
+					if amt-c < 0:
+						continue
+					elif amt-c in visited:
+						continue
+					elif amt-c == 0:
+						return depth
+					else:
+						q.append(amt-c)
+	return -1
