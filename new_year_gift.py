@@ -8793,3 +8793,19 @@ Example 5:
 
 Input: coins = [1], amount = 2
 Output: 2
+
+class Solution(object):
+    def coinChange(self, coins, amount):
+        """
+        :type coins: List[int]
+        :type amount: int
+        :rtype: int
+        """
+        ways = [float('inf') for _ in range( amount + 1)]
+        ways[0] = 0 # base case
+        
+        for coin in coins:
+            for amt in range(1, amount + 1):
+                if coin <= amt:
+                    ways[amt] = min(ways[amt], 1 + ways[amt-coin])
+        return ways[amount] if ways[amount] != float('inf') else -1
