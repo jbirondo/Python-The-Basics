@@ -8962,3 +8962,14 @@ class Solution:  # 2516 ms, faster than 64.96%
                 if nums[i] > nums[j] and dp[i] < dp[j] + 1:
                     dp[i] = dp[j] + 1
         return max(dp)
+
+class Solution:  # 68 ms, faster than 93.92%
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        sub = []
+        for x in nums:
+            if len(sub) == 0 or sub[-1] < x:
+                sub.append(x)
+            else:
+                idx = bisect_left(sub, x)  # Find the index of the smallest number >= x
+                sub[idx] = x  # Replace that number with x
+        return len(sub)
