@@ -8973,3 +8973,26 @@ class Solution:  # 68 ms, faster than 93.92%
                 idx = bisect_left(sub, x)  # Find the index of the smallest number >= x
                 sub[idx] = x  # Replace that number with x
         return len(sub)
+
+class Solution:
+    def pathOfLIS(self, nums: List[int]):
+        sub = []
+        subIndex = []  # Store index instead of value for tracing path purpose
+        path = [-1] * len(nums)  # path[i] point to the index of previous number in LIS
+        for i, x in enumerate(nums):
+            if len(sub) == 0 or sub[-1] < x:
+                path[i] = -1 if len(subIndex) == 0 else subIndex[-1]
+                sub.append(x)
+                subIndex.append(i)
+            else:
+                idx = bisect_left(sub, x)  # Find the index of the smallest number >= x, replace that number with x
+                path[i] = -1 if idx == 0 else subIndex[idx - 1]
+                sub[idx] = x
+                subIndex[idx] = i
+
+        ans = []
+        t = subIndex[-1]
+        while t >= 0:
+            ans.append(nums[t])
+            t = path[t]
+        return ans[::-1]
