@@ -8996,3 +8996,27 @@ class Solution:
             ans.append(nums[t])
             t = path[t]
         return ans[::-1]
+
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        LIS_dic = {}
+        N = len(nums)
+        LIS_dic[N-1] = 1
+        for i in range(2, N+1):
+            cur_index = N - i
+            tmp_max = 1
+            for j in range(cur_index+1, N):
+                #accounting for possible gaps
+                if nums[cur_index] < nums[j]:
+                    if ((1+LIS_dic[j]) > tmp_max):
+                        tmp_max = 1+LIS_dic[j]
+            LIS_dic[cur_index] = tmp_max
+        max_val = float("-inf")
+        for key in LIS_dic:
+            if LIS_dic[key] > max_val:
+                max_val = LIS_dic[key]
+        return max_val 
