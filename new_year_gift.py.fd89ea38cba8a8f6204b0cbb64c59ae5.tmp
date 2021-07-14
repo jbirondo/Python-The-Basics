@@ -9081,3 +9081,24 @@ Constraints:
 1 <= wordDict[i].length <= 20
 s and wordDict[i] consist of only lowercase English letters.
 All the strings of wordDict are unique.
+
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        mem = {}
+        return Solution.wordBreakHelper(s, wordDict, mem)
+    
+    def wordBreakHelper(s, wordDict, mem):
+        if not s:
+            return True
+        
+        if s in mem:
+            return mem[s]
+
+        for i in range(len(s) + 1):
+            currWord = s[:i]
+            if currWord in wordDict:
+                if Solution.wordBreakHelper(s[i:], wordDict, mem):
+                    mem[s] = True
+                    return True
+                
+        mem[s] = False
+        return False
