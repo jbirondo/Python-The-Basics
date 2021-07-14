@@ -9118,3 +9118,26 @@ def wordBreak(self, s: str, wordDict: List[str]):
                     return True
                 q.append(right)
     return False
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        return self.backtrack(s, wordDict, 0, dict())
+        
+        
+        
+    
+    def backtrack(self, s: str, wordDict: list, index: int, used: dict):
+        if index in used:
+            return used[index]
+        
+        current = ""
+        valid = False
+        for i in range(index, len(s)):
+            current = current + s[i]
+            if current in wordDict:
+                valid = self.backtrack(s, wordDict, i+1, used)
+                if valid:
+                    break
+                
+        used[index] = current in wordDict or valid
+        return used[index]
