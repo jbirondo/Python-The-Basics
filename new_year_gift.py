@@ -9102,3 +9102,19 @@ def wordBreakHelper(s, wordDict, mem):
             
     mem[s] = False
     return False
+
+def wordBreak(self, s: str, wordDict: List[str]):
+    q = deque([0])
+    visited = set()
+    while q:
+        left = q.popleft()
+        if left in visited:
+            continue
+        visited.add(left)
+        for w in wordDict:
+            right = left+len(w)
+            if s[left:right]==w:
+                if right==len(s):
+                    return True
+                q.append(right)
+    return False
