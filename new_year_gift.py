@@ -9141,3 +9141,25 @@ class Solution:
                 
         used[index] = current in wordDict or valid
         return used[index]
+
+def wordBreak(s, wordDict):
+        from collections import deque
+        q = deque()
+        q.append(0) # startIndx
+        visited = set()
+        dictSet = set(wordDict)
+        while q:
+            for i in range(len(q)):
+                startIndx = q.popleft()
+                if startIndx == len(s): # - NOTE [1]
+                    return True
+                
+                if startIndx not in visited:
+                    visited.add(startIndx)
+                    
+                    for endIndx in range(startIndx+1, len(s)+1): # NOTE [2]
+                        sub = s[startIndx: endIndx]
+                        if sub in dictSet:
+                            q.append(endIndx) # endIndx is the new startIndx
+                            
+        return False   
