@@ -9249,3 +9249,28 @@ def combinationSum4(self, nums: List[int], target: int) -> int:
             dp[total]+=dp[total-num]    
     
     return dp[target]
+
+class Solution:
+    
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+
+        nums.sort()
+        mem=[None]*(1+target)
+
+        def combinationSumHelper(target):
+            if target==0:
+                return 1
+            if target<0:
+                return 0
+            if mem[target] is not None:
+                return mem[target]
+            result=0
+            for num in nums:  
+                if num>target:
+                    break
+                else:
+                    result+=combinationSumHelper(target-num)
+            mem[target]=result
+            return result          
+        
+        return combinationSumHelper(target)
