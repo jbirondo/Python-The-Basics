@@ -9274,3 +9274,17 @@ class Solution:
             return result          
         
         return combinationSumHelper(target)
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        memory = [1]
+        for i in range(1, target + 1):
+            temp, j = 0, len(memory) - 1
+            for n in nums:
+                while j > 0 and n + j > i:
+                    j -= 1
+                if n + j == i:
+                    temp += memory[j]
+            memory.append(temp)
+        return memory[-1]
