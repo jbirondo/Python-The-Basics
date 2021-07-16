@@ -9343,3 +9343,17 @@ class Solution:
         for i, num in enumerate(nums):
                 dp.append(max(dp[i] + num, dp[i+1]))
         return dp[-1]
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        
+        self.n = len(nums)
+        self.nums = nums 
+        return self.rob_house(0)
+        
+    def rob_house(self, i):
+        if i > (self.n-1): return 0
+        
+        include_current_house = self.nums[i]+self.rob_house(i+2)
+        exclude_current_house = self.rob_house(i+1)
+        return max(include_current_house, exclude_current_house)
