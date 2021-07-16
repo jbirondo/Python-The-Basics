@@ -9374,3 +9374,20 @@ class Solution:
             dp[i+1] = max(include_cur_house, exclude_cur_house)
             
         return dp[n]
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        dp = [0]*(n+1)
+        
+        prev = 0 # profit after robbing previous house
+        prev2prev = 0 # profit after robbing previous 2 previous house
+        
+        for i in range(n):
+            
+            temp = prev
+            prev = max(nums[i]+prev2prev, prev)
+            prev2prev = temp
+            
+        return prev
