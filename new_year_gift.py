@@ -9423,3 +9423,16 @@ Example 3:
 
 Input: nums = [0]
 Output: 0
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        
+        def robHelper(nums: List[int]) -> int:
+            dp = [0, 0]
+            for i, num in enumerate(nums):
+                    dp.append(max(dp[i] + num, dp[i+1]))
+            return dp[-1]
+        
+        if len(nums) == 1:
+            return nums[0]
+        return max(robHelper(nums[:-1]), robHelper(nums[1:]))
