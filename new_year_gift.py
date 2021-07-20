@@ -9585,3 +9585,26 @@ class Solution:
                 return 0
             
         return dp[-2]
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        codeset = {str(i) for i in range(1, 27)}
+        memoizeArr = [0]*len(s)
+        
+        def possibleCodes(i):            
+            if i == len(s):
+                return 1
+            
+            if memoizeArr[i]:
+                return memoizeArr[i]
+            
+            total = 0
+            if s[i] in codeset:
+                total += possibleCodes(i+1)
+            if i+1 < len(s) and s[i:i+2] in codeset:
+                total += possibleCodes(i+2)
+            
+            memoizeArr[i] = total
+            return total
+        
+        return possibleCodes(0)
