@@ -9521,3 +9521,31 @@ class Solution(object):
             count = count + self.numDecodings(s[2:])  
         self.dp[s] = count
         return count  
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        """
+        time: O(2^N)
+        space: O(1)
+        """
+        memo = {}
+        
+        def dfs(start, memo) -> int:
+            if start == len(s):
+                return 1
+            
+            if start in memo:
+                return memo[start]
+            
+            res = 0
+            if s[start] != '0':
+                if start < len(s)-1 and int(s[start: start+2]) <= 26:
+                    res += dfs(start + 2, memo)
+
+                res += dfs(start+1, memo)
+            
+            memo[start] = res
+            
+            return memo[start]
+
+        return dfs(0, memo)
