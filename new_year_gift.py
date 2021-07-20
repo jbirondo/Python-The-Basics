@@ -9564,3 +9564,24 @@ class Solution:
             dp[len(s)-len(ss)] = one+two
             return one+two
         return decode(s)
+
+class Solution:
+    def numDecodings(self, s: str):
+        if s[0] == '0': return 0
+        if len(s) == 1: return 1
+        codeset = {str(i) for i in range(1, 27)}
+        
+        dp = [0]*(len(s)+1)
+		#adding additional element at the end of dp list to make dp[-1] == 1 while
+		#computing dp[1-2] to avoid additional if else statements
+        dp[0], dp[-1] = 1, 1
+        
+        for i in range(1, len(s)):
+            if s[i] in codeset:
+                dp[i] += dp[i-1]
+            if s[i-1:i+1] in codeset:
+                dp[i] += dp[i-2]
+            if not dp[i]:
+                return 0
+            
+        return dp[-2]
