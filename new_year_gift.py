@@ -9493,3 +9493,31 @@ Constraints:
 
 1 <= s.length <= 100
 s contains only digits and may contain leading zero(s).
+
+class Solution(object):
+    dp = {}
+    def numDecodings(self, s):
+        # Dynamic Pogramming Optimizer
+        if s in self.dp:
+            return self.dp[s]
+
+        # Basic cases test
+        if len(s) == 0:
+            return 1
+
+        if s[0] == '0':
+            return 0
+
+        if len(s) == 1:
+            return 1
+ 
+        # Recursive calls: 
+		# 1. The number of combinations fixing the first char as an isolated
+        #   word times the number of combinations of the rest of the string
+        # 2. The number of combinations fixing the first two chars
+        #  as an isolated word times the number of combinations of the rest of the string
+        count = self.numDecodings(s[0]) * self.numDecodings(s[1:])
+        if int(s[0:2]) < 27 and int(s[0:2]) > 0:   
+            count = count + self.numDecodings(s[2:])  
+        self.dp[s] = count
+        return count  
