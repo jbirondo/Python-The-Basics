@@ -9549,3 +9549,18 @@ class Solution:
             return memo[start]
 
         return dfs(0, memo)
+
+ZERO = "0"
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        dp = [None for _ in range(len(s))]
+        def decode(ss):
+            if not ss:
+                return 1  # we have decoded the complete string, so one way
+            if dp[len(s)-len(ss)] is not None:
+                return dp[len(s)-len(ss)]
+            one = decode(ss[1:]) if ss[0] != ZERO else 0
+            two = decode(ss[2:]) if 9 < int(ss[:2]) < 27 else 0
+            dp[len(s)-len(ss)] = one+two
+            return one+two
+        return decode(s)
