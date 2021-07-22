@@ -9820,3 +9820,12 @@ class Solution:
             return dp[idx]
 
         return inner(0, [-1 for _ in range(n)])
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        maxJump = 1
+        for idx in range(len(nums)):
+            maxJump = max(nums[idx], maxJump - 1)
+            if maxJump == 0 and idx != len(nums) - 1:
+                return False
+        return True
