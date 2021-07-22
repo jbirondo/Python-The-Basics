@@ -9746,3 +9746,18 @@ Example 2:
 Input: nums = [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+
+def canJump(self, nums: List[int]) -> bool:
+        # Greedy: Remember which is the maximum position you can move to.
+        # This means that somehow you can get at least that far. 
+        # Move up to there and while you do that, keep track if there's a better
+        # combination. If there is, update the maximum distance you can go to.
+        # Time: O(n). Space: O(1)
+        
+        pos = maxPos = 0
+        
+        while pos <= len(nums) -1 and pos <= maxPos:
+            maxPos = max(maxPos, pos + nums[pos]) # current position + max jump length
+            pos += 1
+        
+        return pos == len(nums) # If pos > maxPos, we can't get to the end
