@@ -9761,3 +9761,16 @@ def canJump(self, nums: List[int]) -> bool:
             pos += 1
         
         return pos == len(nums) # If pos > maxPos, we can't get to the end
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums) == 1: return True
+        if nums[0] == 0: return False
+        for i in range(len(nums)-1):
+            if nums[i] == 0:
+                for j in range(1, i+1):
+                    if nums[i-j] > j: break
+                else:
+                    return False
+        
+        return True
