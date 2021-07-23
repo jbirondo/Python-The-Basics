@@ -9928,3 +9928,23 @@ class Solution:
             return depth
 
         return BFS(root)
+
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        # base case
+        if not root:
+            0
+        self.depth = 0
+        
+        # preorder traversal (root, left, right)
+        def DFS(root, current_depth):
+            if root:
+                current_depth += 1
+                self.depth = max(current_depth, self.depth)
+                # find adjacent nodes and recursively call DFS
+                DFS(root.left, current_depth)
+                DFS(root.right, current_depth)
+            else:
+                current_depth -= 1
+        DFS(root, 0)
+        return self.depth
