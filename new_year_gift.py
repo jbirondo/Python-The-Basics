@@ -9891,3 +9891,40 @@ class Solution:
         l = self.maxDepth(root.left)
         r = self.maxDepth(root.right)
         return 1 + max(l, r)
+
+
+nathancy's avatar
+nathancy
+1
+3 days ago
+
+30 VIEWS
+
+For BFS, we can do a modified level order traversal where we group the children in the same level into a temporary queue. We know the level is done when the queue is empty so we increment the depth and replace the queue.
+
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        
+        # BFS (level order traversal)
+        def BFS(root):
+            depth = 1
+            next_level = []
+            queue = [root]
+            while queue:
+                root = queue.pop()
+                if root:
+                    # find adjacent children and put it into temp queue
+                    if root.left:
+                        next_level.append(root.left)
+                    if root.right:
+                        next_level.append(root.right)
+                # if level is done
+                if not queue and next_level:
+                    depth += 1
+                    queue = next_level
+                    next_level = []
+            return depth
+
+        return BFS(root)
