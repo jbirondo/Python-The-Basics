@@ -10001,3 +10001,16 @@ def recr_v2(p,q):
 
 def recr_oneliner_v3(p,q):
     return p and q and p.val==q.val and recr_oneliner_v3(p.left,q.left) and recr_oneliner_3(p.right, q.right) or p is q
+
+def iter_dfs_inorder_traversal_v0a(p) -> bool:
+    st=[]
+    while True:
+        while p:
+            st.append(p)
+            p=p.left
+        if st:
+            p=st.pop()
+            print(p.val,end=' ')
+            p=p.right
+        else:
+            break
