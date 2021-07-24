@@ -9993,3 +9993,8 @@ def recr_v1(p,q) -> bool:
     elif p==None or q is None or p.val!=q.val:
         return False
     return recr_v1(p.left,q.left) and recr_v1(p.right,q.right)
+
+def recr_v2(p,q):
+    if p and q:
+        return p.val==q.val and recr_v2(p.left,q.left) and recr_v2(p.right, q.right)
+    return p is q # equiv  p==q and  this is only possible when  p==q==None
