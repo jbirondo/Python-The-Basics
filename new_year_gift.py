@@ -9986,3 +9986,10 @@ Constraints:
 
 The number of nodes in both trees is in the range [0, 100].
 -104 <= Node.val <= 104
+
+def recr_v1(p,q) -> bool:
+    if p==q==None:
+        return True
+    elif p==None or q is None or p.val!=q.val:
+        return False
+    return recr_v1(p.left,q.left) and recr_v1(p.right,q.right)
