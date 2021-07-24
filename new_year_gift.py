@@ -9998,3 +9998,6 @@ def recr_v2(p,q):
     if p and q:
         return p.val==q.val and recr_v2(p.left,q.left) and recr_v2(p.right, q.right)
     return p is q # equiv  p==q and  this is only possible when  p==q==None
+
+def recr_oneliner_v3(p,q):
+    return p and q and p.val==q.val and recr_oneliner_v3(p.left,q.left) and recr_oneliner_3(p.right, q.right) or p is q
