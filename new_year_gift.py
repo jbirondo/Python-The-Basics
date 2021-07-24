@@ -10014,3 +10014,15 @@ def iter_dfs_inorder_traversal_v0a(p) -> bool:
             p=p.right
         else:
             break
+
+def iter_bfs_v9(p,q):
+    dq=deque([(p,q)])  # use deque, it's FIFO
+    while dq:
+        p,q=dq.popleft()
+        if p and q and p.val==q.val:
+            #print(p.val,end=' ')
+            dq.append((p.left,q.left))
+            dq.append((p.right,q.right))
+        elif p or q: #  concise way to say exactly one of p,q is None
+            return False
+    return True
