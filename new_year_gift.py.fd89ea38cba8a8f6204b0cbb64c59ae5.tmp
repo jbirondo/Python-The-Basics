@@ -10061,3 +10061,25 @@ Constraints:
 
 The number of nodes in the tree is in the range [0, 100].
 -100 <= Node.val <= 100
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        
+        queue = []
+        queue.append(root)
+        
+        while queue:
+            current_node = queue.pop()
+            temp_left = current_node.left
+            current_node.left = current_node.right
+            current_node.right = temp_left
+
+            # continue traversing with left and right node
+            if current_node.right!= None:
+                queue.append(current_node.right)
+            if current_node.left!= None:
+                queue.append(current_node.left)
+            
+        return root
