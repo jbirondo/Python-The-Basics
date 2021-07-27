@@ -10107,3 +10107,16 @@ class Solution:
         right = node.right
         node.right = left
         node.left = right
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        
+        def invert(node):
+            if node == None:
+                return
+            node.left, node.right = node.right,node.left
+            invert(node.left)
+            invert(node.right)
+            
+        invert(root)
+        return root
