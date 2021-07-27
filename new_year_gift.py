@@ -10083,3 +10083,27 @@ class Solution:
                 queue.append(current_node.left)
             
         return root
+
+class Solution:
+    def __init__(self):
+        self.visited = [] # to store the nodes visited
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        
+        self.postOrderTraversal(root)    
+        return root
+            
+            
+    def postOrderTraversal(self,node : TreeNode):
+        if not node:
+            return
+        self.postOrderTraversal(node.left)
+        self.postOrderTraversal(node.right)
+        self.swap(node)
+    
+    def swap(self,node:TreeNode):
+        left = node.left
+        right = node.right
+        node.right = left
+        node.left = right
