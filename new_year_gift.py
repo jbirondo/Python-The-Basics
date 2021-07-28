@@ -10179,3 +10179,28 @@ class Solution(object):
         curr_max = max(curr_max, max_right, max_left, max_valid_path, max_valid_path_right + max_valid_path_left + root.val)
 
         return curr_max, max_valid_path
+
+class Solution(object):
+    def post_order(self, root, res):
+        if not root:
+            return 0
+        
+        left_sum = self.post_order(root.left, res)
+        right_sum = self.post_order(root.right, res)
+        
+        left_only = left_sum + root.val
+        right_only = right_sum + root.val
+        all_sum = left_only + right_only - root.val
+        
+        res[0] = max(res[0], max(all_sum, left_only, right_only, root.val))
+        return max(left_only, right_only, root.val)
+        
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        
+        res = [float('-inf')]
+        self.post_order(root, res)
+        return res[0]
