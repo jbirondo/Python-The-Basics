@@ -10228,3 +10228,26 @@ class Solution:
         path_max = -float('inf')
         preorder_traversal(root)
         return path_max
+
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        record = -(math.inf)
+        
+        def traverse(node):
+            # Reached end
+            if node is None:
+                return 0
+            
+            left = traverse(node.left)
+            right = traverse(node.right)
+            
+            retval = max(node.val, node.val + left, node.val + right)
+            potrecord = max(retval, node.val + left + right)
+             
+            nonlocal record
+            if potrecord > record:
+                record = potrecord
+            return retval
+        
+        traverse(root)
+        return record
