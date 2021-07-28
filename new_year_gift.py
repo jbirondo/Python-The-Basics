@@ -10151,3 +10151,31 @@ Example 2:
 Input: root = [-10,9,20,null,null,15,7]
 Output: 42
 Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
+
+class Solution(object):
+    
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root:
+            max_path, _ = self.maxPathRecursive(root)
+            return max_path
+        return 0
+
+    def maxPathRecursive(self, root):
+        if not root:
+            return -float('inf'), -float('inf')
+        
+        max_valid_path = root.val
+        curr_max = root.val
+
+        max_right, max_valid_path_right = self.maxPathRecursive(root.right)
+        max_left, max_valid_path_left = self.maxPathRecursive(root.left)
+
+        max_valid_path = max(max_valid_path, max_valid_path_right + root.val, max_valid_path_left + root.val)
+
+        curr_max = max(curr_max, max_right, max_left, max_valid_path, max_valid_path_right + max_valid_path_left + root.val)
+
+        return curr_max, max_valid_path
