@@ -10204,3 +10204,27 @@ class Solution(object):
         res = [float('-inf')]
         self.post_order(root, res)
         return res[0]
+
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        def preorder_traversal(node):
+            nonlocal path_max
+            v = node.val
+            if not node.left and not node.right:
+                path_max = max(path_max, v)
+                return v
+            l_max, r_max = 0, 0
+            if node.left:
+                l_max = preorder_traversal(node.left)
+            if node.right:
+                r_max = preorder_traversal(node.right)
+            # curr_max represents any max sum resulted from going through
+            # current node but does not include sum of left, self, right
+            # given a node can't appear twice in a path
+            curr_max = max(v+l_max, v+r_max, v)
+            path_max = max(path_max, curr_max, v+l_max+r_max)
+            return curr_max
+        
+        path_max = -float('inf')
+        preorder_traversal(root)
+        return path_max
