@@ -10336,3 +10336,28 @@ class Solution:
             result.append(level_result)
         
         return result 
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        result, queue, level_array = [], [root], []
+        queue_length, counter = len(queue), 0
+        while len(queue) > 0 :
+            current_node = queue.pop(0)
+            counter += 1
+            level_array.append(current_node.val)
+            if current_node.left:
+                queue.append(current_node.left)
+            if current_node.right:
+                queue.append(current_node.right)
+            if counter == queue_length:
+                result.append(level_array)
+                counter = 0
+                level_array = []
+                queue_length = len(queue)
+        return result
