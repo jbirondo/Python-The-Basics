@@ -10279,3 +10279,22 @@ Example 3:
 
 Input: root = []
 Output: []
+
+def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        q = deque([root])
+        result = []
+        level = 0
+        while q:
+            q_size = len(q)
+            result.append([])
+            for _ in range(q_size):
+                node = q.popleft()
+                result[level].append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+
+            level += 1
+        return result
