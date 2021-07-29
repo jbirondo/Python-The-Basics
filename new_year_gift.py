@@ -10361,3 +10361,16 @@ class Solution(object):
                 level_array = []
                 queue_length = len(queue)
         return result
+
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        result=[]
+        def dfs(tree,depth):
+            if(tree):
+                if(depth==len(result)):
+                    result.append([])
+                result[depth].append(tree.val)
+                dfs(tree.left,depth+1)
+                dfs(tree.right,depth+1)
+        dfs(root,0)
+        return result
