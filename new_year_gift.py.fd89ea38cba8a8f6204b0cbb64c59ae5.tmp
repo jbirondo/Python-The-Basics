@@ -10464,7 +10464,7 @@ class Solution:
         return traverse_tree(root)
 
 def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
-	return self.impl(root, subRoot)
+    	return self.impl(root, subRoot)
 
 def impl(self, root, subRoot, checking=False):
 	if root is None and subRoot is None:    return True
@@ -10476,3 +10476,15 @@ def impl(self, root, subRoot, checking=False):
 	if not checking:
 		valid = valid or self.impl(root.left, subRoot) or self.impl(root.right, subRoot)
 	return valid
+
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        if root: 
+            return self.isSameTree(root, subRoot) or self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+        else: return subRoot is None
+    
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:  #LC100: https://leetcode.com/problems/same-tree/
+        if q is None and p is None: return True
+        elif q is None and p is not None: return False
+        elif q is not None and p is None: return False
+        return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right) 
