@@ -10462,3 +10462,17 @@ class Solution:
                 return check_subtree_DFS(root, subRoot)
 
         return traverse_tree(root)
+
+def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+	return self.impl(root, subRoot)
+
+def impl(self, root, subRoot, checking=False):
+	if root is None and subRoot is None:    return True
+	if root is None or subRoot is None: return False
+
+	valid = False
+	if root.val == subRoot.val:
+		valid = valid or self.impl(root.left, subRoot.left, True) and self.impl(root.right, subRoot.right, True)
+	if not checking:
+		valid = valid or self.impl(root.left, subRoot) or self.impl(root.right, subRoot)
+	return valid
