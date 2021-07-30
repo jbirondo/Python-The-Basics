@@ -10401,3 +10401,38 @@ Example 2:
 
 Input: root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]
 Output: false
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSubtree(self, root, subRoot):
+        """
+        :type root: TreeNode
+        :type subRoot: TreeNode
+        :rtype: bool
+        """
+        self.res = False
+        def isIdentical(tree1,tree2):
+            if tree1 == None and tree2 == None:
+                return True
+            if tree1 == None:
+                return False
+            if tree2 == None:
+                return False
+            return isIdentical(tree1.left,tree2.left) and tree1.val == tree2.val and isIdentical(tree1.right,tree2.right)
+        
+        def preorder(root,subtree):
+            if not root:
+                return
+            preorder(root.left,subtree)
+            if isIdentical(root,subtree):
+                self.res = True
+                return
+            
+            preorder(root.right,subtree)
+        preorder(root,subRoot)
+        return self.res
