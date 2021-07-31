@@ -10537,7 +10537,7 @@ def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
     return root
 
 class Solution:
-    	def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+	def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
 		map_inorder = {}
 		preorder = preorder[::-1]
 		for i,val in enumerate(inorder): map_inorder[val] = i
