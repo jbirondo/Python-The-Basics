@@ -10578,3 +10578,24 @@ class Solution:
 			return root
 
 		return helper(preorder,inorder)
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        inorder_index = {i:count for count, i in enumerate(inorder)}
+        head = TreeNode(preorder.pop(0))
+        for currVal in preorder:
+            myTreeNode = head
+            while myTreeNode:
+                if inorder_index[currVal] < inorder_index[myTreeNode.val]:
+                    parentNode = myTreeNode
+                    myTreeNode = myTreeNode.left
+                    if not myTreeNode:
+                        parentNode.left = TreeNode(currVal)
+                        break
+                else:
+                    parentNode = myTreeNode
+                    myTreeNode = myTreeNode.right
+                    if not myTreeNode:
+                        parentNode.right = TreeNode(currVal)
+                        break
+        return head
