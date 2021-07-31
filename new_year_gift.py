@@ -10552,3 +10552,29 @@ class Solution:
         
 			return root
 		return helper(0,len(inorder)-1)
+
+class Solution:
+    	def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+
+		"""
+		Approach
+
+		wkt preOrder = Root,L,R
+			InOrder = L,Root,R
+		"""
+		def helper(preorder,inorder):
+			n1 = len(preorder)
+			n2 = len(inorder)
+
+			if n1 != n2 or preorder is None or inorder is None or n1 == 0:
+				return None
+
+			root = TreeNode(preorder[0])
+			idx = inorder.index(root.val)
+
+			root.left = helper(preorder[1:idx+1],inorder[:idx])
+			root.right = helper(preorder[idx+1:],inorder[idx+1:]) 
+
+			return root
+
+		return helper(preorder,inorder)
