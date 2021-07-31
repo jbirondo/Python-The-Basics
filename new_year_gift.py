@@ -10523,3 +10523,15 @@ preorder and inorder consist of unique values.
 Each value of inorder also appears in preorder.
 preorder is guaranteed to be the preorder traversal of the tree.
 inorder is guaranteed to be the inorder traversal of the tree.
+
+def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+
+    if not inorder:
+        return
+    root=preorder.pop(0)
+    temp=inorder.index(root)
+    root=TreeNode(root)
+  
+    root.left=self.buildTree(preorder,inorder[:temp])
+    root.right=self.buildTree(preorder,inorder[temp+1:])
+    return root
