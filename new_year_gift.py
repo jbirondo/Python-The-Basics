@@ -10648,3 +10648,16 @@ class Solution:
             if lst1[i]>=lst1[i+1]:
                 return False
         return True
+
+def isValidBST(self, root: TreeNode) -> bool:
+        self.prev = None
+        def dfs(root):
+            if not root:
+                return True
+            left = dfs(root.left) 
+            if self.prev and root.val <= self.prev.val:
+                return False
+            self.prev = root
+            right = dfs(root.right)
+            return left and right
+        return dfs(root)
