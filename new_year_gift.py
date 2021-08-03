@@ -10630,3 +10630,21 @@ Example 2:
 Input: root = [5,1,4,null,null,3,6]
 Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        lst1=list()
+        def inorder(root):
+            if root == None:
+                return 
+            else:
+                inorder(root.left)
+                lst1.append(root.val)
+                inorder(root.right)
+        
+        inorder(root)
+     
+        for i in range(len(lst1)-1):
+            if lst1[i]>=lst1[i+1]:
+                return False
+        return True
