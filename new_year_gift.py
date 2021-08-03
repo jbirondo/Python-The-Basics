@@ -10675,3 +10675,21 @@ def isValidBST(self, root: TreeNode) -> bool:
             prev = root
             root = root.right
         return True
+
+class Solution:
+    def __init__(self):
+        self.sortedArray = []
+        
+    def isValidBST(self, root: TreeNode) -> bool:
+        self.inorderT(root)
+        for i in range(len(self.sortedArray)-1):
+            if self.sortedArray[i+1]<=self.sortedArray[i]:
+                return False
+        return True
+    
+    def inorderT(self, root):
+        if not root:
+            return 
+        self.inorderT(root.left)
+        self.sortedArray.append(root.val)
+        self.inorderT(root.right)
