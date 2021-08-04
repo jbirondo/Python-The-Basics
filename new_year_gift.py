@@ -10743,3 +10743,16 @@ class Solution:
         temp=[]
         self.helper(root,temp)
         return temp[k-1]
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        def make(root,l):
+            if not root:
+                return
+            make(root.left,l)
+            l.append(root.val)
+            make(root.right,l)
+            
+        l = []
+        make(root,l)
+        return l[k-1]
