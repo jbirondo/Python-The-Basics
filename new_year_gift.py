@@ -10756,3 +10756,20 @@ class Solution:
         l = []
         make(root,l)
         return l[k-1]
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        
+        val = None
+        
+        def helper(node):
+            nonlocal k, val
+            if node and k > -1:
+                helper(node.left)
+                k -= 1
+                if k == 0:
+                    val = node.val
+                helper(node.right)
+            
+        helper(root)
+        return val
