@@ -10728,3 +10728,18 @@ The number of nodes in the tree is n.
  
 
 Follow up: If the BST is modified often (i.e., we can do insert and delete operations) and you need to find the kth smallest frequently, how would you optimize?
+
+class Solution:
+    def helper(self,tree,result):
+        if(not tree):
+            return 
+        else:
+            self.helper(tree.left,result)
+            result.append(tree.val)
+            self.helper(tree.right,result)
+            
+        
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        temp=[]
+        self.helper(root,temp)
+        return temp[k-1]
