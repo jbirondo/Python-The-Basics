@@ -10791,3 +10791,22 @@ class Solution:
                     return ino[-1]
             else:
                 break
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        # inorder traversal kth smallest element is the answer
+        def traversal(root, res):
+            if not root:
+                return
+            # left root right
+            if len(res) >= k:
+                return
+            traversal(root.left, res)
+            res.append(root.val)
+            if len(res) >= k:
+                return
+            traversal(root.right, res)
+            
+        inorder = []
+        traversal(root, inorder)
+        return inorder[k-1]
