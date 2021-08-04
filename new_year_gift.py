@@ -10773,3 +10773,21 @@ class Solution:
             
         helper(root)
         return val
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        ino=[]
+        stack=[]
+        cur=root
+        while True:
+            if cur:
+                stack.append(cur)
+                cur=cur.left
+            elif stack:
+                node=stack.pop()
+                ino.append(node.val)
+                cur=node.right
+                if len(ino)==k:
+                    return ino[-1]
+            else:
+                break
