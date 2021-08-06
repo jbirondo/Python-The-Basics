@@ -10996,3 +10996,75 @@ class Trie:
                 return False
         
         return True
+
+class Trie:
+    
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.keys = {}
+        self.keyNumberStatic = 1
+        
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        
+        keyNumber = 0
+        for i in word:
+            if keyNumber in self.keys and i in self.keys[keyNumber]:
+                pass
+            elif keyNumber in self.keys and i not in self.keys[keyNumber]:
+                current_dict = self.keys[keyNumber]
+                current_dict[i] = self.keyNumberStatic
+                self.keyNumberStatic+=1
+            else:
+                self.keys[keyNumber] = {i: self.keyNumberStatic}
+                self.keyNumberStatic+=1
+            keyNumber = self.keys[keyNumber][i]
+        
+        if keyNumber in self.keys and "" in self.keys[keyNumber]:
+            pass
+        elif keyNumber in self.keys and "" not in self.keys[keyNumber]:
+            current_dict = self.keys[keyNumber]
+            current_dict[""] = self.keyNumberStatic
+            self.keyNumberStatic+=1
+        else:
+            self.keys[keyNumber] = {"": self.keyNumberStatic}
+            self.keyNumberStatic+=1
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        start = 0
+        for i in word:
+            if start not in self.keys:
+                return False
+            elif i in self.keys[start]:
+                start = self.keys[start][i]
+            else:
+                return False
+        
+        if "" in self.keys[start]:
+            return True
+        
+        
+            
+        
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        start = 0
+        for i in prefix:
+            if start not in self.keys:
+                return False
+            elif i in self.keys[start]:
+                start = self.keys[start][i]
+            else:
+                return False
+
+        return True
