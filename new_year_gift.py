@@ -10919,7 +10919,7 @@ trie.insert("app");
 trie.search("app");     // return True
 
 class Trie:
-
+    
     def __init__(self):
         """
         Initialize your data structure here.
@@ -10952,3 +10952,47 @@ class Trie:
             if(self.data[i][:len(prefix)] == prefix):
                 return True
         return False
+
+class Trie:
+    children: dict[chr, 'Trie']
+    isWord: bool
+    
+    def __init__(self):
+        self.children = {}
+        self.isWord = False
+
+    def insert(self, word: str) -> None:
+        p: 'Trie' = self
+            
+        char: chr
+        for char in word:
+            if char not in p.children:
+                p.children[char] = Trie()
+            p = p.children[char]
+            
+        p.isWord = True
+
+    def search(self, word: str) -> bool:
+        p: 'Trie' = self
+        
+        char: chr
+        for char in word:
+            if char in p.children:
+                p = p.children[char]
+            else:
+                return False
+        
+        return p.isWord
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        p: 'Trie' = self
+        
+        char: chr
+        for char in prefix:
+            if char in p.children:
+                p = p.children[char]
+            else:
+                return False
+        
+        return True
