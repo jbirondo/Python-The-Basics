@@ -11068,3 +11068,45 @@ class Trie:
                 return False
 
         return True
+
+class Trie:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.root = dict()
+        
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        root = self.root
+        
+        for char in word:
+            if char not in root:
+                root[char] = dict()
+            root = root[char]
+        root["end"] = 1
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        root = self.root
+        for char in word:
+            if char not in root:
+                return False
+            root = root[char]
+        return "end" in root
+
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        root = self.root
+        for char in prefix:
+            if char not in root:
+                return False
+            root = root[char]
+        return True
