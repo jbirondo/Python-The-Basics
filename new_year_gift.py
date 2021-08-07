@@ -11225,3 +11225,55 @@ class WordDictionary:
                 return any([helper(w[1:], n.children[x]) for x in n.children])
                 
         return helper(word, self.root)
+
+class TrieNode:
+    def __init__(self,ch):
+        self.children = defaultdict(TrieNode)
+        self.isWord = False
+        self.char = ch
+        
+        
+        
+class WordDictionary:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.root = TrieNode('*')
+       
+        
+
+    def addWord(self, word: str) -> None:
+        head = self.root
+        for ch in word:
+            if ch not in head.children:
+                head.children[ch]=TrieNode(ch)
+            head = head.children[ch]
+        head.isWord = True
+        
+
+    def search(self, word: str) -> bool:
+        head = self.root
+        queue = deque([head])
+        
+        for i,ch in enumerate(word):
+            #BFS all the queue node in this level, to find whether ch in the children of the node.
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if i == len(word)-1: #Find whether find the word in Trie
+                    if ch in node.children and node.children[ch].isWord: 
+                        return True
+                    if ch == '.': #If last ch is '.', explore all the children node to look for isWord
+                        for child in node.children:
+                            if node.children[child].isWord: return True
+                if ch in node.children:
+                    queue.append(node.children[ch])
+                if ch == '.':
+                    queue += node.children.values()
+                    
+        return False 
+        #Two cases that we could exit without return True:
+        #1. ch not . and we couldn't find any match for some ch, so queue is empty, then for all the rest of ch, we do nothing
+        #2. we complete traversal of word, but didn't find isWord sign.
+        #Both above cases we should return False.
