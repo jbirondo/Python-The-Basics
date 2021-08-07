@@ -11277,3 +11277,55 @@ class WordDictionary:
         #1. ch not . and we couldn't find any match for some ch, so queue is empty, then for all the rest of ch, we do nothing
         #2. we complete traversal of word, but didn't find isWord sign.
         #Both above cases we should return False.
+
+class WordDictionary:
+    
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.trie = {}
+        self.count = 0
+
+    def addWord(self, word: str) -> None:
+        self.count = max(self.count, len(word))
+        m = self.trie
+        for w in word:
+            m.setdefault(w, {})
+            m = m[w]
+        m['$'] = word
+        
+    def search(self, word: str) -> bool:
+        if len(word) == 0:
+            return False
+        if len(word) > self.count:
+            return False
+        matches = []
+        if word[0] == '.':
+            matches = list(self.trie.values())
+        else:
+            d = self.trie.get(word[0], None)
+            if d is None:
+                return False
+            matches = [d]
+        for i, w in enumerate(word[1:]):
+            m = []
+            if w == '.':
+                for match in matches:
+                    if type(match) == str:
+                        continue
+                    if '$' in match and len(match) == 1:
+                        continue
+                    m.extend(list(match.values()))
+            else:               
+                for match in matches:
+                    #print(match)
+                    if type(match) == dict and w in match:
+                        m.append(match[w])
+            if len(m) == 0:
+                return False
+            matches = m
+        for match in matches:
+            if '$' in match:
+                return True
+        return False
