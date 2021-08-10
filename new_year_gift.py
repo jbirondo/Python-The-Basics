@@ -11437,3 +11437,80 @@ class Solution:
                 for j in range(n):
                     self.search(board, vis, trie.root, temp, i, j, m, n)
             return self.ans
+
+class Solution(object):
+    def findWords(self, board, words):
+        """
+        :type board: List[List[str]]
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        
+        def helper(r, c, word, board, prev):
+            
+                if len(word) == 0:
+                    return True
+                
+                board[r][c] = "."
+                flag = 0
+                if r-1 >= 0 and board[r-1][c] == word[0] and flag == 0:
+                    if helper(r-1, c, word[1:], board, word[0]):
+                        flag = 1
+                if r+1 < self.m and board[r+1][c] == word[0] and flag == 0:
+                    if helper(r+1, c, word[1:], board, word[0]):
+                        flag = 1
+                if c-1 >= 0 and board[r][c-1] == word[0] and flag == 0:
+                    if helper(r, c-1, word[1:], board, word[0]):
+                        flag = 1
+                if c+1 < self.n and board[r][c+1] == word[0] and flag == 0:
+                    if helper(r, c+1, word[1:], board, word[0]):
+                        flag = 1
+                
+                board[r][c] = prev
+                if flag:
+                    return True
+                else:
+                    return False
+            
+        
+        retval = []
+        self.m = len(board)
+        self.n = len(board[0])
+        
+        hmap = dict()
+        for r in range(0, self.m):
+            for c in range(0, self.n):
+                if board[r][c] not in hmap:
+                    hmap[board[r][c]] = 1
+                    continue
+                hmap[board[r][c]] += 1
+        
+        cpy_words = []
+        for word in words:
+            tmp = dict()
+            for ch in word:
+                if ch not in tmp:
+                    tmp[ch] = 1
+                    continue
+                tmp[ch] += 1
+                
+            flag = 0
+            for k, v in tmp.items():
+                if k in hmap and v <= hmap[k]:
+                    flag = 1
+                else:
+                    flag = 0
+                    break
+                    
+            if flag == 1:
+                cpy_words.append(word)
+        
+    
+        for r in range(0, self.m):
+            for c in range(0, self.n):
+                for word in cpy_words:
+                    if board[r][c] == word[0] and word not in retval:
+                        if helper(r, c, word[1:], board, word[0]):
+                            retval.append(word)
+        
+        return retval
