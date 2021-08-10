@@ -11514,3 +11514,56 @@ class Solution(object):
                             retval.append(word)
         
         return retval
+
+    class Node:
+        
+    def __init__(self):
+        self.children = {}
+        self.isWord = False
+        self.parentWord = None
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        
+        # standard dfs with word check
+        # word check is trie with each call being the next level of char in trie 
+        # if final word hit then add to res 
+        
+        trie = Node()
+        for word in words:
+            cur = trie
+            for char in word:
+                if char not in cur.children:
+                    cur.children[char] = Node()
+                cur = cur.children[char]
+            cur.isWord = True
+            cur.parentWord = word
+         
+        res = []
+        d = ((0,1), (1,0), (0,-1), (-1,0))
+        
+        for row in range(len(board)):
+            for col in range(len(board[0])):
+                key = board[row][col]
+                if key in trie.children:
+                    self.search(board, row, col, trie.children[key], res, d)
+        
+        return res
+    
+    def search(self, board, row, col, trie, res, d):
+
+        if trie.isWord:
+            trie.isWord = False
+            res.append(trie.parentWord)
+        
+        prev = board[row][col]
+        board[row][col] = "#"
+        for x, y in d:
+            newx = x + row
+            newy = y + col
+            if newx >= 0 and newy >= 0 and  newx < len(board) and newy < len(board[0]):
+                key = board[newx][newy]
+                if key in trie.children:
+                    self.search(board, newx, newy, trie.children[key], res, d)
+                                                      
+        board[row][col] = prev
