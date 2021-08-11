@@ -11741,3 +11741,22 @@ class Solution:
             prevNode = newNode
             i += 1
         return head
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        head = ListNode(0)
+        
+        l = []
+        for i in lists:
+            curr = i
+            while curr:
+                heapq.heappush(l, curr.val)
+                curr = curr.next
+        p = head
+        while len(l):
+            i = heapq.heappop(l)
+            curr = ListNode(i)
+            p.next = curr
+            p = p.next
+            
+        return head.next
