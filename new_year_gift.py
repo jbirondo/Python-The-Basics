@@ -11682,3 +11682,38 @@ class Solution:
         for i in range(2, len(lists)):
             curr = merge(curr, lists[i])
         return curr
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
+        def merge(head1, head2):
+            
+            if head1 is None:
+                return head2
+            elif head2 is None:
+                return head1
+            
+            dummy = ListNode()
+            curr = dummy
+            while head1 and head2:
+                if head1.val <= head2.val:
+                    curr.next = head1
+                    head1 = head1.next
+                else:
+                    curr.next = head2
+                    head2 = head2.next
+                curr = curr.next
+            
+            curr.next = head1 if head1 else head2
+                    
+            return dummy.next
+        
+        if len(lists) == 0:
+            return None
+        elif len(lists) == 1:
+            return lists[0]
+        
+        curr = merge(lists[0], lists[1])
+        for i in range(2, len(lists)):
+            curr = merge(curr, lists[i])
+        return curr
