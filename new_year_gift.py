@@ -11760,3 +11760,30 @@ class Solution:
             p = p.next
             
         return head.next
+
+import heapq
+
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        class Wrapper():
+            def __init__(self, node):
+                self.node = node
+            def __lt__(self, other):
+                return self.node.val < other.node.val
+        head = point = ListNode(0)
+        q = []
+        for l in lists:
+            if l:
+                heapq.heappush(q,Wrapper(l))
+        while q:
+            node = heapq.heappop(q).node
+            point.next = ListNode(node.val)
+            point = point.next
+            node = node.next
+            if node:
+                heapq.heappush(q,Wrapper(node))
+        return head.next
