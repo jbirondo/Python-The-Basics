@@ -11604,3 +11604,21 @@ Example 3:
 
 Input: lists = [[]]
 Output: []
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        output = []
+        for lst in lists:
+            while lst:
+                output.append(lst.val)
+                lst = lst.next
+        
+        if len(output) == 0: return None
+        output = sorted(output)
+        head = ListNode(output[0])
+        p = head
+        for item in output[1:]:
+            head.next = ListNode(item)
+            head = head.next
+        head.next = None
+        return p
