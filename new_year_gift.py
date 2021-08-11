@@ -11622,3 +11622,28 @@ class Solution:
             head = head.next
         head.next = None
         return p
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
+        starting = tail = None
+        stack = []
+        for li in lists:
+            if li:
+                if starting is None:
+                    starting = li
+                else:
+                    tail.next = li
+
+                prev = None
+                while li:
+                    stack.append(li.val)
+                    prev = li
+                    li = li.next
+                tail = prev
+        stack.sort()
+        curr = starting
+        for x in stack:
+            curr.val = x
+            curr = curr.next
+        return starting
