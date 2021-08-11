@@ -11717,3 +11717,27 @@ class Solution:
         for i in range(2, len(lists)):
             curr = merge(curr, lists[i])
         return curr
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        flattenedList = []
+        for list in lists:
+            while(list is not None):
+                flattenedList.append(list.val)
+                list = list.next
+        flattenedList.sort()
+        #now we build the LL
+        head = ListNode()
+        if(flattenedList is None or len(flattenedList) == 0):
+            return None
+        head.val = flattenedList[0]
+        length = len(flattenedList) - 1
+        i = 1
+        prevNode = head
+        while(i <= length):
+            newNode = ListNode()
+            newNode.val = flattenedList[i]
+            prevNode.next = newNode
+            prevNode = newNode
+            i += 1
+        return head
