@@ -11900,3 +11900,11 @@ class Solution(object):
             k -= 1
         
         return ans
+
+from collections import Counter
+
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d = Counter(nums)
+        return dict(d.most_common(k)).keys()
