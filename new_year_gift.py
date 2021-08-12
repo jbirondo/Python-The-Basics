@@ -11908,3 +11908,14 @@ class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         d = Counter(nums)
         return dict(d.most_common(k)).keys()
+
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        c=Counter(nums)
+        heap=[]
+        for i in c:
+            heappush(heap,(c[i],i))
+            
+            if len(heap)>k:
+                heappop(heap)
+      
+        return [x[1] for x in heap]
