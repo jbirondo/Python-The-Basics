@@ -11820,3 +11820,67 @@ It is guaranteed that the answer is unique.
  
 
 Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+
+class Solution(object):
+    
+    def __init__(self):
+        self.numMap = defaultdict(lambda : 0)
+        self.heap = []
+    
+    
+    def createNumMap(self, nums):
+        for elem in nums:
+            self.numMap[elem]+=1
+            
+            
+    def applyQuickSelect(self, values, lo, hi):
+        
+        pi = random.choice(range(lo, hi+1))
+        values[pi], values[hi] = values[hi], values[pi]
+        pivot = values[hi][1]
+        
+        i, j = lo-1, lo
+        
+        while(j < hi):
+            if values[j][1] > pivot:
+                i+=1
+                values[i], values[j] = values[j], values[i]
+            j+=1
+            
+        i+=1
+        values[i], values[hi] = values[hi], values[i]
+    
+        return i
+            
+            
+            
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+       
+        self.createNumMap(nums)
+        N = len(self.numMap)
+        
+        keys = list(self.numMap.keys())
+        if N <= k:
+            return keys
+        
+        num_li = self.numMap.items()
+        lo, hi = 0, len(num_li)-1
+        
+        
+        while(lo < hi):
+        
+            pivot = self.applyQuickSelect(num_li, lo, hi) 
+            if pivot+1 == k:
+                return [num_li[i][0] for i in range(pivot+1)]
+            elif pivot+1 > k:
+                hi = pivot-1
+            else:
+                lo = pivot+1
+        
+      
+        return [num_li[i][0] for i in range(hi+1)]
