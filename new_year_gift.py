@@ -11884,3 +11884,19 @@ class Solution(object):
         
       
         return [num_li[i][0] for i in range(hi+1)]
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        ans = []
+        
+        numToCounts = collections.Counter(nums)
+        h = [(-numToCounts[num], num) for num in numToCounts]
+        
+        heapq.heapify(h)
+        
+        while k>0:
+            _, num = heapq.heappop(h)
+            ans.append(num)
+            k -= 1
+        
+        return ans
