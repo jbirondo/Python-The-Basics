@@ -12010,3 +12010,43 @@ class MedianFinder(object):
             return -self.max_heap[0]
         else:
             return self.min_heap[0]
+
+class MedianFinder:
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.L = []
+
+    def addNum(self, num: int) -> None:
+        if len(self.L) == 0 or num <= self.L[0]:
+            i = 0
+        elif num >= self.L[-1]:
+            i = len(self.L)
+        else:
+            i = self.binarySearch(num)
+        self.L.insert(i, num)
+
+    def findMedian(self) -> float:
+        k = len(self.L)-1
+        m = k//2
+        if k % 2:
+            return (self.L[m]+self.L[m+1])/2
+        else:
+            return self.L[m]
+            
+    def binarySearch(self, x: int) -> int:
+        k = len(self.L)
+        upper = k - 1
+        mid = upper//2
+        lower = 0
+        
+        while not self.L[mid] <= x <= (self.L[mid+1] if mid+1 < k else 1e5):
+            if self.L[mid] > x:
+                upper = mid
+                mid = (mid-lower)//2 + lower
+            else:
+                lower = mid
+                mid = (upper-mid)//2 + mid
+                
+        return mid+1
