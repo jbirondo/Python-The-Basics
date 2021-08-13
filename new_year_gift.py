@@ -11969,3 +11969,44 @@ Follow up:
 
 If all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
 If 99% of all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
+
+from heapq import heappush, heappop
+class MedianFinder(object):
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.max_heap = []    # stores numbers smaller than the median
+        self.min_heap = []    # stores numbers greater than the median
+
+    def addNum(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        # two invariants that we must keep at all times
+        # 1. all elements in the max heap are smaller than those in the min heap
+        # 2. number of elements in the two heaps can differ by at most 1
+
+        # handles invariant 1
+        if not self.max_heap or num < -self.max_heap[0]:
+            heappush(self.max_heap, -num)
+        else:
+            heappush(self.min_heap, num)
+            
+        # handles invariant 2
+        if len(self.max_heap)-len(self.min_heap) > 1:
+            heappush(self.min_heap, -heappop(self.max_heap))
+        if len(self.min_heap)-len(self.max_heap) > 1:
+            heappush(self.max_heap, -heappop(self.min_heap))
+            
+    def findMedian(self):
+        """
+        :rtype: float
+        """
+        if len(self.max_heap) == len(self.min_heap):
+            return float(-self.max_heap[0]+self.min_heap[0])/2
+        elif len(self.max_heap) > len(self.min_heap):
+            return -self.max_heap[0]
+        else:
+            return self.min_heap[0]
