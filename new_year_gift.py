@@ -12050,3 +12050,57 @@ class MedianFinder:
                 mid = (upper-mid)//2 + mid
                 
         return mid+1
+
+class MedianFinder(object):
+    
+	def __init__(self):
+		"""
+		initialize your data structure here.
+		"""
+		self.max_heap=[]
+		self.min_heap=[]
+		self.curr_med=float('inf')
+
+
+	def addNum(self, num):
+		"""
+		:type num: int
+		:rtype: None
+		"""
+		import heapq
+		if self.curr_med==float('inf'):
+			self.curr_med=num
+			heapq.heappush(self.max_heap, -num)
+		else:
+			if len(self.max_heap)>len(self.min_heap):
+				if num<self.curr_med:
+					top=heapq.heappop(self.max_heap)
+					heapq.heappush(self.min_heap, -top)
+					heapq.heappush(self.max_heap, -num)
+				else:
+					heapq.heappush(self.min_heap, num)
+				self.curr_med=(-self.max_heap[0]+self.min_heap[0])/2.0
+
+			elif len(self.max_heap)<len(self.min_heap):
+				if num<self.curr_med:
+					heapq.heappush(self.max_heap, -num)
+				else:
+					top=heapq.heappop(self.min_heap)
+					heapq.heappush(self.max_heap, -top)
+					heapq.heappush(self.min_heap, num)
+				self.curr_med=(-self.max_heap[0]+self.min_heap[0])/2.0      
+
+			else:
+				if num<self.curr_med:
+					heapq.heappush(self.max_heap, -num)
+					self.curr_med=-self.max_heap[0]
+				else:
+					heapq.heappush(self.min_heap, num)
+					self.curr_med=self.min_heap[0]
+
+
+	def findMedian(self):
+		"""
+		:rtype: float
+		"""
+		return self.curr_med
