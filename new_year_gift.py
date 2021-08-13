@@ -12104,3 +12104,24 @@ class MedianFinder(object):
 		:rtype: float
 		"""
 		return self.curr_med
+
+from sortedcontainers import SortedList
+class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.mylist = SortedList()
+        
+
+    def addNum(self, num: int) -> None:
+        self.mylist.add(num)
+        
+
+    def findMedian(self) -> float:
+        x = len(self.mylist)//2
+        if len(self.mylist)%2:
+            return self.mylist[x]
+        else:
+            return (self.mylist[x]+self.mylist[x-1])/2
