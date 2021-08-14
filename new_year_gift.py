@@ -12216,3 +12216,17 @@ class Solution:
 			for j in range(cols):
 				if matrix[i][j] == 'M':
 					matrix[i][j] = 0
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        i_set, j_set = set(), set()
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if matrix[i][j] == 0:
+                    i_set.add(i)
+                    j_set.add(j)
+        for i in i_set:
+            matrix[i] = [0] * len(matrix[i]) 
+        for j in j_set:
+            for i in range(len(matrix)):
+                matrix[i][j] = 0
