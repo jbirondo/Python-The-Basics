@@ -12230,3 +12230,52 @@ class Solution:
         for j in j_set:
             for i in range(len(matrix)):
                 matrix[i][j] = 0
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        r=len(matrix)
+        c=len(matrix[0])
+        is_col=False
+        for i in range(r):
+            if(matrix[i][0]==0):
+                is_col=True
+            for j in range(1,c):
+                if(matrix[i][j]==0):
+                    matrix[0][j]=0 
+                    matrix[i][0]=0
+        for i in range(1,r):
+            for j in range(1,c):
+                if(not matrix[i][0] or not matrix[0][j]):
+                    matrix[i][j]=0 
+        if(matrix[0][0]==0):
+            for j in range(c):
+                matrix[0][j]=0 
+        if(is_col):
+            for i in range(r):
+                matrix[i][0]=0 
+        return matrix
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        def transform(m, i, j):
+          for k in range(N):
+            if m[i][k] != 0:
+              m[i][k] = 'Booked' 
+          for o in range(M):
+            if m[o][j] != 0:
+              m[o][j] = 'Booked'
+            
+        M = len(matrix)
+        N = len(matrix[0])
+          
+        for i in range(M):
+          for j in range(len(matrix[i])):
+            if matrix[i][j] != 'Booked' and  matrix[i][j] == 0:
+              transform(matrix, i, j)
+        for i in range(M):
+          for j in range(len(matrix[i])):
+            if matrix[i][j] == 'Booked':
+              matrix[i][j] = 0
