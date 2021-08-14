@@ -12186,3 +12186,33 @@ class Solution:
                 
         if c1:
             for j in range(n): M[j][0] = 0
+
+class Solution:
+    	def setZeroes(self, matrix: List[List[int]]) -> None:
+		"""
+		Do not return anything, modify matrix in-place instead.
+		"""
+		rows , cols , marker = len(matrix),len(matrix[0]),'M'
+
+		## function for marking the rows and cols when we spot a zero
+		## with a marker except the cell which is actually zero
+
+		def markwithmarker(row,col):
+			for r in range(rows):
+				if matrix[r][col]!=0: 
+					matrix[r][col] = 'M'
+
+			for c in range(cols):
+				if matrix[row][c]!=0: 
+					matrix[row][c] = 'M'
+
+		for row in range(rows):
+			for col in range(cols):
+				if matrix[row][col] == 0:
+					markwithmarker(row,col)
+
+		##Now wherever we mark the cell with M replace those with zeros
+		for i in range(rows):
+			for j in range(cols):
+				if matrix[i][j] == 'M':
+					matrix[i][j] = 0
