@@ -12383,3 +12383,47 @@ class Solution:
             # give 90 degree angle to the matrix
             matrix =  [row for row in reversed([list(v) for v in list(zip(*matrix))])]
         return l
+
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        visited = set()
+        queue = [[0,0, "right", "down"]]
+        result = []
+        maxy = len(matrix[0]) -1
+        maxx = len(matrix) -1 
+        d2d = {
+            "right": "down",
+            "down": "left",
+            "left": "up",
+            "up": "right"
+        }
+        def addnext(x,y,direction, backupd):
+            if direction == "left" and (x, y-1) not in visited and y-1 >= 0:
+                queue.append([x,y-1, direction, backupd])
+            elif direction == "right" and (x, y+1) not in visited and y+1 <= maxy:
+                queue.append([x,y+1, direction, backupd])
+            elif direction == "up" and (x-1, y) not in visited and x-1 >= 0:
+                queue.append([x-1, y, direction, backupd])
+            elif direction == "down" and (x+1, y) not in visited and x+1 <= maxx:
+                queue.append([x+1, y, direction, backupd])
+            else:
+                return False
+            
+
+        while queue:
+            [x,y, direction, backupd] = queue.pop()
+
+            result.append(matrix[x][y])
+            visited.add((x,y))
+            valid = addnext(x,y,direction, backupd)
+            if valid == False:
+                direction = backupd
+                backupd = d2d[backupd]
+                valid = addnext(x,y,direction, backupd)
+
+                if valid == False:
+                    return result
