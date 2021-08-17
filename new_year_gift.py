@@ -12373,3 +12373,13 @@ class Solution:
                 a.append(matrix[i][j])
             m -= 1
         return a
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        l = []
+        while len(matrix) > 0:
+            # get the first row
+            l += matrix.pop(0)
+            # give 90 degree angle to the matrix
+            matrix =  [row for row in reversed([list(v) for v in list(zip(*matrix))])]
+        return l
