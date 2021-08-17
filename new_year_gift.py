@@ -12346,3 +12346,30 @@ class Solution:
                 
             if len(ans) == len(matrix) * len(matrix[0]):
                 return ans
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        m = len(matrix)
+        n = len(matrix[0])
+        a = []
+        i = 0
+        j = -1
+        while m and n:
+            for _ in range(n):
+                j += 1
+                a.append(matrix[i][j])
+            n -= 1
+            for _ in range(m - 1):
+                i += 1
+                a.append(matrix[i][j])
+            m -= 1
+            if n == 0 or m == 0: break
+            for _ in range(n):
+                j -= 1
+                a.append(matrix[i][j])
+            n -= 1
+            for _ in range(m - 1):
+                i -= 1
+                a.append(matrix[i][j])
+            m -= 1
+        return a
