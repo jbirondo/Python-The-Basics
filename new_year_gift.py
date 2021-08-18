@@ -12567,3 +12567,13 @@ class Solution:
                 matrix[j][i] = temp     
         for i in range(N):
             matrix[i] = matrix[i][::-1] # in-place flip 
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        
+        for i in range(len(matrix) - 1):
+            for j in range(i, len(matrix) - 1 - i):
+                matrix[j][-i-1], matrix[-i-1][-j-1], matrix[-j-1][i], matrix[i][j] = matrix[i][j], matrix[j][-i-1], matrix[-i-1][-j-1], matrix[-j-1][i]
