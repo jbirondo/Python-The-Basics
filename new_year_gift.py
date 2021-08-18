@@ -12470,3 +12470,23 @@ matrix.length == n
 matrix[i].length == n
 1 <= n <= 20
 -1000 <= matrix[i][j] <= 1000
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+
+        t = l = 0
+        b = r = len(matrix)-1
+        
+        while l < r:
+        
+            for i in range(r-l):
+                tmp = matrix[t][l+i]
+                matrix[t][l+i] = matrix[b-i][l]
+                matrix[b-i][l] = matrix[b][r-i]
+                matrix[b][r-i] = matrix[t+i][r]
+                matrix[t+i][r] = tmp
+            
+            l += 1
+            r -= 1
+            t += 1
+            b -= 1
