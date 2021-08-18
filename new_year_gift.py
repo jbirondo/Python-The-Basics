@@ -12556,3 +12556,14 @@ class Solution:
                 matrix[i][j],matrix[j][i]=matrix[j][i],matrix[i][j]
                 
         return
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        N = len(matrix)
+        for i in range(N): # in-place transpose. temp integer needed. 
+            for j in range(i, N):
+                temp = matrix[i][j]
+                matrix[i][j] = matrix[j][i]
+                matrix[j][i] = temp     
+        for i in range(N):
+            matrix[i] = matrix[i][::-1] # in-place flip 
