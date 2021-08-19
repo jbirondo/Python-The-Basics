@@ -12656,3 +12656,17 @@ class Solution:
                     result = result + insert(i,element)
                 return result
         return permute_n(nums) 
+
+def permute(self, nums: List[int]) -> List[List[int]]:
+    	res = []
+	length = len(nums)
+	def perm(nums, inter, res):
+		if len(inter) == length: 
+			res.append(inter[:])
+			return
+		for i in range(len(nums)):
+			temp = nums[:i]
+			temp = temp + nums[i+1:]
+			perm(temp, inter+[nums[i]], res)
+	perm(nums, [], res)
+	return res
