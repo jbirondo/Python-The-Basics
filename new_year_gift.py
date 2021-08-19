@@ -12629,3 +12629,9 @@ class Solution:
                 nums[i], nums[start] = nums[start], nums[i]
                 self.backtracking(nums, start+1, arr)
                 nums[i], nums[start] = nums[start], nums[i]
+
+import itertools 
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        permutations = list(itertools.permutations(nums))
+        return permutations
