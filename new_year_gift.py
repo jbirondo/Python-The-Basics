@@ -12611,3 +12611,6 @@ Constraints:
 1 <= nums.length <= 6
 -10 <= nums[i] <= 10
 All the integers of nums are unique.
+
+def permute(self, nums):
+    return list(itertools.permutations(nums))
