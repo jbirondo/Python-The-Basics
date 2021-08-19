@@ -12614,3 +12614,18 @@ All the integers of nums are unique.
 
 def permute(self, nums):
     return list(itertools.permutations(nums))
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        arr = []
+        self.backtracking(nums, 0, arr)
+        return arr
+        
+    def backtracking(self, nums, start, arr):
+        if start == len(nums)-1:
+            arr.append([*arr])
+        else:
+            for i in range(start, len(nums)):
+                nums[i], nums[start] = nums[start], nums[i]
+                self.backtracking(nums, start+1, arr)
+                nums[i], nums[start] = nums[start], nums[i]
