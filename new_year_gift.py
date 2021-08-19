@@ -12635,3 +12635,24 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         permutations = list(itertools.permutations(nums))
         return permutations
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def insert(nums,element):
+            result = [[element] + nums]
+            for i in range(len(nums)):
+                result.append(nums[0:(i+1)] + [element] + nums[(i+1):len(nums)])
+            return result
+ 
+        def permute_n(nums):
+            n = len(nums)
+            if n == 1:
+                return [nums]
+            else:
+                prev_perm = permute_n(nums[1:n])
+                result = []
+                element = nums[0]
+                for i in prev_perm:
+                    result = result + insert(i,element)
+                return result
+        return permute_n(nums) 
