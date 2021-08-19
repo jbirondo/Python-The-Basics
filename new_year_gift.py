@@ -12577,3 +12577,37 @@ class Solution:
         for i in range(len(matrix) - 1):
             for j in range(i, len(matrix) - 1 - i):
                 matrix[j][-i-1], matrix[-i-1][-j-1], matrix[-j-1][i], matrix[i][j] = matrix[i][j], matrix[j][-i-1], matrix[-i-1][-j-1], matrix[-j-1][i]
+
+46. Permutations
+Medium
+
+7160
+
+144
+
+Add to List
+
+Share
+Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+Example 2:
+
+Input: nums = [0,1]
+Output: [[0,1],[1,0]]
+Example 3:
+
+Input: nums = [1]
+Output: [[1]]
+ 
+
+Constraints:
+
+1 <= nums.length <= 6
+-10 <= nums[i] <= 10
+All the integers of nums are unique.
