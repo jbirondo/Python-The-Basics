@@ -12670,3 +12670,16 @@ def permute(self, nums: List[int]) -> List[List[int]]:
 			perm(temp, inter+[nums[i]], res)
 	perm(nums, [], res)
 	return res
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        if len(nums) == 1: 
+            res.append(nums)
+        else:
+            for ele in self.permute(nums[1:]):
+                for i in range(len(ele)+1):
+                    temp = ele.copy()
+                    temp.insert(i,nums[0])
+                    res.append(temp)
+        return res
