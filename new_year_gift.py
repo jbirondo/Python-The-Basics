@@ -12742,3 +12742,30 @@ class Solution:
 			lst += list(combinations(nums, i))
 
 		return lst
+
+class Solution:
+    def is_valid_state(self, state, nums): 
+        # as long as the nums doesnt duplicates -> done in get_candidates step
+        return state <= nums 
+    
+    def get_candidates(self, state, nums): 
+        if not state: # if currently is an empty set 
+            return nums 
+        # print(curr)
+        return set(range(max(state)+1, max(nums)+1)) # limited the occurrence [1,2] -> the no [2,1]
+    
+    def search(self, state, solutions, nums): 
+        if self.is_valid_state(state, nums): 
+            solutions.append(state.copy())
+        
+        for num in self.get_candidates(state, nums): 
+            # based on the current set and organize the rest of nums 
+            state.add(num)
+            self.search(state, solutions, nums)
+            state.remove(num)
+    
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        solutions = [] 
+        state = set() 
+        self.search(state, solutions, set(nums))
+        return solutions 
