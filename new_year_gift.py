@@ -12770,17 +12770,19 @@ class Solution:
         self.search(state, solutions, set(nums))
         return solutions 
 
-def subsets(self, nums: List[int],idx = None) -> List[List[int]]:
-    if idx is None:
-        idx = len(nums) - 1
+
+class Solution:
+    def subsets(self, nums: List[int],idx = None) -> List[List[int]]:
+        if idx is None:
+            idx = len(nums) - 1
+            
+        if idx < 0:
+            return [[]]
         
-    if idx < 0:
-        return [[]]
-    
-    ele = nums[idx]
-    subset = self.subsets(nums,idx-1)
-    for i in range(len(subset)):
-        currentSubset = subset[i]
-        subset.append(currentSubset+[ele])
-        
-    return subset
+        ele = nums[idx]
+        subset = self.subsets(nums,idx-1)
+        for i in range(len(subset)):
+            currentSubset = subset[i]
+            subset.append(currentSubset+[ele])
+            
+        return subset
