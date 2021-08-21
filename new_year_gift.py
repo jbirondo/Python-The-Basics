@@ -12812,3 +12812,20 @@ class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         self.generate_subsets(nums)
         return self.all_subset
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ret = self.subset_helper(nums)
+        ret.append([])  # empty list is subset of every list 
+        return ret 
+    
+    def subset_helper(self, nums):
+        if len(nums) == 1:
+            return [nums]
+    
+        ret = []
+        for i in range(len(nums)):
+            ret.append([nums[i]])
+            others = nums[(i+1):]
+            ret += [[nums[i]] + subset for subset in self.subset_helper(others)]
+        return ret 
