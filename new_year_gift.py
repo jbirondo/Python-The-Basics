@@ -12829,3 +12829,20 @@ class Solution:
             others = nums[(i+1):]
             ret += [[nums[i]] + subset for subset in self.subset_helper(others)]
         return ret 
+
+    def helper(self, nums, path, res):
+        res.append(path)
+        for i in range(len(nums)):
+            self.helper(nums[i+1:], path + [nums[i]], res)
+    
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        path = []
+        
+        self.helper(nums, path, res)
+        
+        return res
