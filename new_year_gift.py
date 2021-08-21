@@ -12797,3 +12797,18 @@ class Solution:
                     dp[i].append(subset + [nums[i]])  # with the i'th element
                     dp[i].append(subset)  # without the i'th element
             return dp[len(nums)-1]
+
+class Solution:
+    def __init__(self):
+        self.all_subset = []
+        
+    def generate_subsets(self, nums, subset = [], index = 0):
+        if index == len(nums):
+            self.all_subset.append(subset)
+            return
+        self.generate_subsets(nums, subset, index+1)
+        self.generate_subsets(nums, subset+[nums[index]], index+1)
+        
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        self.generate_subsets(nums)
+        return self.all_subset
