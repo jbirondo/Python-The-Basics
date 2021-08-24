@@ -12939,3 +12939,17 @@ def recursive(nums):
 			 newNums = nums[:i] + nums[i+1:]
 			 stack.append((newNums, path+[nums[i]]))  # --  just like we used to do (path + [node.val]) in tree traversal
 	 return res
+
+def recursive(nums):
+    	from collections import deque
+	q = deque()
+	q.append((nums, []))  # -- nums, path (or perms)
+	res = []
+	while q:
+		nums, path = q.popleft()
+		if not nums:
+			res.append(path)
+		for i in range(len(nums)):
+			newNums = nums[:i] + nums[i+1:]
+			q.append((newNums, path+[nums[i]]))
+	return res
