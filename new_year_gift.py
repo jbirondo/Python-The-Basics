@@ -12927,3 +12927,15 @@ def recursive(nums, perm=[], res=[]):
             return res
         
         return recursive(nums)
+
+def recursive(nums):
+    	 stack = [(nums, [])]   # -- nums, path (or perms)
+	 res = []
+	 while stack:
+		 nums, path = stack.pop()
+		 if not nums:
+			 res.append(path)
+		 for i in range(len(nums)):   # -- NOTE [4]
+			 newNums = nums[:i] + nums[i+1:]
+			 stack.append((newNums, path+[nums[i]]))  # --  just like we used to do (path + [node.val]) in tree traversal
+	 return res
