@@ -12846,3 +12846,54 @@ class Solution:
         self.helper(nums, path, res)
         
         return res
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        n = len(nums)
+        
+        if n == 1:
+            return [nums]
+        
+        res = list(list())
+        
+        def fact(n):
+            if n == 1:
+                return 1
+            return n * fact(n - 1)
+        
+        fn = fact(n)
+        
+        def nextPermutation(nums):
+            
+            changePos = -1
+            changeItem = 0
+            
+            for i in range(n - 1, 0, -1):
+                if nums[i] > nums[i - 1]:
+                    changePos = i - 1
+                    changeItem = nums[i - 1]
+                    break
+            
+            if changePos == -1:
+                return sorted(nums)
+            
+            first = nums[:changePos]
+            second = nums[changePos:]
+            
+            second.sort()
+            
+            for i in range(len(second)):
+                if second[i] > changeItem:
+                    first.append(second[i])
+                    second.pop(i)
+                    break
+            
+            return first + second
+        
+        while (fn):
+            nums = nextPermutation(nums)
+            res.append(nums)
+            fn -= 1
+            
+        return res
