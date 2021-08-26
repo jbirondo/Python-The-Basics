@@ -13113,3 +13113,33 @@ class Solution:
         off_diag = set()
         backtrack(0)
         return res
+
+class Solution:
+    # @return a list of lists of string
+    def solveNQueens(self, n):
+        res = []
+        stack = []
+        for i in range(n):
+            stack.append([(0,i)])
+        while stack:
+            board = stack.pop()
+            row = len(board)
+            if row == n:
+                tmpList = []
+                for r,c in board:
+                    tmp = []
+                    for i in range(n):
+                        if i == c:
+                            tmp.append('Q')
+                        else:
+                            tmp.append('.')
+                    tmp = ''.join(tmp)
+                    tmpList.append(tmp)
+                res.append(tmpList)
+            for col in range(n):
+                tmp = []
+                for r, c in board:
+                    tmp.append(col != c and abs(row-r) != abs(col-c))
+                if all(tmp):
+                    stack.append(board+[(row, col)])
+        return res
