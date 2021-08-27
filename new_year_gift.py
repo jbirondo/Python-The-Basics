@@ -13314,3 +13314,25 @@ class Solution:
                 if x>threshold: union(x,y)
 
         return [find(x)==find(y) for x,y in queries]
+
+class Solution:
+    def areConnected(self, n: int, threshold: int, queries: List[List[int]]) -> List[bool]:
+        disjointSet = [-1] * (n + 1)
+        
+        for i in range(threshold + 1, n + 1):            
+            j = 2
+            while i * j <= n:
+                u = self.findRoot(disjointSet, i)
+                v = self.findRoot(disjointSet, i * j)
+                if u > v:
+                    disjointSet[u] = v
+                
+                if u < v:
+                    disjointSet[v]= u
+                j += 1
+        
+        return [ self.findRoot(disjointSet, u) == self.findRoot(disjointSet, v) for u, v in queries]
+
+    
+    def findRoot(self, disjointSet, i):
+        return i if disjointSet[i] == -1 else self.findRoot(disjointSet, disjointSet[i])
