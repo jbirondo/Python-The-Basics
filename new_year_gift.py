@@ -13264,3 +13264,30 @@ class Solution(object):
             pb = uf.find(q[1])
             ans.append(pa == pb)
         return ans
+
+def find(par, x):
+    if par[x] == x:
+        return x
+    par[x] = find(par, par[x])
+    return par[x]
+
+class Solution:
+    def areConnected(self, n: int, threshold: int, queries: List[List[int]]) -> List[bool]:
+        if threshold == 0: return [True] * len(queries)
+        if threshold >= n / 2: return [False] * len(queries)
+		# Initially, each element is in its own single-element group where the element is the parent of that group.
+        par = list(range(0, n + 1))
+        for d in range(threshold + 1, n//2 + 1):
+		    # d already merged to other group (d has smaller divisor)
+            if par[d] != d:
+                continue
+            p1 = par[d]
+            for k in range(2*d, n + 1, d): # k = 2*d, 3*d, ...
+                p2 = find(par, k)
+                if p1 == p2:
+                    continue
+                if p1 > p2:
+                    p1, p2 = p2, p1 # choose the smallest parent as parent for both groups (not necessary)
+                par[p2] = p1 # merge groups to single parent
+
+        return [find(par, x) == find(par, y) for x, y in queries]
