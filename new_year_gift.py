@@ -13291,3 +13291,26 @@ class Solution:
                 par[p2] = p1 # merge groups to single parent
 
         return [find(par, x) == find(par, y) for x, y in queries]
+
+class Solution:
+    def areConnected(self, n: int, threshold: int, queries: List[List[int]]) -> List[bool]:
+        def find(x):
+            while x in uf:
+                while uf[x] in uf:
+                    uf[x] = uf[uf[x]]
+                x = uf[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px == py: return False
+            uf[px] = py
+            return True
+        
+        if not threshold: return [True]*len(queries)
+        uf = {}
+        for x in range(1,n+1):
+            for y in range(2*x,n+1,x):
+                if x>threshold: union(x,y)
+
+        return [find(x)==find(y) for x,y in queries]
