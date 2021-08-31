@@ -13470,3 +13470,15 @@ def maxProfit(self, p):
     return max_so_far
 # Time: O(n)
 # Space: O(1)
+
+# Slightly more Pythonic or one-liner solution
+
+def maxProfit(self, p):
+        res, min_so_far = 0, math.inf
+        
+        for p1 in p:
+            res, min_so_far = max(res, p1 - min_so_far), min(min_so_far, p1)
+        
+        return res
+# Time: O(n)
+# Space: O(1)
