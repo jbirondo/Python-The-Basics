@@ -13454,3 +13454,19 @@ def maxProfit(self, p):
     return max_so_far           
 # Time: O(n)
 # Space: O(1)
+
+# Comparing with min
+# Keep the min_so_far (min element so far) value along with max_so_far (max profit so far).
+# Find the diff of p[i] with min_so_far at each step and update max_so_far if it exceeds it.
+
+def maxProfit(self, p):
+    n = len(p)
+    min_so_far, max_so_far = math.inf, 0
+    
+    for i in range(n):
+        cur = p[i] - min_so_far
+        max_so_far = max(cur, max_so_far)
+        min_so_far = min(min_so_far, p[i])
+    return max_so_far
+# Time: O(n)
+# Space: O(1)
