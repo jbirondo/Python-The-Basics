@@ -13439,3 +13439,18 @@ def maxProfit(self, p):
     return max_so_far           
 # Time: O(n^2)
 # Space: O(1)
+
+# Kadane's algorithm
+# If the "profit so far" cur becomes negative, start from 0.
+# Otherwise add it to current diff p[i] - p[i-1] and update max_so_far (max profit so far).
+
+def maxProfit(self, p):
+    n = len(p)
+    max_so_far, cur = 0, 0
+    
+    for i in range(1,n):
+        cur = max(cur + p[i] - p[i-1], 0)
+        max_so_far = max(cur, max_so_far)
+    return max_so_far           
+# Time: O(n)
+# Space: O(1)
