@@ -13530,3 +13530,15 @@ Constraints:
 1 <= arr.length <= 105
 arr.length is even.
 1 <= arr[i] <= 105
+
+class Solution:
+    def minSetSize(self, arr: List[int]) -> int:
+        cnt = Counter(arr)
+        frequencies = list(cnt.values())
+        frequencies.sort()
+        
+        ans, removed, half = 0, 0, len(arr) // 2
+        while removed < half:
+            ans += 1
+            removed += frequencies.pop()
+        return ans
