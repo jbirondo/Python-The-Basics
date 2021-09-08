@@ -13622,3 +13622,10 @@ def climbStairs3(self, n):
         b = a+b
         a = tmp
     return b
+
+def climbStairs4(self, n):
+    if n == 1:
+        return 1
+    dic = [-1 for i in xrange(n)]
+    dic[0], dic[1] = 1, 2
+    return self.helper(n-1, dic)
