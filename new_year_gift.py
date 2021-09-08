@@ -13612,3 +13612,13 @@ def climbStairs2(self, n):
     for i in xrange(2, n):
         res[i] = res[i-1] + res[i-2]
     return res[-1]
+
+def climbStairs3(self, n):
+    if n == 1:
+        return 1
+    a, b = 1, 2
+    for i in xrange(2, n):
+        tmp = b
+        b = a+b
+        a = tmp
+    return b
