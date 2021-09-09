@@ -13783,3 +13783,12 @@ class Solution:
       
     count_coins(0, 0, amount)
     return min_coins if min_coins < float('inf') else -1
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        memo = [float("inf")] * (amount+1)
+        memo[0] = 0
+        for x in range(min(coins), amount+1):
+            memo[x] = min([memo[x-c] for c in coins if x-c>=0]) + 1
+        v = memo[amount]
+        return -1 if v==float("inf") else v
