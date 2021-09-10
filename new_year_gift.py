@@ -13870,3 +13870,18 @@ def lengthOfLIS(self, nums: List[int]) -> int:
 			return max(1 + max_lis(idx + 1, nums[idx]), max_lis(idx + 1, cur_max))
 		return max_lis(idx + 1, cur_max)
 	return max_lis(0, float('-inf'))
+
+from collections import defaultdict
+def lengthOfLIS(self, nums: List[int]) -> int:
+	cache = defaultdict(dict) # 2D cache of prev_max_idx & cur_idx
+	nums.append(float('-inf'))
+	def max_lis(idx, prev_max_idx):
+		if idx == len(nums) - 1:
+			return 0
+		if prev_max_idx not in cache or idx not in cache[prev_max_idx]:
+			if nums[idx] > nums[prev_max_idx]:
+				cache[prev_max_idx][idx] = max(1 + max_lis(idx + 1, idx), max_lis(idx + 1, prev_max_idx))
+			else:
+				cache[prev_max_idx][idx] = max_lis(idx + 1, prev_max_idx)
+		return cache[prev_max_idx][idx]
+	return max_lis(0, -1)
