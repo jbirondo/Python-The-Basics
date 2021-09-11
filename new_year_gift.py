@@ -13963,3 +13963,13 @@ All the elements of nums are unique.
  
 
 Follow up: What if negative numbers are allowed in the given array? How does it change the problem? What limitation we need to add to the question to allow negative numbers?
+
+class Solution:
+    def combinationSum4(self, N: List[int], T: int) -> int:
+        dp = [0] * (T + 1)
+        dp[0] = 1
+        for i in range(T):
+            if not dp[i]: continue
+            for num in N:
+                if num + i <= T: dp[i+num] += dp[i]
+        return dp[T]
