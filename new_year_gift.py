@@ -14090,3 +14090,12 @@ class Solution(object):
         print(dp)
         
         return max(dp)
+
+class Solution:
+    # @param {integer[]} nums
+# @return {integer}
+def rob(self, nums):
+    l = r = 0
+    for n in nums:
+        l, r = r, max(n + l, r)
+    return r
