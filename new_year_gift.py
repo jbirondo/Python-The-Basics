@@ -14177,3 +14177,23 @@ class Solution(object):
         else:
             n = len(nums)
             return max(simple_rob(nums, 1, n), simple_rob(nums, 0, n-1))
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        
+        if len(nums) <= 3:
+            return max(nums)
+        
+        def helper(dp):
+            dp[1] = max(dp[0], dp[1])
+
+            for x in range(2, len(dp)):
+                dp[x] = max(dp[x - 1], dp[x] + dp[x - 2])
+
+            return dp[-1]
+        
+        p1 = helper(nums[:len(nums) - 1])
+        p2 = helper(nums[1:])
+        return max(p1, p2)
