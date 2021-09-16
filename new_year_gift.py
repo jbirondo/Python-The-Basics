@@ -14215,3 +14215,26 @@ class Solution:
             dp[x] = max(dp[x - 1], nums[x] + dp[x - 2])
         
         return dp[-1]
+
+def rob(nums):
+    	if not nums:
+		return 0
+	if len(nums)==1:
+		return nums[0]
+	if len(nums)==2:
+		return max(nums)
+	dp = nums[:3]+[0]*(len(nums)-3)
+	dp[2]+=nums[0]
+	for i in range(3,len(nums)):
+		dp[i]=nums[i]+ max(dp[i-2], dp[i-3])
+	return max(dp[-1], dp[-2])
+
+class Solution:
+	def rob(self, nums: List[int]) -> int:
+		if not nums:
+			return 0
+		if len(nums)==1:
+			return nums[0]
+		if len(nums)==2:
+			return max(nums)
+		return max([rob(nums[:-1]), rob(nums[1:])])
