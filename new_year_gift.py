@@ -14238,3 +14238,29 @@ class Solution:
 		if len(nums)==2:
 			return max(nums)
 		return max([rob(nums[:-1]), rob(nums[1:])])
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+            if not nums:
+                return 0
+
+            if len(nums) <= 3: #handle the case of array is 1 or 2 or items longs. In case of 3 elements, 1st and 3rd cannot be robbed together. So at any point, only 1 can be robbed.
+                return max(nums)
+
+            def subFunction(dp):
+                #as 0th element is already referred from nums array, we dont have to initilize it.
+                #we will use this sub-function to calculate the robbed amount.
+                #the index where to start or end will be determined by calling function.
+                dp[1] = max(dp[0], dp[1]) #compare the first two elements from nums array and choose the higher one to rob and place in 2nd index.
+
+                #once two houses are determined to rob, run a loop on entire range to decide which houses to rob.
+
+                for house in range(2,len(dp)): #starting from 3rd element to the entire range of array
+                    dp[house] = max(dp[house -1], dp[house] + dp [house -2])
+
+                return dp[-1] #return last element updated from for loop which will have the highest robbed money
+            
+            value1=subFunction(nums[:len(nums)-1 ]) #Pass the array from 0th element to 2nd last
+            value2=subFunction(nums[1:]) #Pass the array from 1st element to end
+            
+            return max(value1,value2)
